@@ -1,7 +1,17 @@
 'use strict';
 
-var Icon = require('../dist/Icon/Icon');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-module.exports = {
-  Icon
-};
+var _Icon = require('../dist/Icon/Icon');
+
+Object.keys(_Icon).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _Icon[key];
+    }
+  });
+});

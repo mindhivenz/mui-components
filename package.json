@@ -50,13 +50,6 @@
     "url": "https://github.com/mindhivenz/mui-components/issues"
   },
   "license": "MIT",
-  "peerDependencies": {
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0",
-    "react-tap-event-plugin": "^1.0.0",
-    "mobx-react": "^3.5.8",
-    "react-redux": "^4.4.5"
-  },
   "dependencies": {
     "@mindhive/meteor": "^5.2.6",
     "@mindhive/ui-tools": "^1.0.0",
