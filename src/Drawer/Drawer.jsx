@@ -3,7 +3,6 @@ import MuiDrawer from 'material-ui/Drawer'
 import { connect } from 'react-redux'
 
 import { withTheme } from '@mindhive/ui-tools'
-import { Version } from '../Version'
 
 import { setNavDrawerOpenAction } from './navDrawerActions'
 
@@ -22,7 +21,6 @@ const Drawer = ({
       onRequestChange={setNavDrawerOpen}
     >
       {children}
-      <Version />
     </MuiDrawer>
   </nav>
 

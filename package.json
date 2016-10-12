@@ -38,6 +38,9 @@
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.8.1",
     "mocha": "^2.5.3",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
+    "react-tap-event-plugin": "^1.0.0",
     "react-tools": "^0.13.3",
     "sinon": "^1.17.4",
     "sinon-chai": "^2.8.0"
@@ -47,17 +50,19 @@
     "url": "https://github.com/mindhivenz/mui-components/issues"
   },
   "license": "MIT",
+  "peerDependencies": {
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
+    "react-tap-event-plugin": "^1.0.0",
+    "mobx-react": "^3.5.8",
+    "react-redux": "^4.4.5"
+  },
   "dependencies": {
     "@mindhive/meteor": "^5.2.6",
     "@mindhive/ui-tools": "^1.0.0",
     "date-fns": "^1.4.0",
     "material-ui": "^0.16.0",
     "mobx": "^2.6.0",
-    "mobx-react": "^3.5.8",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "react-redux": "^4.4.5",
-    "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.6.0"
   }
 }

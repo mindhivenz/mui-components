@@ -13,6 +13,7 @@ class VersionDomain {
     { version = 'unknown', release = {} } = {},
     copyrightDate,
   ) {
+    console.log('Version Domain')
     this._init(version, release, copyrightDate)
   }
 

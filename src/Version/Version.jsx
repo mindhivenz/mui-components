@@ -1,13 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { app } from '@mindhive/meteor'
 import { observer } from 'mobx-react'
 
 import { withTheme } from '@mindhive/ui-tools'
 
 
 const Version = observer(({
-  domains: { versionDomain } = app(),
+  versionDomain,
   isSuperUser,
   styles,
   prepareStyles,
