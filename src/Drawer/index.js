@@ -1,8 +1,8 @@
 'use strict';
 
-var MenuItem = require('MenuItem')
-var Drawer = require('Drawer')
-var Divider = require('Divider')
+var MenuItem = require('./MenuItem')
+var Drawer = require('./Drawer')
+var Divider = require('./Divider')
 
 module.exports = {
   MenuItem: MenuItem.default,
