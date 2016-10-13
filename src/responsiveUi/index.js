@@ -1,2 +1,2 @@
-import responsiveUiModule from './responsiveUiModule'
+import responsiveUiModule from './responsiveUiDomain'
 export default responsiveUiModule

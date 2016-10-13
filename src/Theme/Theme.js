@@ -1,6 +1,5 @@
 import { action, observable, computed } from 'mobx'
-import createTheme from './themeReducerLegacy'
-import singleton from 'singleton'
+import createTheme from './createTheme'
 
 import blueGreyThemeDarkBody from './themes/blueGreyThemeDarkBody'
 import brightBlueTheme from './themes/brightBlueTheme'
@@ -18,11 +17,10 @@ class Theme {
   ]
 
   @observable mobile = false
-  @observable web = false
+  @observable web = true
   @observable baseTheme = defaultTheme
 
-  @computed get theme() {
-    console.log('Theme.theme')
+  @computed get muiTheme() {
     return createTheme(this.mobile, this.web, this.baseTheme)
   }
 

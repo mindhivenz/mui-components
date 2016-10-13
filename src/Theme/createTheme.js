@@ -5,7 +5,7 @@ import transitions from 'material-ui/styles/transitions'
 
 export const createTheme = (isMobile, isWeb, baseTheme) => {
 
-  console.log(baseTheme.description.label)
+  // console.log(baseTheme.description.label)
 
   const baseZIndex = {
     transition: 500,

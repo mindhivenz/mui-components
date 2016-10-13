@@ -3,7 +3,7 @@ import { observer } from 'mobx-react'
 
 export default (Component, getStyles) => {
   const ThemedComponent = observer((ownProps, context) => {
-    const theme = context.store.theme.theme
+    const theme = context.mobxStore.theme.muiTheme
     const props = {
       theme,
       prepareStyles: (...styles) => theme.prepareStyles(Object.assign({}, ...styles)),
@@ -14,7 +14,7 @@ export default (Component, getStyles) => {
 
     return (<Component {...props} {...ownProps}/>)
   })
-  ThemedComponent.contextTypes = {store: React.PropTypes.object.isRequired}
+  ThemedComponent.contextTypes = {mobxStore: React.PropTypes.object.isRequired}
 
   return ThemedComponent
 }

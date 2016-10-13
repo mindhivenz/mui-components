@@ -87,6 +87,4 @@ const mapStateToProps = ({
   navDrawerDocked: docked,
 })
 
-const Component = withTheme(PageLayout, propsToStyle);
-console.log(Component)
-export default Component
+export default withTheme(PageLayout, propsToStyle)

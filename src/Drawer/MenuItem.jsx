@@ -1,52 +1,49 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import MuiMenuItem from 'material-ui/MenuItem'
 
-import { withTheme } from '@mindhive/ui-tools'
-import { Icon } from '../Icon'
+import connect from '../mobx/connect'
 
-import { setNavDrawerOpenAction } from './navDrawerActions'
+import withTheme from '../Theme/withTheme'
+import { Icon } from '../Icon'
 
 const MenuItem = ({
   onTouchTap,
   icon,
+  theme, // eslint-disable-line no-unused-vars
+  prepareStyles, // eslint-disable-line no-unused-vars
+  active, // eslint-disable-line no-unused-vars
+
   styles,
-  childProps,
+  ...childProps,
 }) =>
   <MuiMenuItem
     onTouchTap={onTouchTap}
-    leftIcon={<Icon style={styles} ligature={icon} />}
+    leftIcon={<Icon style={styles} ligature={icon}/>}
     style={styles}
     {...childProps}
   />
 
 
-const Themed = withTheme(
-  MenuItem,
-  ({ drawer }, { active }) => ({
-    ...drawer.menuItem,
-    ...(active ? drawer.active : {}),
-  })
-)
+const calcStyles = ({ drawer }, { active }) => ({
+  ...drawer.menuItem,
+  ...(active ? drawer.active : {}),
+})
 
-const mapStateToProps = ({
-  navDrawer: { docked },
+const mapStoreToProps = ({
+  drawer,
 }, {
   onTouchTap,
-  active,
-  ...childProps,
 }) => ({
-  docked,
-  active,
   onTouchTap: () => {
-    if (! docked) {
-      setNavDrawerOpenAction(false)
+    if (! drawer.docked) {
+      drawer.setOpen(false)
     }
     if (onTouchTap) {
       onTouchTap()
     }
   },
-  childProps,
 })
 
-export default connect(mapStateToProps)(Themed)
+export default connect(mapStoreToProps)(
+  withTheme(MenuItem, calcStyles)
+)

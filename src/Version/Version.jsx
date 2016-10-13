@@ -1,45 +1,43 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { observer } from 'mobx-react'
 
-import { withTheme } from '@mindhive/ui-tools'
+import withTheme from '../Theme/withTheme'
+import connect from '../mobx/connect'
 
 
-const Version = observer(({
-  versionDomain,
+const Version = ({
+  version,
   isSuperUser,
   styles,
   prepareStyles,
 }) =>
   <div style={prepareStyles(styles)}>
-    <div>&copy; Mindhive {versionDomain.copyrightYear}</div>
-    <div>Version: {versionDomain.version}</div>
+    <div>&copy; Mindhive {version.copyrightYear}</div>
+    <div>Version: {version.version}</div>
     {isSuperUser &&
-      <div>{versionDomain.releaseOn} by {versionDomain.releaseBy}</div>
+      <div>{version.releaseOn} by {version.releaseBy}</div>
     }
   </div>
-)
 
-const Themed = withTheme(Version, (
-    {
-      version,
-    }
-  ) => (
-  {
-    ...version,
-    fontSize: '12px',
-    position: 'absolute',
-    bottom: 10,
-    left: 0,
-    width: '100%',
-  })
-)
-
-
-const mapStateToProps = ({
-  viewer: { isSuperUser },
+const calcStyles = ({
+  version,
 }) => ({
+  ...version,
+  fontSize: '12px',
+  position: 'absolute',
+  bottom: 10,
+  left: 0,
+  width: '100%',
+})
+
+
+const mapStoreToProps = ({
+  viewer: { isSuperUser },
+  version,
+}) => ({
+  version,
   isSuperUser,
 })
 
-export default connect(mapStateToProps)(Themed)
+export default connect(mapStoreToProps)(
+  withTheme(Version, calcStyles)
+)

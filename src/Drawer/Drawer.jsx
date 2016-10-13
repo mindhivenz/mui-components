@@ -2,7 +2,7 @@ import React from 'react'
 import MuiDrawer from 'material-ui/Drawer'
 import { connect } from 'react-redux'
 
-import { withTheme } from '@mindhive/ui-tools'
+import withTheme from '../Theme/withTheme'
 
 import { setNavDrawerOpenAction } from './navDrawerActions'
 
@@ -42,14 +42,6 @@ const Themed = withTheme(Drawer, (
     },
   })
 )
+// Drawer.contextTypes = {store: React.PropTypes.object.isRequired}
 
-
-const mapStateToProps = ({
-  navDrawer: { open, docked },
-}) => ({
-  open,
-  docked,
-  setNavDrawerOpen: setNavDrawerOpenAction,
-})
-
-export default connect(mapStateToProps)(Themed)
+export default Themed
