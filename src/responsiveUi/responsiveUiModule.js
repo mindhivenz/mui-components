@@ -4,7 +4,8 @@ import * as windowWidth from './windowWidth'
 
 class ResizeHandler {
 
-  constructor() {
+  constructor(context) {
+    this.context = context
     this.resizeInterval = 166
     this.lastReportedWidth = undefined
     this.updateWidth()
@@ -32,12 +33,12 @@ class ResizeHandler {
       width = windowWidth.X_LARGE
     }
     if (width !== this.lastReportedWidth) {
-      windowWidthChangedAction(width)
+      windowWidthChangedAction(this.context)(width)
       this.lastReportedWidth = width
     }
   }
 }
 
-export default () => ({
-  resizeHandler: new ResizeHandler(),
+export default (context) => ({
+  resizeHandler: new ResizeHandler(context),
 })

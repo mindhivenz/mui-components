@@ -11,6 +11,6 @@ module.exports = {
   Drawer: Drawer.default,
   Divider: Divider.default,
   navDrawerReducers: navDrawerReducers.default,
-  setNavDrawerOpenAction: navDrawerActions.setNavDrawerOpenAction
+  setNavDrawerOpenActionCreator: navDrawerActions.setNavDrawerOpenActionCreator
 
 };

@@ -1,10 +1,9 @@
-import { app } from '@mindhive/meteor'
+export const dispatch = (context, action) =>
+  context.store.dispatch(action)
 
-export const dispatch = (action) =>
-  app().store.dispatch(action)
-
-export const dispatchOf = (actionOrCreator) =>
+export const dispatchOf = (context, actionOrCreator) =>
   (...args) =>
     dispatch(
+      context,
       typeof actionOrCreator === 'function' ? actionOrCreator(...args) : actionOrCreator
     )
