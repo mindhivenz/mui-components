@@ -5,7 +5,7 @@ import { MEDIUM as dockedWindowWidth } from '../responsiveUi/windowWidth'
 class DrawerDomain {
 
   @observable docked
-  @observable isOpen
+  @observable _open
 
   constructor(resizeHandler) {
     this.resizeHandler = resizeHandler
@@ -16,24 +16,24 @@ class DrawerDomain {
   }
 
   @action _init(open, docked) {
-    this.isOpen = open
+    this._open = open
     this.docked = docked
   }
 
   @computed get open() {
     console.log('DrawerDomain')
-    console.log(this.isOpen)
-    return this.isOpen
+    console.log(this._open)
+    return this._open
   }
 
   @action toggle() {
-    this.isOpen = ! this.isOpen
+    this._open = ! this._open
   }
 
   @action setOpen(open) {
     console.log('DrawerDomain')
     console.log(`open: ${open}`)
-    this.isOpen = open
+    this._open = open
   }
 
 }
