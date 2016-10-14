@@ -10,7 +10,7 @@ class ResizeHandler {
     return this._width
   }
 
-  constructor(context) {
+  constructor() {
     this._init()
   }
 
@@ -42,8 +42,6 @@ class ResizeHandler {
       width = windowWidth.X_LARGE
     }
     if (width !== this.lastReportedWidth) {
-      console.log('ResizeHandler')
-      console.log(width)
       this._width = width
       this.lastReportedWidth = width
     }

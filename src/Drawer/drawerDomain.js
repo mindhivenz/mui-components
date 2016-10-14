@@ -8,9 +8,11 @@ class DrawerDomain {
   @observable isOpen
 
   constructor(resizeHandler) {
-    // this.disposer = autorun(() => console.log(resizeHandler.width));
-    // this.resizeHandler = resizeHandler
+    this.resizeHandler = resizeHandler
     this._init(null, true)
+    autorun(() => {
+      this.setOpen(this.resizeHandler.width >= dockedWindowWidth)
+    })
   }
 
   @action _init(open, docked) {
@@ -18,10 +20,10 @@ class DrawerDomain {
     this.docked = docked
   }
 
-  @computed open() {
+  @computed get open() {
     console.log('DrawerDomain')
-    console.log(this.resizeHandler.width)
-    return this.resizeHandler.width >= dockedWindowWidth ? null : this.isOpen
+    console.log(this.isOpen)
+    return this.isOpen
   }
 
   @action toggle() {
@@ -29,6 +31,8 @@ class DrawerDomain {
   }
 
   @action setOpen(open) {
+    console.log('DrawerDomain')
+    console.log(`open: ${open}`)
     this.isOpen = open
   }
 
