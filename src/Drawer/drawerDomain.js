@@ -11,7 +11,8 @@ class DrawerDomain {
     this.resizeHandler = resizeHandler
     this._init(null, true)
     autorun(() => {
-      this.setOpen(this.resizeHandler.width >= dockedWindowWidth)
+      this.setDocked(this.resizeHandler.width >= dockedWindowWidth)
+      this.setOpen(this.docked ? null : this._open)
     })
   }
 
@@ -28,6 +29,12 @@ class DrawerDomain {
 
   @action toggle() {
     this._open = ! this._open
+  }
+
+  @action setDocked(docked) {
+    console.log('DrawerDomain')
+    console.log(`open: ${docked}`)
+    this.docked = docked
   }
 
   @action setOpen(open) {

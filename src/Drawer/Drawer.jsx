@@ -1,6 +1,6 @@
 import React from 'react'
 import MuiDrawer from 'material-ui/Drawer'
-import { connect } from 'react-redux'
+import connect from '../mobx/connect'
 
 import withTheme from '../Theme/withTheme'
 
@@ -24,24 +24,27 @@ const Drawer = ({
     </MuiDrawer>
   </nav>
 
-const Themed = withTheme(Drawer, (
-    {
-      appBar,
-      drawer,
-      fillParent,
-    },
-    { docked },
-  ) => (
-  {
-    // nav: fillParent,
-    drawer: {
-      backgroundColor: drawer.color,
-      transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
-      height: `calc(100% - ${docked ? appBar.height : 0}px)`,
-      marginTop: docked ? appBar.height : 0,
-    },
-  })
-)
-// Drawer.contextTypes = {store: React.PropTypes.object.isRequired}
+const calcStyles = ({
+  appBar,
+  drawer,
+  fillParent,
+}, {
+  docked
+}) => ( {
+  // nav: fillParent,
+  drawer: {
+    backgroundColor: drawer.color,
+    transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
+    height: `calc(100% - ${docked ? appBar.height : 0}px)`,
+    marginTop: docked ? appBar.height : 0,
+  },
+})
 
-export default Themed
+const mapStoreToProps = ({
+  drawer: { docked },
+}) => ({
+  docked,
+}
+)
+
+export default connect(mapStoreToProps)(withTheme(Drawer, calcStyles))
