@@ -1,50 +1,63 @@
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
 import MuiDrawer from 'material-ui/Drawer'
-import connect from '../mobx/connect'
+import { observer } from 'mobx-react'
 
-import withTheme from '../Theme/withTheme'
+import withTheme from '../theme/withTheme'
 
-import { setNavDrawerOpenAction } from './navDrawerActions'
 
-const Drawer = ({
-  open,
-  docked,
-  styles,
-  setNavDrawerOpen,
-  children,
-}) =>
-  <nav style={styles.nav}>
-    <MuiDrawer
-      containerStyle={styles.drawer}
-      docked={docked}
-      open={open}
-      onRequestChange={setNavDrawerOpen}
-    >
-      {children}
-    </MuiDrawer>
-  </nav>
+@observer
+class Drawer extends Component {
+
+  static childContextTypes = {
+    drawerOnTouchTap: PropTypes.func.isRequired,
+  }
+
+  getChildContext = () => ({
+    drawerOnTouchTap: this.drawerOnTouchTap,
+  })
+
+  drawerOnTouchTap = () => {
+    const domain = this.props.domain
+    if (! domain.docked) {
+      domain.setOpen(false)
+    }
+  }
+
+  render() {
+    const {
+      styles,
+      domain,
+      children,
+    } = this.props
+    return (
+      <nav style={styles.nav}>
+        <MuiDrawer
+          containerStyle={styles.drawer}
+          docked={domain.docked}
+          open={domain.open}
+          onRequestChange={domain.setOpen}
+        >
+          {children}
+        </MuiDrawer>
+      </nav>
+    )
+  }
+}
 
 const calcStyles = ({
   appBar,
   drawer,
   fillParent,
 }, {
-  docked
+  domain,
 }) => ( {
   // nav: fillParent,
   drawer: {
     backgroundColor: drawer.color,
     transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
-    height: `calc(100% - ${docked ? appBar.height : 0}px)`,
-    marginTop: docked ? appBar.height : 0,
+    height: `calc(100% - ${domain.docked ? appBar.height : 0}px)`,
+    marginTop: domain.docked ? appBar.height : 0,
   },
 })
 
-const mapStoreToProps = ({
-  drawer: { docked },
-}) => ({
-  docked,
-}
-)
-
-export default connect(mapStoreToProps)(withTheme(Drawer, calcStyles))
+export default withTheme(Drawer, calcStyles)

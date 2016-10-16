@@ -1,49 +1,45 @@
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
 import MuiMenuItem from 'material-ui/MenuItem'
 
-import connect from '../mobx/connect'
-
-import withTheme from '../Theme/withTheme'
+import withTheme from '../theme/withTheme'
 import { Icon } from '../Icon'
 
-const MenuItem = ({
-  onTouchTap,
-  icon,
-  theme, // eslint-disable-line no-unused-vars
-  prepareStyles, // eslint-disable-line no-unused-vars
-  active, // eslint-disable-line no-unused-vars
 
-  styles,
-  ...childProps,
-}) =>
-  <MuiMenuItem
-    onTouchTap={onTouchTap}
-    leftIcon={<Icon style={styles} ligature={icon}/>}
-    style={styles}
-    {...childProps}
-  />
+class MenuItem extends Component {
 
+  static contextTypes = {
+    drawerOnTouchTap: PropTypes.func
+  }
+
+  onTouchTap = () => {
+    this.context.drawerOnTouchTap && this.context.drawerOnTouchTap()
+    this.props.onTouchTap && this.props.onTouchTap()
+  }
+
+  render = () => {
+    const {
+      icon,
+      styles,
+      onTouchTap,  // eslint-disable-line no-unused-vars
+      theme, // eslint-disable-line no-unused-vars
+      prepareStyles, // eslint-disable-line no-unused-vars
+      active, // eslint-disable-line no-unused-vars
+      ...childProps,
+    } = this.props
+    return (
+      <MuiMenuItem
+        onTouchTap={this.onTouchTap}
+        leftIcon={<Icon style={styles} ligature={icon}/>}
+        style={styles}
+        {...childProps}
+      />
+    )
+  }
+}
 
 const calcStyles = ({ drawer }, { active }) => ({
   ...drawer.menuItem,
   ...(active ? drawer.active : {}),
 })
 
-const mapStoreToProps = ({
-  drawer,
-}, {
-  onTouchTap,
-}) => ({
-  onTouchTap: () => {
-    if (! drawer.docked) {
-      drawer.setOpen(false)
-    }
-    if (onTouchTap) {
-      onTouchTap()
-    }
-  },
-})
-
-export default connect(mapStoreToProps)(
-  withTheme(MenuItem, calcStyles)
-)
+export default withTheme(MenuItem, calcStyles)

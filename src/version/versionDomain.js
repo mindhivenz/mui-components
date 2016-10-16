@@ -1,4 +1,4 @@
-import { observable, computed, action } from 'mobx'
+import { observable, computed } from 'mobx'
 import format from 'date-fns/format'
 import getYear from 'date-fns/get_year'
 
@@ -13,10 +13,6 @@ class VersionDomain {
     { version = 'unknown', release = {} } = {},
     copyrightDate,
   ) {
-    this._init(version, release, copyrightDate)
-  }
-
-  @action _init(version, release, copyrightDate) {
     this.version = version
     this.releaseInfo = release
     this.copyrightYear = getYear(copyrightDate)
@@ -27,12 +23,12 @@ class VersionDomain {
   }
 
   @computed get releaseBy() {
-    const { by } = this.releaseInfo
-    return by || null
+    const { by = null } = this.releaseInfo
+    return by
   }
 
   @computed get releaseOn() {
-    const { on } = this.releaseInfo
+    const { on = null } = this.releaseInfo
     return on && format(on, 'D/M/YY, hh:mm a')
   }
 }

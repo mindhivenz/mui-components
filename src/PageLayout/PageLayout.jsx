@@ -2,7 +2,7 @@ import React from 'react'
 import spacing from 'material-ui/styles/spacing'
 import transitions from 'material-ui/styles/transitions'
 
-import withTheme from '../Theme/withTheme'
+import withTheme from '../theme/withTheme'
 
 
 const PageLayout = ({
@@ -45,7 +45,7 @@ const propsToStyle = ({
     boxSizing: 'border-box',
     overflowY: 'auto',
     height: `calc(100% - ${spacing.desktopKeylineIncrement}px)`,
-    transition: transitions.easeOut(null, 'width', null),
+    transition: transitions.easeOut(null, 'size', null),
     width: navDrawerDocked ? `calc(100% - ${drawer.width}px)` : '100%',
 
   },
