@@ -1,4 +1,4 @@
-import { observable, autorun, computed, action } from 'mobx'
+import { observable, computed, action } from 'mobx'
 import { app } from '@mindhive/di'
 import { WindowSize } from '../responsiveUi/windowMetrics'
 
