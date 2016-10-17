@@ -19,7 +19,7 @@ class Drawer extends Component {
   drawerOnTouchTap = () => {
     const domain = this.props.domain
     if (! domain.docked) {
-      domain.setOpen(false)
+      domain.setWantOpen(false)
     }
   }
 
@@ -35,7 +35,7 @@ class Drawer extends Component {
           containerStyle={styles.drawer}
           docked={domain.docked}
           open={domain.open}
-          onRequestChange={domain.setOpen}
+          onRequestChange={domain.setWantOpen}
         >
           {children}
         </MuiDrawer>
