@@ -7,14 +7,11 @@ const dockedWindowSize = WindowSize.MEDIUM
 
 export class DrawerDomain {
 
-  @observable canDock = true
   @observable wantDocked = true
   @observable wantOpen = null
 
-  constructor() {
-    autorun(() => {
-      this.setCanDock(app().windowMetricsDomain.size.ordinal >= dockedWindowSize.ordinal)
-    })
+  @computed get canDock() {
+    return app().windowMetricsDomain.size.ordinal >= dockedWindowSize.ordinal
   }
 
   @computed get docked() {
@@ -37,10 +34,6 @@ export class DrawerDomain {
     if (! this.docked) {
       this.setWantOpen(false)
     }
-  }
-
-  @action setCanDock = (canDock) => {
-    this.canDock = canDock
   }
 
   @action setWantOpen = (open) => {
