@@ -1,2 +1,2 @@
 
-module.exports = require('./dist/version/Version')
+module.exports = require('./dist/Version')

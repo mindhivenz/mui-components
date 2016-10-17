@@ -2,7 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { app } from '@mindhive/di'
 
-import withTheme from '../theme/withTheme'
+import withTheme from './theme/withTheme'
 
 
 const Version = ({
