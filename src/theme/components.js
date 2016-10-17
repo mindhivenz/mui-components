@@ -3,30 +3,13 @@ export default (theme) => {
   return ({
     app: {
       container: {
-        position: 'fixed',
-        width: '100%',
-        height: '100%',
-        left: 0,
-        top: 0,
-        margin: '0 auto',
         color: palette.bodyTextColor,
         backgroundColor: palette.bodyColor,
-        transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
-
       },
       bar: {
         backgroundColor: palette.primary1Color,
         position: 'fixed',
         top: 0,
-      },
-      content: {
-        position: 'fixed',
-        boxSizing: 'border-box',
-
-        width: '100%',
-        height: '100%',
-        overflowY: 'auto',
-
       },
     },
 

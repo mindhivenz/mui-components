@@ -9,19 +9,12 @@ import withTheme from '../theme/withTheme'
 class Drawer extends Component {
 
   static childContextTypes = {
-    drawerOnTouchTap: PropTypes.func.isRequired,
+    drawerDomain: PropTypes.object.isRequired,
   }
 
   getChildContext = () => ({
-    drawerOnTouchTap: this.drawerOnTouchTap,
+    drawerDomain: this.props.domain,
   })
-
-  drawerOnTouchTap = () => {
-    const domain = this.props.domain
-    if (! domain.docked) {
-      domain.setWantOpen(false)
-    }
-  }
 
   render() {
     const {

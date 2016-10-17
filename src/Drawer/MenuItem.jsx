@@ -8,11 +8,11 @@ import { Icon } from '../Icon'
 class MenuItem extends Component {
 
   static contextTypes = {
-    drawerOnTouchTap: PropTypes.func,
+    drawerDomain: PropTypes.object,
   }
 
   onTouchTap = () => {
-    this.context.drawerOnTouchTap && this.context.drawerOnTouchTap()
+    this.context.drawerDomain && this.context.drawerDomain.onTouchTap()
     this.props.onTouchTap && this.props.onTouchTap()
   }
 

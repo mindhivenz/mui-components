@@ -33,6 +33,12 @@ export class DrawerDomain {
     }
   }
 
+  onTouchTap = () => {
+    if (! this.docked) {
+      this.setWantOpen(false)
+    }
+  }
+
   @action setCanDock = (canDock) => {
     this.canDock = canDock
   }
