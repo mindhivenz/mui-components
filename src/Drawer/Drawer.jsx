@@ -53,7 +53,7 @@ const calcStyles = ({
 }) => ({
   // nav: fillParent,
   drawer: {
-    backgroundColor: drawer.color,
+    backgroundColor: drawer.backgroundColor,
     transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
     height: `calc(100% - ${domain.docked ? appBar.height : 0}px)`,
     marginTop: domain.docked ? appBar.height : 0,
