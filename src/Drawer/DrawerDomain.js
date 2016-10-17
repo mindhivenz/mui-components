@@ -7,28 +7,37 @@ const dockedWindowSize = WindowSize.MEDIUM
 
 export class DrawerDomain {
 
-  @observable docked = true
-  @observable _open = null
+  @observable canDock = true
+  @observable wantDocked = true
+  @observable wantOpen = null
 
   constructor() {
     autorun(() => {
-      this.setDocked(app().windowMetricsDomain.size.ordinal >= dockedWindowSize.ordinal)
+      this.setCanDock(app().windowMetricsDomain.size.ordinal >= dockedWindowSize.ordinal)
     })
   }
 
+  @computed get docked() {
+    return this.canDock && this.wantDocked
+  }
+
   @computed get open() {
-    return this.docked ? null : this._open
+    return this.docked ? null : this.wantOpen
   }
 
   @action toggle = () => {
-    this._open = ! this._open
+    if (this.canDock) {
+      this.wantDocked = ! this.wantDocked
+    } else {
+      this.wantOpen = ! this.wantOpen
+    }
   }
 
-  @action setDocked = (docked) => {
-    this.docked = docked
+  @action setCanDock = (canDock) => {
+    this.canDock = canDock
   }
 
-  @action setOpen = (open) => {
-    this._open = open
+  @action setWantOpen = (open) => {
+    this.wantOpen = open
   }
 }
