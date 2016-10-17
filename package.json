@@ -24,6 +24,7 @@
     "mui"
   ],
   "devDependencies": {
+    "@mindhive/di": "^2.3.0",
     "@mindhive/some": "^0.1.1",
     "babel-cli": "^6.16.0",
     "babel-eslint": "^6.0.4",
@@ -35,6 +36,11 @@
     "eslint": "^2.12.0",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.8.1",
+    "eslint-plugin-jsx-a11y": "^1.2.0",
+    "eslint-plugin-react": "^5.0.1",
+    "material-ui": "^0.16.0",
+    "mobx": "^2.6.0",
+    "mobx-react": "^3.5.8",
     "mocha": "^2.5.3",
     "sinon": "^1.17.4",
     "sinon-chai": "^2.8.0"
@@ -45,14 +51,14 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@mindhive/di": "^2.3.0",
     "date-fns": "^1.4.0",
-    "enumify": "^1.0.4",
-    "material-ui": "^0.16.0",
-    "mobx": "^2.6.0",
-    "mobx-react": "^3.5.8"
+    "enumify": "^1.0.4"
   },
   "peerDependencies": {
+    "@mindhive/di": "^2.3.0",
+    "material-ui": "^0.16.0",
+    "mobx": "^2.6.0",
+    "mobx-react": "^3.5.8",
     "react": "^15.0.0"
   }
 }
