@@ -50,7 +50,7 @@ const calcStyles = ({
   fillParent,
 }, {
   domain,
-}) => ( {
+}) => ({
   // nav: fillParent,
   drawer: {
     backgroundColor: drawer.color,
