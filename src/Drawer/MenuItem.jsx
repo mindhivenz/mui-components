@@ -8,7 +8,7 @@ import { Icon } from '../Icon'
 class MenuItem extends Component {
 
   static contextTypes = {
-    drawerOnTouchTap: PropTypes.func
+    drawerOnTouchTap: PropTypes.func,
   }
 
   onTouchTap = () => {
@@ -29,7 +29,7 @@ class MenuItem extends Component {
     return (
       <MuiMenuItem
         onTouchTap={this.onTouchTap}
-        leftIcon={<Icon style={styles} ligature={icon}/>}
+        leftIcon={<Icon style={styles} ligature={icon} />}
         style={styles}
         {...childProps}
       />

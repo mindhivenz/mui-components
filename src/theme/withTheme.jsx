@@ -3,7 +3,7 @@ import { observer } from 'mobx-react'
 import { app } from '@mindhive/di'
 
 
-export default (Component, getStyles) =>
+export default (Component, themeToStyles) =>
   observer(ownProps => {
     const themeDomain = app().themeDomain
     const muiTheme = themeDomain.muiTheme
@@ -11,8 +11,8 @@ export default (Component, getStyles) =>
       theme: muiTheme,
       prepareStyles: themeDomain.prepareStyles,
     }
-    if (getStyles) {
-      props.styles = getStyles(muiTheme, ownProps)
+    if (themeToStyles) {
+      props.styles = themeToStyles(muiTheme, ownProps)
     }
-    return <Component {...props} {...ownProps}/>
+    return <Component {...props} {...ownProps} />
   })

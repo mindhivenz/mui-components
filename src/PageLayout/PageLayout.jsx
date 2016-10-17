@@ -1,6 +1,7 @@
 import React from 'react'
 import spacing from 'material-ui/styles/spacing'
 import transitions from 'material-ui/styles/transitions'
+import { app } from '@mindhive/di'
 
 import withTheme from '../theme/withTheme'
 
@@ -33,12 +34,12 @@ const titleRoot = {
   letterSpacing: 0,
 }
 
-const propsToStyle = ({
+const themeToStyles = ({
   pageLayout,
   drawer,
   appBar,
 }, {
-  navDrawerDocked,
+  domains: { navDrawerDomain } = app(),
 }) => ({
   container: {
     position: 'fixed',
@@ -46,8 +47,7 @@ const propsToStyle = ({
     overflowY: 'auto',
     height: `calc(100% - ${spacing.desktopKeylineIncrement}px)`,
     transition: transitions.easeOut(null, 'size', null),
-    width: navDrawerDocked ? `calc(100% - ${drawer.width}px)` : '100%',
-
+    width: navDrawerDomain.docked ? `calc(100% - ${drawer.width}px)` : '100%',
   },
   pageHeader: {
     root: {
@@ -81,10 +81,4 @@ const propsToStyle = ({
   },
 })
 
-const mapStateToProps = ({
-  navDrawer: { docked },
-}) => ({
-  navDrawerDocked: docked,
-})
-
-export default withTheme(PageLayout, propsToStyle)
+export default withTheme(PageLayout, themeToStyles)
