@@ -34,6 +34,7 @@ rules:
   - ignore:
     - "^react$"  # since we can't install it as a dependency
     - "^react-dom$"
+    - "^redux-form$"
   react/no-did-mount-set-state: 0
 ecmaFeatures:
   spread: true
