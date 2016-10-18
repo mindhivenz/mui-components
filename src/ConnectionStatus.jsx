@@ -2,7 +2,7 @@ import { observer } from 'mobx-react'
 import React from 'react'
 import { connect } from 'react-redux'
 import FlatButton from 'material-ui/FlatButton'
-import { app } from '@mindhive/meteor'
+import { app } from '@mindhive/di'
 
 
 const ConnectionStatus = ({
