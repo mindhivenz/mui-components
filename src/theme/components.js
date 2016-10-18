@@ -30,6 +30,13 @@ export default (theme) => {
       },
     },
 
+    headerBar: {
+      color: palette.alternateTextColor,
+      backgroundColor: palette.primary1Color,
+      disabledColor: palette.disabledColor,
+      disabledBackgroundColor: palette.borderColor,
+    },
+
     pageLayout: {
       headerBackgroundColor: palette.darkPrimary1Color,
       titleColor: palette.alternateTextColor,
