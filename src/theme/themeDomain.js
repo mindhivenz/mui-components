@@ -17,18 +17,25 @@ class ThemeDomain {
   @observable mobile = false
   @observable web = true
   @observable themeId = null
+  @observable calcComponentsStyles = null
 
-  createMuiThemeForId = (themeId) => {
+  createMuiTheme = (themeId, themeOverrides) => {
     const theme = (themeId && this.themes.find(t => t.id === themeId)) || defaultTheme
-    return createTheme(this.mobile, this.web, theme)
+    return createTheme(this.mobile, this.web, theme, themeOverrides)
   }
 
+  createMuiThemeForId = (themeId) => this.createMuiTheme(themeId, this.calcComponentsStyles)
+
   @computed get muiTheme() {
-    return this.createMuiThemeForId(this.themeId)
+    return this.createMuiTheme(this.themeId, this.calcComponentsStyles)
   }
 
   @action setThemeId = (themeId) => {
     this.themeId = themeId
+  }
+
+  @action onCalcComponentStyles = (calcComponentsStyles) => {
+    this.calcComponentsStyles = calcComponentsStyles
   }
 
   @action setMobile = () => {
