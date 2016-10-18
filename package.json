@@ -44,7 +44,6 @@
     "mobx": "^2.6.0",
     "mobx-react": "^3.5.8",
     "mocha": "^2.5.3",
-    "redux-form": "^6.1.0",
     "sinon": "^1.17.4",
     "sinon-chai": "^2.8.0"
   },
