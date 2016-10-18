@@ -1,4 +1,4 @@
-import { SubmissionError } from 'redux-form'  // eslint-disable-line import/no-unresolved
+import { SubmissionError } from 'redux-form'
 
 
 // Copied from @mindhive/meteor (but we don't want to import it)
