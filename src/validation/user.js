@@ -18,7 +18,7 @@ export const profileValidator = createValidator({
 })
 
 export const loginValidator = createValidator({
-  email: [required],
+  email: [required, email],
   password: [required],
 })
 
