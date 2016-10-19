@@ -13,6 +13,29 @@ export default (theme) => {
       },
     },
 
+    docList: {
+      icon: {
+        color: palette.disabledColor,
+        hovered: {
+          color: palette.primary1Color,
+          opacity: 0.5,
+        },
+      },
+      primaryText: {
+        disabled: {
+          color: palette.disabledColor,
+        },
+        hovered: {
+          color: colorManipulator.darken(palette.darkPrimary1Color, 0.45),
+        },
+      },
+      secondaryText: {
+        disabled: {
+          color: palette.disabledColor,
+        },
+      },
+    },
+
     drawer: {
       backgroundColor: palette.darkSecondary1Color,
       menuItem: {

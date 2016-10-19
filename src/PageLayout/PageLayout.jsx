@@ -16,7 +16,7 @@ const PageLayout = ({
   <div id="xxx-container" style={styles.container}>
     <header style={styles.pageHeader.root}>
       <span style={prepareStyles(styles.pageHeader.title)}>{title}</span>
-      <span style={prepareStyles(styles.pageHeader.description)}>{description}</span>
+      {description && <span style={prepareStyles(styles.pageHeader.description)}>{description}</span>}
     </header>
     <div style={prepareStyles(styles.pageContent)}>
       {children}
