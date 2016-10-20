@@ -50,6 +50,8 @@ class DocView extends Component {
       rightIconButton,
       onTouchTap,
       styles,
+
+      children,
     } = this.props
 
     const listItemStyle = Object.assign({}, this.state.hovered ? styles.container.hovered : {}, containerStyle)
@@ -75,11 +77,13 @@ class DocView extends Component {
         rightAvatar={rightAvatar}
         rightIconButton={rightIconButton}
         onTouchTap={onTouchTap}
-        // onMouseEnter={this.handleMouseOver}
-        // onMouseOver={this.handleMouseOver}
-        // onMouseLeave={this.handleMouseLeave}
+        onMouseEnter={this.handleMouseOver}
+        onMouseOver={this.handleMouseOver}
+        onMouseLeave={this.handleMouseLeave}
         style={listItemStyle}
-      />
+      >
+        {children}
+      </ListItem>
     )
   }
 }
