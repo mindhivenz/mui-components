@@ -53,10 +53,10 @@ export const DocumentsList = ({
           transitionLeaveTimeout={150}
         >
           {documents && documents.length &&
-            documents.map(document =>
+            documents.map((document, index) =>
               DocEdit && selected.id === document._id ?
                 React.createElement(DocEdit, { ...editProps, key: `${document._id}.edit`, document })
-                : React.createElement(DocView, { ...viewProps, key: `${document._id}.view`, document })
+                : React.createElement(DocView, { ...viewProps, index, id: document._id, key: `${document._id}.view`, document })
             )
           }
         </ReactCSSTransitionGroup>

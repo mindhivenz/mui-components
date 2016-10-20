@@ -180,6 +180,7 @@ class DocEdit extends Component {
       docType,
       docIcon,
       onCancel,
+      containerStyle,
 
       // auto
       styles,
@@ -214,7 +215,7 @@ class DocEdit extends Component {
         <Overlay autoLockScrolling={false} style={styles.overlay} show={isNew || ! pristine} />
         <ListItem
           disableTouchRipple
-          style={Object.assign({}, styles.container, this.state.show ? styles.shown : styles.hidden)}
+          style={Object.assign({}, styles.container, containerStyle, this.state.show ? styles.shown : styles.hidden)}
           id={itemKey}
           leftIcon={<Icon ligature={docIcon} style={styles.icon} />}
         >

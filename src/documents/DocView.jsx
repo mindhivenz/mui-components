@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 
 import { ListItem } from 'material-ui/List'
 
-import { withTheme } from '@mindhive/components/theme'
+import withTheme from '../theme/withTheme'
 
 
 class DocView extends Component {
@@ -41,6 +41,8 @@ class DocView extends Component {
       id,
       disabled,
       leftIcon,
+      containerStyle,
+
       primaryText,
       secondaryText,
       leftAvatar,
@@ -50,7 +52,7 @@ class DocView extends Component {
       styles,
     } = this.props
 
-    const containerStyle = Object.assign({}, this.state.hovered ? styles.container.hovered : {})
+    const listItemStyle = Object.assign({}, this.state.hovered ? styles.container.hovered : {}, containerStyle)
     const iconStyle = Object.assign({}, styles.icon, this.state.hovered ? styles.icon.hovered : {})
     const primaryTextStyle = Object.assign({},
       disabled
@@ -67,16 +69,16 @@ class DocView extends Component {
         disableTouchRipple
         id={id}
         leftIcon={leftIcon && React.cloneElement(leftIcon, { style: iconStyle })}
-        primaryText={<div style={primaryTextStyle}>{primaryText}</div>}
-        secondaryText={<div style={secondaryTextStyle}>{secondaryText}</div>}
+        primaryText={primaryText && <div style={primaryTextStyle}>{primaryText}</div>}
+        secondaryText={secondaryText && <div style={secondaryTextStyle}>{secondaryText}</div>}
         leftAvatar={leftAvatar}
         rightAvatar={rightAvatar}
         rightIconButton={rightIconButton}
         onTouchTap={onTouchTap}
-        onMouseEnter={this.handleMouseOver}
-        onMouseOver={this.handleMouseOver}
-        onMouseLeave={this.handleMouseLeave}
-        style={containerStyle}
+        // onMouseEnter={this.handleMouseOver}
+        // onMouseOver={this.handleMouseOver}
+        // onMouseLeave={this.handleMouseLeave}
+        style={listItemStyle}
       />
     )
   }
