@@ -5,7 +5,7 @@ import transitions from 'material-ui/styles/transitions'
 import getComponents from './components'
 
 
-export const createTheme = (isMobile, isWeb, baseTheme, calcComponentsStyles) => {
+export const createTheme = (isMobile, baseTheme, calcComponentsStyles) => {
 
   // console.log(baseTheme.description.label)
 
@@ -26,10 +26,13 @@ export const createTheme = (isMobile, isWeb, baseTheme, calcComponentsStyles) =>
   const componentsTheme = getComponents(muiTheme)
   const componentsStyles = calcComponentsStyles ? calcComponentsStyles(muiTheme) : {}
 
-  return (getMuiTheme(muiTheme, componentsTheme, componentsStyles,
+  return getMuiTheme(
+    muiTheme,
+    componentsTheme,
+    componentsStyles,
     baseTheme.elements,
     isMobile ? baseTheme.mobileOverrides : {},
-  ))
+  )
 }
 
 export default createTheme

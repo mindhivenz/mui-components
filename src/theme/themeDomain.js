@@ -1,11 +1,14 @@
 import { action, observable, computed } from 'mobx'
+import { app } from '@mindhive/di'
 import createTheme from './createTheme'
 
 import blueGreyThemeDarkBody from './themes/blueGreyThemeDarkBody'
 import brightBlueTheme from './themes/brightBlueTheme'
 
 
-const defaultTheme = blueGreyThemeDarkBody
+const DEFAULT_THEME = brightBlueTheme
+
+const THEME_ID_PATH = 'themeId'
 
 class ThemeDomain {
 
@@ -15,16 +18,26 @@ class ThemeDomain {
   ]
 
   @observable mobile = false
-  @observable web = true
   @observable themeId = null
+  @observable defaultThemeId = DEFAULT_THEME.id
   @observable calcComponentsStyles = null
 
-  createMuiTheme = (themeId, themeOverrides) => {
-    const theme = (themeId && this.themes.find(t => t.id === themeId)) || defaultTheme
-    return createTheme(this.mobile, this.web, theme, themeOverrides)
+  constructor() {
+    this.themeId = app().storage.read(THEME_ID_PATH)
   }
 
-  createMuiThemeForId = (themeId) => this.createMuiTheme(themeId, this.calcComponentsStyles)
+  createMuiTheme = (themeId, themeOverrides) => {
+    const findThemeId = themeId || this.defaultThemeId
+    const foundTheme = this.themes.find(t => t.id === findThemeId)
+    return createTheme(
+      this.mobile,
+      foundTheme || DEFAULT_THEME,
+      themeOverrides
+    )
+  }
+
+  createMuiThemeForId = (themeId) =>
+    this.createMuiTheme(themeId, this.calcComponentsStyles)
 
   @computed get muiTheme() {
     return this.createMuiTheme(this.themeId, this.calcComponentsStyles)
@@ -32,18 +45,20 @@ class ThemeDomain {
 
   @action setThemeId = (themeId) => {
     this.themeId = themeId
+    app().storage.write(THEME_ID_PATH, themeId)
+  }
+
+  @action setDefaultThemeId = (themeId) => {
+    this.defaultThemeId = themeId
   }
 
   @action onCalcComponentStyles = (calcComponentsStyles) => {
     this.calcComponentsStyles = calcComponentsStyles
   }
 
+  // TODO: This should be achieved through onCalcComponentStyles or similar
   @action setMobile = () => {
     this.mobile = true
-  }
-
-  @action setWeb = () => {
-    this.web = true
   }
 
   registerTheme = (theme) => {
