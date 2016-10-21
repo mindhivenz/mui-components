@@ -1,4 +1,8 @@
+var url = require('./dist/documents/url')
+var DocEdit = require('./dist/documents/DocEdit')
 
-Object.assign(module.exports, require('./dist/documents/url'))
-
-module.exports.withDocEditContext = require('./dist/documents/DocEdit').withDocEditContext
+module.exports = {
+  selectedState: url.selectedState,
+  SELECT_NEW_ID: url.SELECT_NEW_ID,
+  withDocEditContext: DocEdit.withDocEditContext,
+}
