@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-import { withTheme } from '@mindhive/components/theme'
+import withTheme from '../theme/withTheme'
 import spacing from 'material-ui/styles/spacing'
 import typography from 'material-ui/styles/typography'
 
@@ -27,7 +27,7 @@ const mapThemeToStyles = (theme) => {
   }
 }
 
-export const DocumentsList = ({
+const DocumentsList = ({
   vocab,
   title,
   documents,
@@ -43,7 +43,10 @@ export const DocumentsList = ({
       <List>
         {title ? <Subheader>{title}</Subheader> : null}
         {selected.isNew &&
-          React.createElement(DocEdit, { ...editProps, key: 'new' })
+          <DocEdit
+            {...editProps}
+            key="new"
+          />
         }
         <ReactCSSTransitionGroup
           transitionName="doc-list-item"
@@ -52,13 +55,22 @@ export const DocumentsList = ({
           transitionEnterTimeout={250}
           transitionLeaveTimeout={150}
         >
-          {documents && documents.length &&
-            documents.map((document, index) =>
-              DocEdit && selected.id === document._id ?
-                React.createElement(DocEdit, { ...editProps, key: `${document._id}.edit`, document })
-                : React.createElement(DocView, { ...viewProps, index, id: document._id, key: `${document._id}.view`, document })
-            )
-          }
+          {documents && documents.map((document, index) =>
+            DocEdit && selected.id === document._id ?
+              <DocEdit
+                {...editProps}
+                key={`${document._id}.edit`}
+                document={document}
+              />
+              :
+              <DocView
+                {...viewProps}
+                index={index}
+                id={document._id}
+                key={`${document._id}.view`}
+                document={document}
+              />
+          )}
         </ReactCSSTransitionGroup>
       </List>
     </div>
@@ -66,4 +78,8 @@ export const DocumentsList = ({
     <div style={styles.noDocuments}>No {vocab.documents} defined</div>
 
 
-export default withTheme(DocumentsList, mapThemeToStyles)
+export default
+  withTheme(
+    DocumentsList,
+    mapThemeToStyles,
+  )

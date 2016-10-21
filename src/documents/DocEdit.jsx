@@ -253,21 +253,24 @@ class DocEdit extends Component {
   }
 }
 
-export default (props) => {
-  const { document = {}, docType } = props
-  return React.createElement(
-    reduxForm()(
-      withTheme(
-        DocEdit,
-        mapThemeToStyles,
-      )
-    ),
-    {
-      ...props,
-      isNew: ! document._id,
-      docId: document._id,
-      initialValues: document,
-      form: `${docType}-form-${document._id || 'new'}`,
-    }
+const DocEditReduxForm = reduxForm()(
+  withTheme(
+    DocEdit,
+    mapThemeToStyles,
   )
-}
+)
+
+export default ({
+  document = {},
+  docType,
+  ...otherProps,
+}) =>
+  <DocEditReduxForm
+    {...otherProps}
+    document={document}
+    docType={docType}
+    isNew={! document._id}
+    docId={document._id}
+    initialValues={document}
+    form={`${docType}-form-${document._id || 'new'}`}
+  />
