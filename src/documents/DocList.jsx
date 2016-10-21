@@ -27,7 +27,7 @@ const mapThemeToStyles = (theme) => {
   }
 }
 
-const DocumentsList = ({
+const DocList = ({
   vocab,
   title,
   documents,
@@ -80,6 +80,6 @@ const DocumentsList = ({
 
 export default
   withTheme(
-    DocumentsList,
+    DocList,
     mapThemeToStyles,
   )
