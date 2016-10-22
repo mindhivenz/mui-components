@@ -128,7 +128,8 @@ class DocEdit extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => this.handleOpen(), 0)
+    this.handleOpen()
+    // setTimeout(() => this.handleOpen(), 0)
   }
 
   componentWillUnmount() {

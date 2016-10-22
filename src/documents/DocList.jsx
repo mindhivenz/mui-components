@@ -27,7 +27,60 @@ const mapThemeToStyles = (theme) => {
   }
 }
 
-const DocList = ({
+const getList = (
+  documents,
+  selected,
+  DocEdit,
+  editProps,
+  DocView,
+  viewProps,
+
+) => {
+  const items = []
+  let addedNew = false
+  documents.forEach((document, index) => {
+    if (selected.isNew && (selected.atIndex === index)) {
+      addedNew = true
+      items.push(
+        <DocEdit
+          {...editProps}
+          key={`new-${index}`}
+        />
+      )
+    }
+    if (selected.id === document._id) {
+      items.push(
+        <DocEdit
+          {...editProps}
+          key={`${document._id}.edit`}
+          document={document}
+        />
+      )
+    } else {
+      items.push(
+        <DocView
+          {...viewProps}
+          index={index}
+          id={document._id}
+          key={`${document._id}.view`}
+          document={document}
+        />
+      )
+    }}
+  )
+  if (selected.isNew && ! addedNew ) {
+    items.push(
+      <DocEdit
+        {...editProps}
+        key={`new-${selected.atIndex}`}
+      />
+    )
+
+  }
+  return items
+}
+
+const DocumentsList = ({
   vocab,
   title,
   documents,
@@ -42,12 +95,6 @@ const DocList = ({
     <div id={`${vocab.id}-list-selector`}>
       <List>
         {title ? <Subheader>{title}</Subheader> : null}
-        {selected.isNew &&
-          <DocEdit
-            {...editProps}
-            key="new"
-          />
-        }
         <ReactCSSTransitionGroup
           transitionName="doc-list-item"
           transitionAppear
@@ -55,31 +102,25 @@ const DocList = ({
           transitionEnterTimeout={250}
           transitionLeaveTimeout={150}
         >
-          {documents && documents.map((document, index) =>
-            DocEdit && selected.id === document._id ?
-              <DocEdit
-                {...editProps}
-                key={`${document._id}.edit`}
-                document={document}
-              />
-              :
-              <DocView
-                {...viewProps}
-                index={index}
-                id={document._id}
-                key={`${document._id}.view`}
-                document={document}
-              />
+          {documents && getList(
+            documents,
+            selected,
+            DocEdit,
+            editProps,
+            DocView,
+            viewProps,
+          ).map((item) =>
+            item
           )}
         </ReactCSSTransitionGroup>
       </List>
     </div>
-  :
+    :
     <div style={styles.noDocuments}>No {vocab.documents} defined</div>
 
 
 export default
-  withTheme(
-    DocList,
-    mapThemeToStyles,
-  )
+withTheme(
+  DocumentsList,
+  mapThemeToStyles,
+)
