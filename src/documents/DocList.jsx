@@ -28,59 +28,41 @@ const mapThemeToStyles = (theme) => {
 }
 
 const getList = (
-  documents,
+  documents = [],
   selected,
   DocEdit,
   editProps,
   DocView,
   viewProps,
-
 ) => {
-  const items = []
-  let addedNew = false
-  documents.forEach((document, index) => {
-    if (selected.isNew && (selected.atIndex === index)) {
-      addedNew = true
-      items.push(
-        <DocEdit
-          {...editProps}
-          key={`new-${index}`}
-        />
-      )
-    }
-    if (selected.id === document._id) {
-      items.push(
-        <DocEdit
-          {...editProps}
-          key={`${document._id}.edit`}
-          document={document}
-        />
-      )
-    } else {
-      items.push(
-        <DocView
-          {...viewProps}
-          index={index}
-          id={document._id}
-          key={`${document._id}.view`}
-          document={document}
-        />
-      )
-    }}
+  const items = documents.map((doc, index) =>
+    selected.id === doc._id ?
+      <DocEdit
+        {...editProps}
+        key={`${doc._id}.edit`}
+        document={doc}
+      />
+      :
+      <DocView
+        {...viewProps}
+        index={index}
+        id={doc._id}
+        key={`${doc._id}.view`}
+        document={doc}
+      />
   )
-  if (selected.isNew && ! addedNew ) {
-    items.push(
+  if (selected.isNew) {
+    items.splice(selected.atIndex, 0,
       <DocEdit
         {...editProps}
         key={`new-${selected.atIndex}`}
       />
     )
-
   }
   return items
 }
 
-const DocumentsList = ({
+const DocList = ({
   vocab,
   title,
   documents,
@@ -102,15 +84,13 @@ const DocumentsList = ({
           transitionEnterTimeout={250}
           transitionLeaveTimeout={150}
         >
-          {documents && getList(
+          {getList(
             documents,
             selected,
             DocEdit,
             editProps,
             DocView,
             viewProps,
-          ).map((item) =>
-            item
           )}
         </ReactCSSTransitionGroup>
       </List>
@@ -121,6 +101,6 @@ const DocumentsList = ({
 
 export default
 withTheme(
-  DocumentsList,
+  DocList,
   mapThemeToStyles,
 )
