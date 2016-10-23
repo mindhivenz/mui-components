@@ -186,7 +186,7 @@ class DocEdit extends Component {
       // auto
       styles,
       isNew,
-      docId,
+      id,
 
       // react
       children,
@@ -209,7 +209,7 @@ class DocEdit extends Component {
       </IconButton>
     )
 
-    const itemKey = `${docType}-list-item-${docId || 'new'}-selector`
+    const itemId = `${docType}-list-item-${id || 'new'}-selector`
 
     return (
       <div>
@@ -217,7 +217,7 @@ class DocEdit extends Component {
         <ListItem
           disableTouchRipple
           style={Object.assign({}, styles.container, containerStyle, this.state.show ? styles.shown : styles.hidden)}
-          id={itemKey}
+          id={itemId}
           leftIcon={<Icon ligature={docIcon} style={styles.icon} />}
         >
           {error && <div style={styles.error}>{error.reason}</div>}
@@ -264,6 +264,7 @@ const DocEditReduxForm = reduxForm()(
 export default ({
   document = {},
   docType,
+  id,
   ...otherProps,
 }) =>
   <DocEditReduxForm
@@ -271,7 +272,7 @@ export default ({
     document={document}
     docType={docType}
     isNew={! document._id}
-    docId={document._id}
+    id={id}
     initialValues={document}
-    form={`${docType}-form-${document._id || 'new'}`}
+    form={`${docType}-form-${id || 'new'}`}
   />

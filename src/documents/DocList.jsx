@@ -34,23 +34,26 @@ const getList = (
   editProps,
   DocView,
   viewProps,
+  docIdSelector,
 ) => {
-  const items = documents.map((doc, index) =>
-    selected.id === doc._id ?
+  const items = documents.map((doc, index) => {
+    const id = docIdSelector(doc)
+    return selected.id === id ?
       <DocEdit
         {...editProps}
-        key={`${doc._id}.edit`}
+        id={id}
+        key={`${id}.edit`}
         document={doc}
       />
       :
       <DocView
         {...viewProps}
         index={index}
-        id={doc._id}
-        key={`${doc._id}.view`}
+        id={id}
+        key={`${id}.view`}
         document={doc}
       />
-  )
+  })
   if (selected.isNew) {
     items.splice(selected.atIndex, 0,
       <DocEdit
@@ -62,6 +65,8 @@ const getList = (
   return items
 }
 
+const mongoIdSelector = (doc) => doc._id
+
 const DocList = ({
   vocab,
   title,
@@ -72,6 +77,7 @@ const DocList = ({
   editProps,
   DocView,
   viewProps,
+  docIdSelector = mongoIdSelector,
 }) =>
   selected.isNew || (documents && documents.length) ?
     <div id={`${vocab.id}-list-selector`}>
@@ -91,6 +97,7 @@ const DocList = ({
             editProps,
             DocView,
             viewProps,
+            docIdSelector,
           )}
         </ReactCSSTransitionGroup>
       </List>
