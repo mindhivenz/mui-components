@@ -21,7 +21,7 @@ class DocView extends Component {
     const container = ReactDOM.findDOMNode(this)
     const listItem = container.querySelector(':first-child')
     setTimeout(() => {
-      const hovered = container.parentElement.querySelector(':hover:first-child')
+      const hovered = container.parentElement && container.parentElement.querySelector(':hover:first-child')
       if (hovered && hovered.id === listItem.id) {
         this.handleMouseOver()
       }
