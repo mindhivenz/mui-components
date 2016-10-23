@@ -41,8 +41,9 @@ const getList = (
     return selected.id === id ?
       <DocEdit
         {...editProps}
-        id={id}
+        selected={selected}
         key={`${id}.edit`}
+        id={id}
         document={doc}
       />
       :
@@ -58,6 +59,7 @@ const getList = (
     items.splice(selected.atIndex, 0,
       <DocEdit
         {...editProps}
+        selected={selected}
         key={`new-${selected.atIndex}`}
       />
     )
