@@ -27,19 +27,26 @@ const mapThemeToStyles = (theme) => {
   }
 }
 
-const getList = (
+const mongoIdSelector = (doc) => doc._id
+
+const DocList = ({
+  vocab,
+  title,
   documents = [],
   selected,
+  styles,
+  docProps,
   DocEdit,
   editProps,
   DocView,
   viewProps,
-  docIdSelector,
-) => {
-  const items = documents.map((doc, index) => {
+  docIdSelector = mongoIdSelector,
+}) => {
+  const docComponents = documents.map((doc, index) => {
     const id = docIdSelector(doc)
     return selected.id === id ?
       <DocEdit
+        {...docProps}
         {...editProps}
         selected={selected}
         key={`${id}.edit`}
@@ -48,6 +55,7 @@ const getList = (
       />
       :
       <DocView
+        {...docProps}
         {...viewProps}
         index={index}
         id={id}
@@ -56,32 +64,16 @@ const getList = (
       />
   })
   if (selected.isNew) {
-    items.splice(selected.atIndex, 0,
+    docComponents.splice(selected.atIndex, 0,
       <DocEdit
+        {...docProps}
         {...editProps}
         selected={selected}
         key={`new-${selected.atIndex}`}
       />
     )
   }
-  return items
-}
-
-const mongoIdSelector = (doc) => doc._id
-
-const DocList = ({
-  vocab,
-  title,
-  documents,
-  selected,
-  styles,
-  DocEdit,
-  editProps,
-  DocView,
-  viewProps,
-  docIdSelector = mongoIdSelector,
-}) =>
-  selected.isNew || (documents && documents.length) ?
+  return selected.isNew || documents.length ?
     <div id={`${vocab.id}-list-selector`}>
       <List>
         {title ? <Subheader>{title}</Subheader> : null}
@@ -92,24 +84,16 @@ const DocList = ({
           transitionEnterTimeout={250}
           transitionLeaveTimeout={150}
         >
-          {getList(
-            documents,
-            selected,
-            DocEdit,
-            editProps,
-            DocView,
-            viewProps,
-            docIdSelector,
-          )}
+          {docComponents}
         </ReactCSSTransitionGroup>
       </List>
     </div>
     :
     <div style={styles.noDocuments}>No {vocab.documents} defined</div>
-
+}
 
 export default
-withTheme(
-  DocList,
-  mapThemeToStyles,
-)
+  withTheme(
+    DocList,
+    mapThemeToStyles,
+  )
