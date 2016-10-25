@@ -55,7 +55,9 @@
   "dependencies": {
     "date-fns": "^1.4.0",
     "enumify": "^1.0.4",
-    "lru-memoize": "^1.0.1"
+    "keycode": "^2.1.7",
+    "lru-memoize": "^1.0.1",
+    "react-event-listener": "^0.4.0"
   },
   "peerDependencies": {
     "@mindhive/di": "^2.3.0",
