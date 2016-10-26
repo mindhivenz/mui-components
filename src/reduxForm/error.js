@@ -6,7 +6,7 @@ const VALIDATION_ERROR = 'validation-error'
 
 const REDUX_FORM_GLOBAL_ERROR_KEY = '_error'
 
-const rethrowAsSubmissionError = (e) => {
+export const asSubmissionError = (e) => {
   if (e.reason) {
     const fieldKey = (e.error === VALIDATION_ERROR && e.details) || REDUX_FORM_GLOBAL_ERROR_KEY
     throw new SubmissionError({
@@ -17,15 +17,3 @@ const rethrowAsSubmissionError = (e) => {
     throw e
   }
 }
-
-export const asSubmissionError = (promiseOrCreator) =>
-  typeof promiseOrCreator === 'function' ?
-    (...args) => {  // eslint-disable-line consistent-return
-      try {
-        return promiseOrCreator(...args).catch(rethrowAsSubmissionError)
-      } catch (e) {
-        rethrowAsSubmissionError(e)
-      }
-    }
-    : promiseOrCreator.catch(rethrowAsSubmissionError)
-
