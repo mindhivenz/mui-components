@@ -1,4 +1,4 @@
-import { observable, action, computed } from 'mobx'
+import { observable, action, computed, runInAction } from 'mobx'
 import { app } from '@mindhive/di'
 
 
@@ -42,16 +42,14 @@ class SwitchOrgDomain {
     return this.filteredOrgs.length ? this.filteredOrgs[0]._id : null
   }
 
-  @action start = () => {
+  @action start = async () => {
     const { viewerDomain, api } = app()
     this._viewerOrg = viewerDomain.org
-    api.call('switchOrg.orgs.selectionList', { notifyViewerPending: false })
-      .then(this._orgsLoaded)
-  }
-
-  @action _orgsLoaded = (orgs) => {
-    this.orgs = orgs
-    this.orgId = this.defaultOrgId
+    const orgs = await api.call('switchOrg.orgs.selectionList', { notifyViewerPending: false })
+    runInAction('orgsLoaded', () => {
+      this.orgs = orgs
+      this.orgId = this.defaultOrgId
+    })
   }
 
   @action handleChange = (value) => {
