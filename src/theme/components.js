@@ -119,5 +119,10 @@ export default (theme) => {
       closeHoverColor: palette.negativeColor,
     },
 
+    search: {
+      position: 'relative',
+      color: palette.disabledColor,
+    },
+
   })
 }
