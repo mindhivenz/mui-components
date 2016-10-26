@@ -1,4 +1,4 @@
-import { observable, action, computed, toJS } from 'mobx'
+import { observable, action, computed } from 'mobx'
 import { app } from '@mindhive/di'
 
 
@@ -7,6 +7,10 @@ class SwitchOrgDomain {
   @observable _viewerOrg = null  // also used to indicate we're editing / dialog open
   @observable orgId = null
   @observable orgs = null
+
+  @computed get offerToViewer() {
+    return app().viewerDomain.isSuperUser
+  }
 
   @computed get dialogOpen() {
     return this._viewerOrg != null
@@ -40,7 +44,7 @@ class SwitchOrgDomain {
 
   @action start = () => {
     const { viewerDomain, api } = app()
-    this._viewerOrg = toJS(viewerDomain.org)
+    this._viewerOrg = viewerDomain.org
     api.call('switchOrg.orgs.selectionList', { notifyViewerPending: false })
       .then(this._orgsLoaded)
   }
