@@ -21,6 +21,12 @@ export default (theme) => {
       },
     },
 
+    connectionStatus: {
+      backgroundColor: palette.darkSecondary1Color,
+      textColor: palette.errorText,
+      clickColor: palette.alternateTextColor,
+    },
+
     docList: {
       icon: {
         color: palette.disabledColor,
