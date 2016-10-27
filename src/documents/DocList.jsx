@@ -77,15 +77,7 @@ const DocList = ({
     <div id={`${vocab.id}-list-selector`}>
       <List>
         {title ? <Subheader>{title}</Subheader> : null}
-        <ReactCSSTransitionGroup
-          transitionName="doc-list-item"
-          transitionAppear
-          transitionAppearTimeout={250}
-          transitionEnterTimeout={250}
-          transitionLeaveTimeout={150}
-        >
           {docComponents}
-        </ReactCSSTransitionGroup>
       </List>
     </div>
     :

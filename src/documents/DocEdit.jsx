@@ -216,6 +216,8 @@ class DocEdit extends Component {
         <Overlay autoLockScrolling={false} style={styles.overlay} show={isNew || ! pristine} />
         <ListItem
           disableTouchRipple
+          disableFocusRipple
+
           style={Object.assign({}, styles.container, containerStyle, this.state.show ? styles.shown : styles.hidden)}
           id={itemId}
           leftIcon={<Icon ligature={docIcon} style={styles.icon} />}
