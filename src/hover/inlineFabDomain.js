@@ -7,9 +7,14 @@ import {
 export class InlineFabDomain {
 
   @observable position = 0
+  @observable hovered = false
 
   @action setPosition(position) {
     this.position = position
+  }
+
+  @action setHovered(hovered) {
+    this.hovered = hovered
   }
 
 

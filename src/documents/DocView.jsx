@@ -1,111 +1,77 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react'
 
 import { ListItem } from 'material-ui/List'
 
 import withTheme from '../theme/withTheme'
+import withHover from '../hover/withHover'
 
 
-class DocView extends Component {
+const DocView = ({
+  id,
+  leftIcon,
 
-  state = {
-    hovered: false,
-    touch: false,
-  }
+  primaryText,
+  secondaryText,
+  leftAvatar,
+  rightAvatar,
+  rightIconButton,
+  onTouchTap,
+  styles,
 
-  componentDidMount = () => {
-    // Check if we were rendered under the mouse, and if so,
-    // trigger an onMouseEnter event.
-    // This needs to be called from a setTimeout otherwise the browser won't have
-    // a chance to set :hover state.
-    const container = ReactDOM.findDOMNode(this)
-    const listItem = container.querySelector(':first-child')
-    setTimeout(() => {
-      const hovered = container.parentElement && container.parentElement.querySelector(':hover:first-child')
-      if (hovered && hovered.id === listItem.id) {
-        this.handleMouseOver()
-      }
-    }, 0)
-  }
+  children,
+}) =>
+  <ListItem
+    disableTouchRipple
+    disableFocusRipple
 
-  handleMouseOver = () => {
-    if (! this.state.touch) this.setState({ hovered: true })
-  }
-
-  handleMouseLeave = () => {
-    this.setState({ hovered: false })
-  }
-
-  render() {
-    const {
-      id,
-      disabled,
-      leftIcon,
-      containerStyle,
-
-      primaryText,
-      secondaryText,
-      leftAvatar,
-      rightAvatar,
-      rightIconButton,
-      onTouchTap,
-      styles,
-
-      children,
-    } = this.props
-
-    const listItemStyle = Object.assign({}, this.state.hovered ? styles.container.hovered : {}, containerStyle)
-    const iconStyle = Object.assign({}, styles.icon, this.state.hovered ? styles.icon.hovered : {})
-    const primaryTextStyle = Object.assign({},
-      disabled
-        ? styles.primaryText.disabled
-        : this.state.hovered
-          ? styles.primaryText.hovered
-          : {}
-    )
-    const secondaryTextStyle = Object.assign({}, disabled ? styles.secondaryText.disabled : {})
-
-    return (
-      <ListItem
-        ref="listItem"
-        disableTouchRipple
-        id={id}
-        leftIcon={leftIcon && React.cloneElement(leftIcon, { style: iconStyle })}
-        primaryText={primaryText && <div style={primaryTextStyle}>{primaryText}</div>}
-        secondaryText={secondaryText && <div style={secondaryTextStyle}>{secondaryText}</div>}
-        leftAvatar={leftAvatar}
-        rightAvatar={rightAvatar}
-        rightIconButton={rightIconButton}
-        onTouchTap={onTouchTap}
-        onMouseEnter={this.handleMouseOver}
-        onMouseOver={this.handleMouseOver}
-        onMouseLeave={this.handleMouseLeave}
-        style={listItemStyle}
-      >
-        {children}
-      </ListItem>
-    )
-  }
-}
+    id={id}
+    leftIcon={leftIcon && React.cloneElement(leftIcon, { style: styles.icon })}
+    primaryText={primaryText && <div style={styles.primaryText}>{primaryText}</div>}
+    secondaryText={secondaryText && <div style={styles.secondaryText}>{secondaryText}</div>}
+    leftAvatar={leftAvatar}
+    rightAvatar={rightAvatar}
+    rightIconButton={rightIconButton}
+    onTouchTap={onTouchTap}
+    style={styles.listItemStyle}
+  >
+    {children}
+  </ListItem>
 
 const calcStyles = ({
   docList: { icon, primaryText, secondaryText },
   paper,
-}) => ({
-  container: {
-    hovered: {
-      zDepth: 1,
-      ...paper,
-      boxShadow: paper.zDepthShadows[0],
-      borderRadius: '2px',
-      transform: 'scale(1.015, 1)',
-      position: 'relative',
+}, {
+  disabled,
+  hovered,
+  containerStyle,
+}) => {
+  const hoverStyles = {
+    zDepth: 1,
+    ...paper,
+    boxShadow: paper.zDepthShadows[0],
+    borderRadius: '2px',
+    transform: 'scale(1.015, 1)',
+    position: 'relative',
+  }
+  return ({
+    listItemStyle: {
+      ...(hovered ? hoverStyles : {}),
+      ...containerStyle,
     },
-  },
-  icon,
-  primaryText,
-  secondaryText,
-})
+    icon: {
+      ...icon,
+      ...(hovered ? icon.hovered : {}),
+    },
+    primaryText: {
+      ...(disabled
+        ? primaryText.disabled
+        : hovered
+        ? primaryText.hovered
+        : {}),
+    },
+    secondaryText: disabled ? secondaryText.disabled : {},
+  })
+}
 
-export default withTheme(DocView, calcStyles)
+export default withHover()(withTheme(DocView, calcStyles))
 
