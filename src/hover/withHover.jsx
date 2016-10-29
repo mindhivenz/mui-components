@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
 const withHover = ({ mouseLeaveDelay = 0 } = {}) =>
-  (DecoratedComponent) =>
+  DecoratedComponent =>
     class WithHover extends Component {
 
       state = {

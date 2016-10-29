@@ -4,7 +4,7 @@ import FlatButton from 'material-ui/FlatButton'
 import withTheme from './theme/withTheme'
 
 
-const mapThemeToStyles = (theme) => ({
+const mapThemeToStyles = theme => ({
   margin: '0 auto',
   padding: '100px 50px 100px 50px',
   display: 'block',

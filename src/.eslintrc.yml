@@ -3,6 +3,7 @@ extends:
 - airbnb
 env:
   mocha: true
+  browser: true
 rules:
   max-len:
   - warn
@@ -19,6 +20,7 @@ rules:
   - overrides:
       "!": true
   quote-props: off
+  class-methods-use-this: off
   no-confusing-arrow: off
   no-unused-expressions: off
   no-underscore-dangle: off
@@ -38,6 +40,7 @@ rules:
   - ignore:
     - "^react$"  # since we can't install it as a dependency
     - "^react-dom$"
+    - "^redux$"
     - "^redux-form$"
   react/no-did-mount-set-state: off
 ecmaFeatures:

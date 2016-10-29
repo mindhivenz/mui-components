@@ -1,8 +1,8 @@
 import React from 'react'
-import withTheme from '../theme/withTheme'
 
 import Paper from 'material-ui/Paper'
 
+import withTheme from '../theme/withTheme'
 import HeaderBar from '../HeaderBar/HeaderBar'
 
 

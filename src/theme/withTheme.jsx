@@ -4,7 +4,7 @@ import { app } from '@mindhive/di'
 
 
 export default (Component, themeToStyles) =>
-  observer(ownProps => {
+  observer((ownProps) => {
     const themeDomain = app().themeDomain
     const muiTheme = themeDomain.muiTheme
     const props = {

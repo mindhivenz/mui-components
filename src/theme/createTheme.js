@@ -41,5 +41,3 @@ export const createTheme = (isMobile, baseTheme, calcComponentsStyles) => {
     isMobile ? baseTheme.mobileOverrides : {},
   )
 }
-
-export default createTheme

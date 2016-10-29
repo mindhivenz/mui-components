@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { reduxForm } from 'redux-form'
 
-import withTheme from '../theme/withTheme'
-
 import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
@@ -10,6 +8,8 @@ import Overlay from 'material-ui/internal/Overlay'
 
 import spacing from 'material-ui/styles/spacing'
 import { ListItem } from 'material-ui/List'
+
+import withTheme from '../theme/withTheme'
 import { Icon, ClearIcon } from '../Icon'
 
 
@@ -267,7 +267,7 @@ export default ({
   document = {},
   docType,
   id,
-  ...otherProps,
+  ...otherProps
 }) =>
   <DocEditReduxForm
     {...otherProps}

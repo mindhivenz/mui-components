@@ -1,6 +1,6 @@
 import { action, observable, computed } from 'mobx'
 import { app } from '@mindhive/di'
-import createTheme from './createTheme'
+import { createTheme } from './createTheme'
 
 import blueGreyThemeDarkBody from './themes/blueGreyThemeDarkBody'
 import brightBlueTheme from './themes/brightBlueTheme'
@@ -36,7 +36,7 @@ class ThemeDomain {
     )
   }
 
-  createMuiThemeForId = (themeId) =>
+  createMuiThemeForId = themeId =>
     this.createMuiTheme(themeId, this.calcComponentsStyles)
 
   @computed get muiTheme() {

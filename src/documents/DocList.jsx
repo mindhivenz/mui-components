@@ -1,12 +1,12 @@
 import React from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-import withTheme from '../theme/withTheme'
 import spacing from 'material-ui/styles/spacing'
 import typography from 'material-ui/styles/typography'
 
 import { List } from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
+
+import withTheme from '../theme/withTheme'
 
 
 const mapThemeToStyles = (theme) => {
@@ -27,7 +27,7 @@ const mapThemeToStyles = (theme) => {
   }
 }
 
-const mongoIdSelector = (doc) => doc._id
+const mongoIdSelector = doc => doc._id
 
 const DocList = ({
   vocab,
@@ -54,14 +54,14 @@ const DocList = ({
         document={doc}
       />
       :
-      <DocView
-        {...docProps}
-        {...viewProps}
-        index={index}
-        id={id}
-        key={`${id}.view`}
-        document={doc}
-      />
+        <DocView
+          {...docProps}
+          {...viewProps}
+          index={index}
+          id={id}
+          key={`${id}.view`}
+          document={doc}
+        />
   })
   if (selected.isNew) {
     docComponents.splice(selected.atIndex, 0,
@@ -77,11 +77,11 @@ const DocList = ({
     <div id={`${vocab.id}-list-selector`}>
       <List>
         {title ? <Subheader>{title}</Subheader> : null}
-          {docComponents}
+        {docComponents}
       </List>
     </div>
     :
-    <div style={styles.noDocuments}>No {vocab.documents} defined</div>
+      <div style={styles.noDocuments}>No {vocab.documents} defined</div>
 }
 
 export default

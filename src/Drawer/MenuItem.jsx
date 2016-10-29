@@ -24,7 +24,7 @@ class MenuItem extends Component {
       theme, // eslint-disable-line no-unused-vars
       prepareStyles, // eslint-disable-line no-unused-vars
       active, // eslint-disable-line no-unused-vars
-      ...childProps,
+      ...childProps
     } = this.props
     return (
       <MuiMenuItem

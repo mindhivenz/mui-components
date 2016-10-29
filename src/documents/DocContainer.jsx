@@ -17,7 +17,7 @@ const DocContainer = ({
     {search ?
       <SearchFilter />
       :
-      <div>&nbsp;</div>
+        <div>&nbsp;</div>
     }
     {children}
   </Paper>
