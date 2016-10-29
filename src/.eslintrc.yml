@@ -9,8 +9,8 @@ rules:
   - code: 120
     ignoreTrailingComments: true
     ignoreUrls: true
-  padded-blocks: 0
-  react/prop-types: 0
+  padded-blocks: off
+  react/prop-types: off
   semi:
   - error
   - never
@@ -18,24 +18,27 @@ rules:
   - error
   - overrides:
       "!": true
-  quote-props: 0
-  no-confusing-arrow: 0
-  no-unused-expressions: 0
-  no-underscore-dangle: 0
+  quote-props: off
+  no-confusing-arrow: off
+  no-unused-expressions: off
+  no-underscore-dangle: off
   no-param-reassign:
   - error
   - props: false
-  no-trailing-spaces: 0
-  no-nested-ternary: 0
+  no-trailing-spaces: off
+  no-nested-ternary: off
   import/named: error
-  import/no-extraneous-dependencies: 0
-  import/prefer-default-export: 0
+  import/extensions:
+  - off
+  - never
+  import/no-extraneous-dependencies: off
+  import/prefer-default-export: off
   import/no-unresolved:
   - error
   - ignore:
     - "^react$"  # since we can't install it as a dependency
     - "^react-dom$"
     - "^redux-form$"
-  react/no-did-mount-set-state: 0
+  react/no-did-mount-set-state: off
 ecmaFeatures:
   spread: true
