@@ -1,13 +1,13 @@
 import { pluralise } from '../utils'
 
 
-export const join = (rules) =>
+export const join = rules =>
   (value, data) =>
     rules
       .map(rule => rule(value, data))
       .filter(error => !! error)[0]/* first error */
 
-export const createValidator = (rules) =>
+export const createValidator = rules =>
   (data = {}) => {
     const errors = {}
     Object.keys(rules).forEach((key) => {
@@ -55,7 +55,7 @@ export const required = (value) => {
   return null
 }
 
-export const requiredIf = (field) =>
+export const requiredIf = field =>
   (value, data) => {
     const isReq = data[field]
     if (isReq) {
@@ -64,7 +64,7 @@ export const requiredIf = (field) =>
     return null
   }
 
-export const minLength = (min) =>
+export const minLength = min =>
   (value) => {
     if (! isEmpty(value) && value.length < min) {
       return `Must be at least ${min} characters`
@@ -72,7 +72,7 @@ export const minLength = (min) =>
     return null
   }
 
-export const maxLength = (max) =>
+export const maxLength = max =>
   (value) => {
     if (! isEmpty(value) && value.length > max) {
       return `Must be no more than ${max} characters`
@@ -87,7 +87,7 @@ export const integer = (value) => {
   return null
 }
 
-export const oneOf = (enumeration) =>
+export const oneOf = enumeration =>
   (value) => {
     if (enumeration.indexOf(value) === -1) {
       return `Must be one of: ${enumeration.join(', ')}`
@@ -109,7 +109,7 @@ export const uniqueName = (namesToAvoid, nameLabel = 'name', entityLabel = null)
   }
 }
 
-export const match = (field) =>
+export const match = field =>
   (value, data) => {
     if (data) {
       if (value !== data[field]) {
@@ -128,16 +128,16 @@ const contains = (count, pattern, label) => (value) => {
   return null
 }
 
-export const containsUpper = (count) =>
+export const containsUpper = count =>
   contains(count, 'A-Z', 'uppercase letter')
 
-export const containsLower = (count) =>
+export const containsLower = count =>
   contains(count, 'a-z', 'lowercase letter')
 
-export const containsNumber = (count) =>
+export const containsNumber = count =>
   contains(count, '0-9', 'number')
 
-export const containsSpecial = (count) =>
+export const containsSpecial = count =>
   contains(count, '!@#$&*', 'special character')
 
 export const password = join([

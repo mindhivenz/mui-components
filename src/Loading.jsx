@@ -6,7 +6,7 @@ import withTheme from './theme/withTheme'
 
 // TODO: delay the display of this
 
-const mapThemeToStyles = (theme) => ({
+const mapThemeToStyles = theme => ({
   loading: {
     margin: '0 auto',
     padding: '100px 0',

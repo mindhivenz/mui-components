@@ -10,5 +10,5 @@ export const supplant = (str, dict) =>
 
 export const cleanProps = ({
   dispatch, theme, prepareStyles, onKeyboardFocus, // eslint-disable-line no-unused-vars
-  ...other,
+  ...other
 }) => other

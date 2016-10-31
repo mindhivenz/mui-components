@@ -8,8 +8,8 @@ export const Icon = ({ ligature, ...props }) =>
   >{ligature}</FontIcon>
 
 
-const namedIcon = (ligature) =>
-  (props) =>
+const namedIcon = ligature =>
+  props =>
     <Icon
       ligature={ligature}
       {...props}

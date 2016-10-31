@@ -7,8 +7,8 @@ import IconButton from 'material-ui/IconButton'
 import EventListener from 'react-event-listener'
 import keycode from 'keycode'
 
-import { withTheme } from '@mindhive/components/theme'
-import { ClearIcon } from '@mindhive/components/Icon'
+import withTheme from '../theme/withTheme'
+import { ClearIcon } from '../Icon/Icon'
 
 
 class Dialog extends Component {
@@ -52,7 +52,7 @@ class Dialog extends Component {
       title,
       closeButton,
 
-      ...other,
+      ...other
     } = this.props
 
     const btns = []
