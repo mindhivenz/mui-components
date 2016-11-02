@@ -27,7 +27,7 @@
     "mui"
   ],
   "devDependencies": {
-    "@mindhive/di": "^2.3.0",
+    "@mindhive/di": "^2.4.0",
     "@mindhive/some": "^2.5.4",
     "babel-cli": "^6.18.0",
     "babel-eslint": "^7.1.0",
