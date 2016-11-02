@@ -44,15 +44,16 @@ const DocList = ({
 }) => {
   const docComponents = documents.map((doc, index) => {
     const id = docIdSelector(doc)
-    return selected.id === id ?
-      <DocEdit
-        {...docProps}
-        {...editProps}
-        selected={selected}
-        key={`${id}.edit`}
-        id={id}
-        document={doc}
-      />
+    return selected.id === id
+      ?
+        <DocEdit
+          {...docProps}
+          {...editProps}
+          selected={selected}
+          key={`${id}.edit`}
+          id={id}
+          document={doc}
+        />
       :
         <DocView
           {...docProps}
