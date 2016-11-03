@@ -32,6 +32,7 @@ const mongoIdSelector = doc => doc._id
 const DocList = ({
   vocab,
   title,
+  hideWhenEmpty,
   documents = [],
   selected,
   styles,
@@ -81,7 +82,7 @@ const DocList = ({
         {docComponents}
       </List>
     </div>
-    :
+    : hideWhenEmpty ? null :
       <div style={styles.noDocuments}>No {vocab.documents} defined</div>
 }
 

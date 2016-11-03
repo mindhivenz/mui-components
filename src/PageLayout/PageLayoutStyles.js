@@ -10,11 +10,16 @@ export default ({
   palette,
   colorManipulator,
   dimensions,
+  appBar,
 }) => ({
   pageLayout: {
     headerBackgroundColor: palette.darkPrimary1Color,
     titleColor: palette.alternateTextColor,
+    titleHeight: 30,
+    titleFontSize: 20,
+    titleFontWeight: appBar.titleFontWeight,
     descriptionColor: colorManipulator.fade(palette.alternateTextColor, 0.6),
+    descriptionFontSize: 14,
     contentMaxWidth: dimensions.contentMaxWidthWide,
   },
 })
@@ -35,7 +40,16 @@ const titleRoot = {
 }
 
 const mapThemeToStyles = ({
-  pageLayout,
+  pageLayout: {
+    titleColor,
+    headerBackgroundColor,
+    titleHeight,
+    titleFontSize,
+    titleFontWeight,
+    descriptionColor,
+    descriptionFontSize,
+    contentMaxWidth,
+  },
   dimensions,
   spacing,
   drawer,
@@ -53,25 +67,25 @@ const mapThemeToStyles = ({
   },
   pageHeader: {
     root: {
-      backgroundColor: pageLayout.headerBackgroundColor,
+      backgroundColor: headerBackgroundColor,
       transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
       position: 'relative',
       padding: appBar.padding,
     },
     title: {
       ...titleRoot,
-      color: pageLayout.titleColor,
-      fontSize: 20,
-      fontWeight: appBar.titleFontWeight,
-      height: '30px',
-      lineHeight: '30px',
+      color: titleColor,
+      fontSize: titleFontSize,
+      fontWeight: titleFontWeight,
+      height: titleHeight,
+      lineHeight: `${titleHeight}px`,
     },
     description: {
       ...titleRoot,
-      color: pageLayout.descriptionColor,
-      fontSize: 14,
-      height: '14px',
-      lineHeight: '14px',
+      color: descriptionColor,
+      fontSize: descriptionFontSize,
+      height: descriptionFontSize,
+      lineHeight: `${descriptionFontSize}px`,
       paddingBottom: '5px',
     },
   },
@@ -79,7 +93,7 @@ const mapThemeToStyles = ({
     margin: `${spacing.desktopGutter}px auto`,
     marginTop: spacing.desktopSubheaderHeight,
     padding: `0 ${spacing.desktopGutter}px`,
-    maxWidth: pageLayout.contentMaxWidth,
+    maxWidth: contentMaxWidth,
   },
 })
 
