@@ -1,5 +1,5 @@
 export default (theme) => {
-  const { spacing, palette, typography, colorManipulator, raisedButton } = theme
+  const { spacing, palette, typography, colorManipulator, raisedButton,dimensions } = theme
 
   const dialogTitle = {
     paddingTop: spacing.desktopGutterLess,
@@ -78,6 +78,7 @@ export default (theme) => {
       headerBackgroundColor: palette.darkPrimary1Color,
       titleColor: palette.alternateTextColor,
       descriptionColor: colorManipulator.fade(palette.alternateTextColor, 0.6),
+      contentMaxWidth: dimensions.contentMaxWidthWide,
     },
 
     raisedButton: {

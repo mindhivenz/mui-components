@@ -12,6 +12,12 @@ typography.fontWeight500 = 500
 typography.fontWeight700 = 700
 typography.fontWeight900 = 900
 
+const dimensions = {
+  contentMaxWidthWide: 980,
+  contentMaxWidthNarrow: 640,
+}
+
+
 export const createTheme = (isMobile, baseTheme, calcComponentsStyles) => {
 
   // console.log(baseTheme.description.label)
@@ -23,6 +29,7 @@ export const createTheme = (isMobile, baseTheme, calcComponentsStyles) => {
   const muiTheme = getMuiTheme({
     colorManipulator,
     typography,
+    dimensions,
     // palette: blueGreyThemeLightBody.palette,
     // palette: blueGreyThemeDarkBody.palette,
     palette: baseTheme.palette,

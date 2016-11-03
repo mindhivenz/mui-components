@@ -36,6 +36,7 @@ const titleRoot = {
 
 const themeToStyles = ({
   pageLayout,
+  dimensions,
   drawer,
   appBar,
 }, {
@@ -77,7 +78,7 @@ const themeToStyles = ({
     margin: `${spacing.desktopGutter}px auto`,
     marginTop: spacing.desktopSubheaderHeight,
     padding: `0 ${spacing.desktopGutter}px`,
-    maxWidth: 640,
+    maxWidth: pageLayout.contentMaxWidth,
   },
 })
 
