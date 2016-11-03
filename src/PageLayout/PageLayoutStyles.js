@@ -3,7 +3,8 @@ import { app } from '@mindhive/di'
 import withStyleSheet from '../theme/withStyleSheet'
 
 /**
- * These styles are added to the theme and can be overridden by client code
+ * These styles are added to the theme and can be overridden by
+ * client code, they handle all themeable appearance
  */
 export default ({
   palette,
@@ -18,8 +19,11 @@ export default ({
   },
 })
 
-// Component ----------------------
 
+/**
+ * These styles are internal to the component and are responsible
+ * for component layout/structure
+ */
 const titleRoot = {
   display: 'block',
   whiteSpace: 'nowrap',
@@ -79,6 +83,6 @@ const mapThemeToStyles = ({
   },
 })
 
-export const applyStyleSheet = PageLayout =>
+export const injectStylesSheet = PageLayout =>
   withStyleSheet(mapThemeToStyles)(PageLayout)
 

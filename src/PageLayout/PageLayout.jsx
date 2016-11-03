@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { applyStyleSheet } from './PageLayoutStyles'
+import { injectStylesSheet } from './PageLayoutStyles'
 
 const PageLayout = ({
   title,
@@ -20,4 +20,4 @@ const PageLayout = ({
     </div>
   </div>
 
-export default applyStyleSheet(PageLayout)
+export default injectStylesSheet(PageLayout)
