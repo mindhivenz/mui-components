@@ -33,6 +33,7 @@ const DocList = ({
   vocab,
   title,
   hideWhenEmpty,
+  noNewDocuments,
   documents = [],
   selected,
   styles,
@@ -65,7 +66,7 @@ const DocList = ({
           document={doc}
         />
   })
-  if (selected.isNew) {
+  if (! noNewDocuments && selected.isNew) {
     docComponents.splice(selected.atIndex, 0,
       <DocEdit
         {...docProps}
