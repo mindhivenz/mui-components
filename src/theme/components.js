@@ -1,3 +1,4 @@
+import pageLayout from '../PageLayout/PageLayoutStyles'
 export default (theme) => {
   const { spacing, palette, typography, colorManipulator, raisedButton,dimensions } = theme
 
@@ -74,12 +75,7 @@ export default (theme) => {
       disabledBackgroundColor: palette.borderColor,
     },
 
-    pageLayout: {
-      headerBackgroundColor: palette.darkPrimary1Color,
-      titleColor: palette.alternateTextColor,
-      descriptionColor: colorManipulator.fade(palette.alternateTextColor, 0.6),
-      contentMaxWidth: dimensions.contentMaxWidthWide,
-    },
+    ...pageLayout(theme),
 
     raisedButton: {
       primaryColor: raisedButton.secondaryColor,
