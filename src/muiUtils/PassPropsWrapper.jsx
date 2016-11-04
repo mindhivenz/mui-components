@@ -10,6 +10,8 @@ import React from 'react'
 const PassPropsWrapper = ({
   children,
   style,
+  theme, // eslint-disable-line no-unused-vars
+  prepareStyles, // eslint-disable-line no-unused-vars
   ...other,
 }) =>
   <div style={style}>

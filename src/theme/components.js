@@ -1,4 +1,6 @@
 import pageLayout from '../PageLayout/PageLayoutStyles'
+import docList from '../documents/DocumentStyles'
+
 export default (theme) => {
   const { spacing, palette, typography, colorManipulator, raisedButton,dimensions } = theme
 
@@ -28,28 +30,7 @@ export default (theme) => {
       clickColor: palette.alternateTextColor,
     },
 
-    docList: {
-      icon: {
-        color: palette.disabledColor,
-        hovered: {
-          color: palette.primary1Color,
-          opacity: 0.5,
-        },
-      },
-      primaryText: {
-        disabled: {
-          color: palette.disabledColor,
-        },
-        hovered: {
-          color: colorManipulator.darken(palette.darkPrimary1Color, 0.45),
-        },
-      },
-      secondaryText: {
-        disabled: {
-          color: palette.disabledColor,
-        },
-      },
-    },
+    ...docList(theme),
 
     drawer: {
       backgroundColor: palette.darkSecondary1Color,

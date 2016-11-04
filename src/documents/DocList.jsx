@@ -1,31 +1,10 @@
 import React from 'react'
 
-import spacing from 'material-ui/styles/spacing'
-import typography from 'material-ui/styles/typography'
-
 import { List } from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
 
-import withTheme from '../theme/withTheme'
+import NoDocsLabel from './NoDocsLabel'
 
-
-const mapThemeToStyles = (theme) => {
-  const headingRoot = {
-    color: theme.palette.disabledColor,
-    fontWeight: typography.fontWeightMedium,
-    padding: spacing.desktopGutterLess,
-    fontSize: spacing.desktopGutter,
-  }
-
-  return {
-    noDocuments: {
-      ...headingRoot,
-      textAlign: 'center',
-      padding: theme.appBar.height,
-      fontSize: spacing.desktopGutterMore,
-    },
-  }
-}
 
 const mongoIdSelector = doc => doc._id
 
@@ -36,7 +15,6 @@ const DocList = ({
   noNewDocuments,
   documents = [],
   selected,
-  styles,
   docProps,
   DocEdit,
   editProps,
@@ -83,12 +61,8 @@ const DocList = ({
         {docComponents}
       </List>
     </div>
-    : hideWhenEmpty ? null :
-      <div style={styles.noDocuments}>No {vocab.documents} defined</div>
+    :
+    <NoDocsLabel hideWhenEmpty={hideWhenEmpty}>No {vocab.documents} defined</NoDocsLabel>
 }
 
-export default
-  withTheme(
-    DocList,
-    mapThemeToStyles,
-  )
+export default DocList

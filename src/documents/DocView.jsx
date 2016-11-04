@@ -2,13 +2,16 @@ import React from 'react'
 
 import { ListItem } from 'material-ui/List'
 
-import withTheme from '../theme/withTheme'
+import withStyleSheet from '../theme/withStyleSheet'
 import withHover from '../hover/withHover'
 
 
 const DocView = ({
   id,
   leftIcon,
+
+  disabled,
+  hovered,
 
   primaryText,
   secondaryText,
@@ -25,7 +28,7 @@ const DocView = ({
     disableFocusRipple
 
     id={id}
-    leftIcon={leftIcon && React.cloneElement(leftIcon, { style: styles.icon })}
+    leftIcon={leftIcon && React.cloneElement(leftIcon, { hovered, disabled })}
     primaryText={primaryText && <div style={styles.primaryText}>{primaryText}</div>}
     secondaryText={secondaryText && <div style={styles.secondaryText}>{secondaryText}</div>}
     leftAvatar={leftAvatar}
@@ -37,8 +40,8 @@ const DocView = ({
     {children}
   </ListItem>
 
-const calcStyles = ({
-  docList: { icon, primaryText, secondaryText },
+const mapThemeToStyles = ({
+  docList: { primaryTextHoveredColor, primaryTextDisabledColor, secondaryTextDisabledColor },
   paper,
 }, {
   disabled,
@@ -58,20 +61,18 @@ const calcStyles = ({
       ...(hovered ? hoverStyles : {}),
       ...containerStyle,
     },
-    icon: {
-      ...icon,
-      ...(hovered ? icon.hovered : {}),
-    },
     primaryText: {
-      ...(disabled
-        ? primaryText.disabled
-        : hovered
-        ? primaryText.hovered
-        : {}),
+      color: disabled ? primaryTextDisabledColor
+        : hovered ? primaryTextHoveredColor
+        : 'inherit',
     },
-    secondaryText: disabled ? secondaryText.disabled : {},
+    secondaryText: {
+      color: disabled ? secondaryTextDisabledColor : 'inherit',
+    },
   })
 }
 
-export default withHover()(withTheme(DocView, calcStyles))
+export default withHover()(
+  withStyleSheet(mapThemeToStyles)(DocView)
+)
 
