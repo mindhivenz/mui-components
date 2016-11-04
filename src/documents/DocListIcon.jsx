@@ -2,7 +2,7 @@ import React from 'react'
 
 import withStyleSheet from '../theme/withStyleSheet'
 
-const DocListIcon = ({
+const _DocListIcon = ({
   styles,
   children,
 
@@ -37,7 +37,15 @@ const mapThemeToStyles = ({
   })
 }
 
+const WithStylesComponent = withStyleSheet(mapThemeToStyles)(_DocListIcon)
 
-export default
-withStyleSheet(mapThemeToStyles)(DocListIcon)
+class DocListIcon extends React.Component {
+  static muiName = 'DocListIcon'
 
+  render() {
+    return <WithStylesComponent {...this.props} />
+  }
+}
+
+
+export default DocListIcon
