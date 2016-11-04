@@ -63,7 +63,7 @@
     "react-event-listener": "^0.4.0"
   },
   "peerDependencies": {
-    "@mindhive/di": "^2.3.0",
+    "@mindhive/di": "^2.4.0",
     "material-ui": "^0.16.1",
     "mobx": "^2.6.0",
     "mobx-react": "^3.5.8",
