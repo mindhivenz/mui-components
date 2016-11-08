@@ -1,8 +1,10 @@
+import { grey400, grey200 } from 'material-ui/styles/colors'
+
 import pageLayout from '../PageLayout/PageLayoutStyles'
 import docList from '../documents/DocumentStyles'
 
 export default (theme) => {
-  const { spacing, palette, typography, colorManipulator, raisedButton,dimensions } = theme
+  const { spacing, palette, typography, colorManipulator, raisedButton } = theme
 
   const dialogTitle = {
     paddingTop: spacing.desktopGutterLess,
@@ -29,6 +31,7 @@ export default (theme) => {
       textColor: palette.errorText,
       clickColor: palette.alternateTextColor,
     },
+
 
     ...docList(theme),
 

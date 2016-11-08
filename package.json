@@ -55,8 +55,6 @@
   "license": "MIT",
   "dependencies": {
     "date-fns": "^1.9.0",
-    "draft-js": "^0.9.1",
-    "draft-js-export-html": "^0.5.0",
     "enumify": "^1.0.4",
     "keycode": "^2.1.7",
     "lru-memoize": "^1.0.1",

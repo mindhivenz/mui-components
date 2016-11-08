@@ -1,9 +1,15 @@
-import { grey400 } from 'material-ui/styles/colors'
+import { grey200, grey400 } from 'material-ui/styles/colors'
 
 export default ({
   palette,
   colorManipulator,
 }) => ({
+  docStatefulIcon: {
+    disabledColor: grey200,
+  },
+  docDropDownMenu: {
+    iconColor: grey400,
+  },
   docList: {
     iconColor: grey400,
     iconHoveredColor: palette.primary1Color,
