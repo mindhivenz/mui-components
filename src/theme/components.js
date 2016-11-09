@@ -4,7 +4,7 @@ import pageLayout from '../PageLayout/PageLayoutStyles'
 import docList from '../documents/DocumentStyles'
 
 export default (theme) => {
-  const { spacing, palette, typography, colorManipulator, raisedButton, pageLayout } = theme
+  const { spacing, palette, typography, colorManipulator, raisedButton } = theme
 
   const dialogTitle = {
     paddingTop: spacing.desktopGutterLess,

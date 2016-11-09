@@ -94,8 +94,8 @@ const mapThemeToStyles = (theme) => {
       textAlign: 'right',
     },
     save: {
-      ...selectedIconRoot,
       color: theme.palette.accent1Color,
+      marginRight: spacing.desktopGutterMini,
     },
     close: {
       position: {
@@ -109,6 +109,7 @@ const mapThemeToStyles = (theme) => {
     },
     discard: {
       color: theme.palette.errorText,
+      marginRight: spacing.desktopGutterMini,
     },
   }
 }
@@ -219,6 +220,7 @@ class DocEdit extends Component {
         <RaisedButton
           id={`submit-${docType}-selector`}
           label="save"
+          style={styles.save}
           secondary
           type="submit"
           disabled={pristine || ! valid || submitting || processing}
