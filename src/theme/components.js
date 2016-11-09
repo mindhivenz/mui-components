@@ -32,6 +32,12 @@ export default (theme) => {
       clickColor: palette.alternateTextColor,
     },
 
+    docStatefulIcon: {
+      disabledColor: grey200,
+    },
+    docDropDownMenu: {
+      iconColor: grey400,
+    },
 
     ...docList(theme),
 

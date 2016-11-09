@@ -206,6 +206,42 @@ class DocEdit extends Component {
 
     const itemId = `${docType}-list-item-${id || 'new'}-selector`
 
+    const buttons = []
+    if (showButtons) {
+      buttons.push(
+        <FlatButton
+          label="Discard"
+          style={styles.discard}
+          onTouchTap={() => this.handleClose(onCancel)}
+        />
+      )
+      buttons.push(
+        <RaisedButton
+          id={`submit-${docType}-selector`}
+          label="save"
+          secondary
+          type="submit"
+          disabled={pristine || ! valid || submitting || processing}
+        />
+      )
+    }
+    if (extraButtons) {
+      buttons.push(extraButtons)
+    }
+    if (showClose) {
+      buttons.push(
+        <IconButton
+          onTouchTap={() => this.handleClose(onCancel)}
+          style={styles.close.position}
+        >
+          <ClearIcon
+            style={styles.close.position}
+            color={styles.close.color}
+            hoverColor={styles.close.hoverColor}
+          />
+        </IconButton>
+      )
+    }
     return (
       <div>
         <Overlay autoLockScrolling={false} style={styles.overlay} show={isNew || ! pristine} />
@@ -222,42 +258,10 @@ class DocEdit extends Component {
             id={`${docType}-form`}
             onSubmit={handleSubmit}
           >
-
             {children}
-
             <div style={styles.buttons}>
-              {(showButtons || extraButtons) &&
-                <div>
-                  {showButtons &&
-                    <div>
-                      <FlatButton
-                        label="Discard"
-                        style={styles.discard}
-                        onTouchTap={() => this.handleClose(onCancel)}
-                      />
-                      <RaisedButton
-                        id={`submit-${docType}-selector`}
-                        label="save"
-                        secondary
-                        type="submit"
-                        disabled={pristine || ! valid || submitting || processing}
-                      />
-                    </div>
-                  }
-                  {extraButtons}
-                </div>
-              }
-              {showClose &&
-                <IconButton
-                  onTouchTap={() => this.handleClose(onCancel)}
-                  style={styles.close.position}
-                >
-                  <ClearIcon
-                    style={styles.close.position}
-                    color={styles.close.color}
-                    hoverColor={styles.close.hoverColor}
-                  />
-                </IconButton>
+              {buttons.length &&
+                buttons.map(button => button)
               }
             </div>
           </form>
