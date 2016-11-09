@@ -13,6 +13,7 @@ export default ({
   appBar,
 }) => ({
   pageLayout: {
+    containerBackgroundColor: palette.bodyColor,
     headerBackgroundColor: palette.darkPrimary1Color,
     titleColor: palette.alternateTextColor,
     titleHeight: 30,
@@ -42,6 +43,7 @@ const titleRoot = {
 const mapThemeToStyles = ({
   pageLayout: {
     titleColor,
+    containerBackgroundColor,
     headerBackgroundColor,
     titleHeight,
     titleFontSize,
@@ -65,6 +67,7 @@ const mapThemeToStyles = ({
     height: `calc(100% - ${spacing.desktopKeylineIncrement}px)`,
     transition: transitions.easeOut(null, 'size', null),
     width: navDrawerDomain.docked ? `calc(100% - ${drawer.width}px)` : '100%',
+    backgroundColor: containerBackgroundColor,
     ...style,
 
   },
