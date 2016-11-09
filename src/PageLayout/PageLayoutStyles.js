@@ -56,6 +56,7 @@ const mapThemeToStyles = ({
   appBar,
 }, {
   domains: { navDrawerDomain } = app(),
+  style = {},
 }) => ({
   container: {
     position: 'fixed',
@@ -64,6 +65,8 @@ const mapThemeToStyles = ({
     height: `calc(100% - ${spacing.desktopKeylineIncrement}px)`,
     transition: transitions.easeOut(null, 'size', null),
     width: navDrawerDomain.docked ? `calc(100% - ${drawer.width}px)` : '100%',
+    ...style,
+
   },
   pageHeader: {
     root: {
