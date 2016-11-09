@@ -263,7 +263,7 @@ class DocEdit extends Component {
             {children}
             <div style={styles.buttons}>
               {buttons.length &&
-                buttons.map(button => button)
+                buttons.map((button, idx) => React.cloneElement(button, {key: `btn-${idx}-key`}))
               }
             </div>
           </form>
