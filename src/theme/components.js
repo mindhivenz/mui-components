@@ -1,5 +1,7 @@
 import { grey400, grey200 } from 'material-ui/styles/colors'
 
+import dashboardTile from '../dashboard/DashboardStyles'
+
 import pageLayout from '../PageLayout/PageLayoutStyles'
 import docList from '../documents/DocumentStyles'
 
@@ -39,6 +41,7 @@ export default (theme) => {
       iconColor: grey400,
     },
 
+    ...dashboardTile(theme),
     ...docList(theme),
 
     drawer: {
