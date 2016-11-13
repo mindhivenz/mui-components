@@ -1,32 +1,37 @@
 import withStyleSheet from '../theme/withStyleSheet'
 import transitions from 'material-ui/styles/transitions'
 
-/**
- * These styles are added to the theme and can be overridden by
- * client code, they handle all themeable appearance
- */
 export default ({
   palette,
+  spacing,
   colorManipulator,
-}) => ({
-  dashboardTile: {
-    backgroundColor: '#444444',
-    calcTextColor: color => colorManipulator.lighten(color, 0.95),
-    calcValueColor: color => colorManipulator.lighten(color, 0.95),
-    calcTitleColor: color => colorManipulator.lighten(color, 0.75),
-    bylineColor: palette.disabledColor,
-  },
-})
+}) => {
+  const tileSize = spacing.desktopKeylineIncrement * 3
+  const padding = spacing.desktopGutter * 2
+  const margin = spacing.desktopGutterMini / 2
 
+  return ({
+    dashboardTile: {
+      boxSizing: 'border-box',
+      backgroundColor: '#444444',
+      calcTextColor: color => colorManipulator.lighten(color, 0.95),
+      calcValueColor: color => colorManipulator.lighten(color, 0.95),
+      calcTitleColor: color => colorManipulator.lighten(color, 0.75),
+      bylineColor: palette.disabledColor,
+      hoverScale: 1.015,
+      width: tileSize,
+      height: tileSize,
+      margin,
+      padding,
+    },
+  })
+}
 
-/**
- * These styles are internal to the component and are responsible
- * for component layout/structure
- */
+// (spacing.desktopKeylineIncrement * 3) + (spacing.desktopGutter * 2) + ((spacing.desktopGutterMini / 2) * 2)
+export const tileSize = 288 + 16
 
 const mapThemeToStyles = ({
   typography,
-  dimensions,
   spacing,
   dashboardTile,
 }, {
@@ -35,16 +40,16 @@ const mapThemeToStyles = ({
   onClick,
 }) => {
   const tileColor = style.backgroundColor || dashboardTile.backgroundColor
-  const scale = onClick && hovered ? 1.015 : 1
+  const scale = onClick && hovered ? dashboardTile.hoverScale : 1
   return ({
     container: {
       position: 'relative',
       display: 'inline-block',
-      width: 3 * spacing.desktopKeylineIncrement,
-      height: 3 * spacing.desktopKeylineIncrement,
       verticalAlign: 'top',
-      margin: spacing.desktopGutterMini / 2,
-      padding: spacing.desktopGutter * 2,
+      margin: dashboardTile.margin,
+      padding: dashboardTile.padding,
+      width: dashboardTile.width,
+      height: dashboardTile.height,
       textAlign: 'center',
       color: dashboardTile.calcTextColor(tileColor),
       transition: transitions.easeOut(null, 'transform', null),
@@ -56,6 +61,11 @@ const mapThemeToStyles = ({
       color: dashboardTile.calcValueColor(tileColor),
       fontWeight: 1000,
       fontSize: 1.25 * spacing.desktopKeylineIncrement,
+    },
+    customRow: {
+      color: dashboardTile.calcTitleColor(tileColor),
+      fontWeight: typography.fontWeightMedium,
+      fontSize: spacing.desktopGutter - 5,
     },
     title: {
       color: dashboardTile.calcTitleColor(tileColor),

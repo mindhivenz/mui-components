@@ -1,16 +1,12 @@
 import React from 'react'
-import DashTile from './DashTile'
 import { injectStylesSheet } from './DashboardStyles'
+import TileCustomRow from './TileCustomRow'
 
 const TileByLine = ({
+  customStyle = {},
   children,
-
   styles,
-  prepareStyles,
 }) =>
-  children ?
-    <div style={prepareStyles(styles.byline)}>{children}</div>
-  :
-    null
+  <TileCustomRow customStyle={Object.assign({}, styles.byline, customStyle)}>{children}</TileCustomRow>
 
 export default injectStylesSheet(TileByLine)

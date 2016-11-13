@@ -1,6 +1,7 @@
 import React from 'react'
 import DashTile from './DashTile'
 import { injectStylesSheet } from './DashboardStyles'
+import withOnClick from '../muiUtils/withOnClick'
 
 const TileDataRow = ({
   label,
@@ -12,7 +13,7 @@ const TileDataRow = ({
 }) =>
   <div
     style={prepareStyles(styles.dataRow)}
-    onClick={onClick}
+    {...withOnClick(onClick)}
   >
     <span style={prepareStyles(styles.dataRowLabel)}>{label}</span>
     <span style={prepareStyles(styles.dataRowValue)}>{value}</span>
