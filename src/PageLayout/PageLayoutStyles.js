@@ -59,6 +59,8 @@ const mapThemeToStyles = ({
 }, {
   domains: { navDrawerDomain } = app(),
   style = {},
+  contentWidth,
+  contentMinWidth,
   contentMaxWidth,
 }) => ({
   container: {
@@ -100,7 +102,7 @@ const mapThemeToStyles = ({
     margin: `${spacing.desktopGutter}px auto`,
     marginTop: spacing.desktopSubheaderHeight,
     padding: `0 ${spacing.desktopGutter}px`,
-    maxWidth: contentMaxWidth || themeMaxWidth,
+    width: contentWidth || 'auto',
   },
 })
 
