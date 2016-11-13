@@ -7,11 +7,6 @@ const _DocListIcon = ({
   children,
 
   style,  // MUI
-
-  color, // eslint-disable-line no-unused-vars
-  theme, // eslint-disable-line no-unused-vars
-  prepareStyles, // eslint-disable-line no-unused-vars
-  hovered, // eslint-disable-line no-unused-vars
 }) =>
   React.cloneElement(React.Children.only(children), { style: Object.assign({}, style, styles) })
 
@@ -39,13 +34,17 @@ const mapThemeToStyles = ({
 
 const WithStylesComponent = withStyleSheet(mapThemeToStyles)(_DocListIcon)
 
-class DocListIcon extends React.Component {
-  static muiName = 'DocListIcon'
+
+const DOC_LIST_ICON = 'DocListIcon'
+
+export const renderDocListIcon = (component, params) =>
+  component.type.mindhiveName === DOC_LIST_ICON ? React.cloneElement(component, params) : component
+
+
+export default class DocListIcon extends React.Component {
+  static mindhiveName = DOC_LIST_ICON
 
   render() {
     return <WithStylesComponent {...this.props} />
   }
 }
-
-
-export default DocListIcon

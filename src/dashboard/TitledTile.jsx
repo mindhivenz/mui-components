@@ -12,10 +12,12 @@ const TitledTile = ({
   children,
   style,
 
+  onClick,
+
   styles,
   prepareStyles,
 }) =>
-  <DashTile style={style}>
+  <DashTile style={style} onClick={onClick}>
     <Value style={style}>{value}</Value>
     <Title style={style}>{title}</Title>
     <ByLine style={style}>{byline}</ByLine>

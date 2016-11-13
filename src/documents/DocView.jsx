@@ -5,13 +5,7 @@ import { ListItem } from 'material-ui/List'
 import withStyleSheet from '../theme/withStyleSheet'
 import withHover from '../hover/withHover'
 
-const renderLeftIcon = (leftIcon, params) => {
-  const { muiName } = leftIcon.type
-  if (muiName === 'DocListIcon') {
-    return React.cloneElement(leftIcon, params)
-  }
-  return leftIcon
-}
+import { renderDocListIcon } from './DocListIcon'
 
 const DocView = ({
   id,
@@ -35,7 +29,7 @@ const DocView = ({
     disableFocusRipple
 
     id={id}
-    leftIcon={leftIcon && renderLeftIcon(leftIcon, { hovered, disabled })}
+    leftIcon={leftIcon && renderDocListIcon(leftIcon, { hovered, disabled })}
     primaryText={primaryText && <div style={styles.primaryText}>{primaryText}</div>}
     secondaryText={secondaryText && <div style={styles.secondaryText}>{secondaryText}</div>}
     leftAvatar={leftAvatar}

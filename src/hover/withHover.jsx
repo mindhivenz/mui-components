@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
-const withHover = ({ mouseLeaveDelay = 0, mouseOverOnMount = false } = {}) =>
+const withHover = ({ mouseLeaveDelay = 0, mouseOverOnMount = false, inline = false } = {}) =>
   DecoratedComponent =>
     class WithHover extends Component {
 
@@ -45,6 +45,7 @@ const withHover = ({ mouseLeaveDelay = 0, mouseOverOnMount = false } = {}) =>
       render() {
         return (
           <div
+            style={{ display: inline ? 'inline-block' : 'block' }}
             onMouseEnter={this.handleMouseOver}
             onMouseOver={this.handleMouseOver}
             onMouseMove={this.handleMouseMove}

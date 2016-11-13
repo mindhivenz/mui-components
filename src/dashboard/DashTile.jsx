@@ -1,5 +1,6 @@
 import React from 'react'
 import { injectStylesSheet } from './DashboardStyles'
+import withHover from '../hover/withHover'
 
 const DashTile = ({
   children,
@@ -7,9 +8,16 @@ const DashTile = ({
 
   styles,
   prepareStyles,
-}) =>
-  <div style={prepareStyles(styles.container)} onClick={onClick}>
-    {children}
-  </div>
+}) => {
+  const attributes = {}
+  if (onClick) {
+    attributes.onClick = onClick
+  }
+  return (
+    <div style={prepareStyles(styles.container)} {...attributes}>
+      {children}
+    </div>
+  )
+}
 
-export default injectStylesSheet(DashTile)
+export default withHover({ mouseLeaveDelay: 0, inline: true })(injectStylesSheet(DashTile))

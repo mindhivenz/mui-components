@@ -6,4 +6,5 @@ module.exports = {
   TileTitle: require('../dist/dashboard/TileTitle').default,
   TileValue: require('../dist/dashboard/TileValue').default,
   TileDataRow: require('../dist/dashboard/TileDataRow').default,
+  TileBlankRow: require('../dist/dashboard/TileBlankRow').default,
 }

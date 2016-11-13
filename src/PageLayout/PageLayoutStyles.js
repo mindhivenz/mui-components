@@ -50,7 +50,7 @@ const mapThemeToStyles = ({
     titleFontWeight,
     descriptionColor,
     descriptionFontSize,
-    contentMaxWidth,
+    contentMaxWidth: themeMaxWidth,
   },
   dimensions,
   spacing,
@@ -59,6 +59,7 @@ const mapThemeToStyles = ({
 }, {
   domains: { navDrawerDomain } = app(),
   style = {},
+  contentMaxWidth,
 }) => ({
   container: {
     position: 'fixed',
@@ -99,7 +100,7 @@ const mapThemeToStyles = ({
     margin: `${spacing.desktopGutter}px auto`,
     marginTop: spacing.desktopSubheaderHeight,
     padding: `0 ${spacing.desktopGutter}px`,
-    maxWidth: contentMaxWidth,
+    maxWidth: contentMaxWidth || themeMaxWidth,
   },
 })
 

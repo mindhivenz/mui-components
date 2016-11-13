@@ -1,4 +1,5 @@
 import withStyleSheet from '../theme/withStyleSheet'
+import transitions from 'material-ui/styles/transitions'
 
 /**
  * These styles are added to the theme and can be overridden by
@@ -29,11 +30,15 @@ const mapThemeToStyles = ({
   spacing,
   dashboardTile,
 }, {
-  style = {} ,
+  style = {},
+  hovered,
+  onClick,
 }) => {
   const tileColor = style.backgroundColor || dashboardTile.backgroundColor
+  const scale = onClick && hovered ? 1.015 : 1
   return ({
     container: {
+      position: 'relative',
       display: 'inline-block',
       width: 3 * spacing.desktopKeylineIncrement,
       height: 3 * spacing.desktopKeylineIncrement,
@@ -42,6 +47,8 @@ const mapThemeToStyles = ({
       padding: spacing.desktopGutter * 2,
       textAlign: 'center',
       color: dashboardTile.calcTextColor(tileColor),
+      transition: transitions.easeOut(null, 'transform', null),
+      transform: `scale(${scale}, ${scale})`,
       ...style,
     },
     value: {
@@ -63,15 +70,20 @@ const mapThemeToStyles = ({
     content: {
       marginTop: spacing.desktopGutter,
     },
+    blankRow: {
+      fontSize: spacing.desktopGutterMini,
+      lineHeight: `${spacing.desktopGutterMini}px`,
+    },
     dataRow: {
       fontWeight: typography.fontWeightLight,
-      fontSize: spacing.desktopGutterLess + 5,
+      fontSize: spacing.desktopGutterLess,
       cursor: 'pointer',
     },
     dataRowLabel: {
       display: 'inline-block',
       textAlign: 'left',
       width: '70%',
+      fontSize: spacing.desktopGutterLess,
       fontWeight: typography.fontWeightLight,
     },
     dataRowValue: {
