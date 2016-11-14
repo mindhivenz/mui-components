@@ -9,8 +9,9 @@ const DocContainer = ({
   addFab,
   search,
   children,
+  style,
 }) =>
-  <Paper zDepth={1}>
+  <Paper zDepth={1} style={style}>
     {addFab &&
       <DocAddFab addFab={addFab} />
     }
