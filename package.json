@@ -27,14 +27,16 @@
     "mui"
   ],
   "devDependencies": {
-    "@mindhive/di": "^2.4.0",
-    "@mindhive/some": "^2.5.4",
+    "@mindhive/di": "^3.0.0",
+    "@mindhive/some": "^3.0.0",
     "babel-cli": "^6.18.0",
     "babel-eslint": "^7.1.0",
+    "babel-plugin-transform-class-properties": "^6.18.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
-    "babel-preset-stage-2": "^6.18.0",
+    "babel-preset-stage-3": "^6.17.0",
     "chai": "^3.5.0",
     "eslint": "^3.9.0",
     "eslint-config-airbnb": "^12.0.0",
@@ -54,6 +56,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "babel-runtime": "^6.18.0",
     "date-fns": "^1.9.0",
     "enumify": "^1.0.4",
     "keycode": "^2.1.7",
@@ -61,7 +64,7 @@
     "react-event-listener": "^0.4.0"
   },
   "peerDependencies": {
-    "@mindhive/di": "^2.3.0",
+    "@mindhive/di": "^3.0.0",
     "material-ui": "^0.16.1",
     "mobx": "^2.6.0",
     "mobx-react": "^3.5.8",
