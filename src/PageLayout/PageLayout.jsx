@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { injectStylesSheet } from './PageLayoutStyles'
+import PageHeader from './PageHeader'
 
 const PageLayout = ({
   title,
@@ -10,11 +11,8 @@ const PageLayout = ({
   styles,         // applyStyles
   prepareStyles,  // applyStyles
 }) =>
-  <div id="xxx-container" style={styles.container}>
-    <header style={styles.pageHeader.root}>
-      <span style={prepareStyles(styles.pageHeader.title)}>{title}</span>
-      {description && <span style={prepareStyles(styles.pageHeader.description)}>{description}</span>}
-    </header>
+  <div style={styles.container}>
+    <PageHeader title={title} description={description} />
     <div style={prepareStyles(styles.pageContent)}>
       {children}
     </div>
