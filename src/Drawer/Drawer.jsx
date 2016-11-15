@@ -3,6 +3,7 @@ import MuiDrawer from 'material-ui/Drawer'
 import { observer } from 'mobx-react'
 
 import withTheme from '../theme/withTheme'
+import { trans as transitions } from '../styles/animations'
 
 
 @observer
@@ -44,12 +45,15 @@ const calcStyles = ({
 }, {
   domain,
 }) => ({
-  // nav: fillParent,
   drawer: {
+    position: 'fixed',
+    left: 0,
+    top: 0,
     backgroundColor: drawer.backgroundColor,
-    transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
+    transition: transitions.cubicAll,
+
     height: `calc(100% - ${domain.docked ? appBar.height : 0}px)`,
-    marginTop: domain.docked ? appBar.height : 0,
+    transform: `translate3d(-${domain.docked ? 0 : drawer.width}px, ${domain.docked ? appBar.height : 0}px, 0)`,
   },
 })
 
