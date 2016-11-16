@@ -63,7 +63,7 @@ const calcStylesStyles = (
     paddingTop: spacing.desktopKeylineIncrement,
     transition: `${transitions.easeOut(null, 'padding-left', null)},
                   ${transitions.easeOut(null, 'width', null)}`,
-    paddingLeft: navDrawerDomain.docked ? drawer.width : 0,
+    paddingLeft: navDrawerDomain.docked ? navDrawerDomain.expanded ? drawer.expandedWidth : drawer.narrowWidth : 0
   },
 })
 

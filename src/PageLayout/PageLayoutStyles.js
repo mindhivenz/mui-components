@@ -60,7 +60,7 @@ const mapThemeToStyles = ({
   drawer,
   appBar,
 }, {
-  domains: { navDrawerDomain } = app(),
+  domains: { navDrawerDomain: domain } = app(),
   style = {},
   contentWidth,
 }) => ({
@@ -70,7 +70,7 @@ const mapThemeToStyles = ({
     overflowY: 'auto',
     height: `calc(100% - ${spacing.desktopKeylineIncrement}px)`,
     transition: transitions.cubicAll,
-    width: navDrawerDomain.docked ? `calc(100% - ${drawer.width}px)` : '100%',
+    width: domain.docked ? `calc(100% - ${domain.expanded ? drawer.expandedWidth : drawer.narrowWidth}px)` : '100%',
     backgroundColor: containerBackgroundColor,
     ...style,
 
