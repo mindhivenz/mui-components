@@ -6,7 +6,7 @@ import pageLayout from '../PageLayout/PageLayoutStyles'
 import docList from '../documents/DocumentStyles'
 
 export default (theme) => {
-  const { spacing, palette, typography, colorManipulator, raisedButton } = theme
+  const { spacing, palette, typography, colorManipulator, raisedButton, drawer } = theme
 
   const dialogTitle = {
     paddingTop: spacing.desktopGutterLess,
@@ -45,6 +45,8 @@ export default (theme) => {
     ...docList(theme),
 
     drawer: {
+      expandedWidth: drawer.width,
+      narrowWidth: spacing.desktopDrawerMenuItemHeight,
       backgroundColor: palette.darkSecondary1Color,
       menuItem: {
         color: palette.secondary1Color,
