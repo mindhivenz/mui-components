@@ -103,7 +103,7 @@ const mapThemeToStyles = ({
     margin: `${spacing.desktopGutter}px auto`,
     marginTop: spacing.desktopSubheaderHeight,
     padding: `0 ${spacing.desktopGutter}px`,
-    width: contentWidth || 'auto',
+    width: contentWidth || themeMaxWidth,
   },
 })
 

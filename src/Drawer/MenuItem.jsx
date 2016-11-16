@@ -20,6 +20,8 @@ class MenuItem extends Component {
     const {
       icon,
       styles,
+      children,
+      primaryText,
       onTouchTap,  // eslint-disable-line no-unused-vars
       theme, // eslint-disable-line no-unused-vars
       prepareStyles, // eslint-disable-line no-unused-vars
@@ -29,8 +31,9 @@ class MenuItem extends Component {
     return (
       <MuiMenuItem
         onTouchTap={this.onTouchTap}
-        leftIcon={<Icon style={styles} ligature={icon} />}
+        leftIcon={<Icon style={styles.icon} ligature={icon} />}
         style={styles}
+        primaryText={<span style={styles.primaryText}>{ primaryText }</span>}
         {...childProps}
       />
     )
@@ -38,8 +41,13 @@ class MenuItem extends Component {
 }
 
 const calcStyles = ({ drawer }, { active }) => ({
-  ...drawer.menuItem,
-  ...(active ? drawer.active : {}),
+  icon: {
+    ...drawer.menuItem,
+    ...(active ? drawer.active : {}),
+  },
+  primaryText: {
+    ...drawer.menuItem,
+  },
 })
 
 export default withTheme(MenuItem, calcStyles)

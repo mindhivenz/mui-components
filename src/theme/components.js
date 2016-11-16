@@ -48,6 +48,8 @@ export default (theme) => {
       backgroundColor: palette.darkSecondary1Color,
       menuItem: {
         color: palette.secondary1Color,
+        fontWeight: typography.fontWeight100,
+        fontSize: 18,
       },
       active: {
         fontWeight: typography.fontWeightMedium,
