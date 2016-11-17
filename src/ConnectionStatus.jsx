@@ -31,7 +31,7 @@ const mapThemeToStyles = ({
   spacing,
   drawer,
 }, {
-  domains: { connectionDomain, navDrawerDomain } = app(),
+  domains: { connectionDomain, layoutDomain } = app(),
   hovered,
 }) => {
   const show = connectionDomain.connectionDown
@@ -44,7 +44,7 @@ const mapThemeToStyles = ({
       display: 'inline-block',
       padding: spacing.desktopGutterMini,
       bottom: spacing.desktopGutterLess,
-      left: (navDrawerDomain.docked ? drawer.width : 0) + spacing.desktopGutterLess,
+      left: layoutDomain.leftOffset + spacing.desktopGutterLess,
       transition: transitions.easeOut(null, 'all', null),
 
       zIndex: 10000,
