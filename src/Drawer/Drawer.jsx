@@ -53,7 +53,8 @@ const calcStyles = ({
     transition: transitions.cubicAll,
 
     height: `calc(100% - ${domain.docked ? appBar.height : 0}px)`,
-    transform: `translate3d(-${domain.docked ? 0 : drawer.width}px, ${domain.docked ? appBar.height : 0}px, 0)`,
+    marginTop: domain.docked ? appBar.height : 0,
+    // transform: `translate3d(-${domain.docked ? 0 : drawer.width}px, ${domain.docked ? appBar.height : 0}px, 0)`,
   },
 })
 
