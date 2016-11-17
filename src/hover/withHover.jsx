@@ -28,18 +28,27 @@ const withHover = ({ mouseLeaveDelay = 0, mouseOverOnMount = false, inline = fal
         }
       }
 
+      setHovered = (hovered) => {
+        this.setState({ hovered }, this.afterSetState)
+      }
+
+      afterSetState = () => {
+        const { onHover = () => {} } = this.props
+        onHover(this.state.hovered)
+      }
+
       handleMouseOver = () => {
-        if (! this.state.touch) this.setState({ hovered: true })
+        if (! this.state.touch) this.setHovered(true)
       }
 
       handleMouseLeave = () => {
         setTimeout(() => {
-          this.setState({ hovered: false })
+          this.setHovered(false)
         }, mouseLeaveDelay)
       }
 
       cancelHovered = () => {
-        this.setState({ hovered: false })
+        this.setHovered(false)
       }
 
       render() {
@@ -55,6 +64,7 @@ const withHover = ({ mouseLeaveDelay = 0, mouseOverOnMount = false, inline = fal
               {...this.props}
               {...this.state}
               cancelHovered={this.cancelHovered}
+              setHovered={this.setHovered}
             />
           </div>
         )
