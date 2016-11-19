@@ -1,12 +1,13 @@
 import { grey400, grey200 } from 'material-ui/styles/colors'
 
 import dashboardTile from '../dashboard/DashboardStyles'
+import drawer from '../AppDrawer/components/DrawerStyles'
 
 import pageLayout from '../PageLayout/PageLayoutStyles'
 import docList from '../documents/DocumentStyles'
 
 export default (theme) => {
-  const { spacing, palette, typography, colorManipulator, raisedButton, drawer } = theme
+  const { spacing, palette, typography, colorManipulator, raisedButton } = theme
 
   const dialogTitle = {
     paddingTop: spacing.desktopGutterLess,
@@ -16,6 +17,11 @@ export default (theme) => {
   }
 
   return ({
+    ...dashboardTile(theme),
+    ...docList(theme),
+    ...drawer(theme),
+    ...pageLayout(theme),
+
     app: {
       container: {
         color: palette.bodyTextColor,
@@ -41,29 +47,6 @@ export default (theme) => {
       iconColor: grey400,
     },
 
-    ...dashboardTile(theme),
-    ...docList(theme),
-
-    drawer: {
-      expandedWidth: drawer.width,
-      narrowWidth: spacing.desktopDrawerMenuItemHeight,
-      backgroundColor: palette.darkSecondary1Color,
-      menuItem: {
-        color: palette.secondary1Color,
-        fontWeight: typography.fontWeight100,
-        fontSize: 18,
-      },
-      active: {
-        fontWeight: typography.fontWeightMedium,
-        color: palette.accent2Color,
-      },
-      divider: {
-        backgroundColor: colorManipulator.darken(palette.secondary1Color, 0.45),
-      },
-      docked: {
-        top: spacing.desktopKeylineIncrement,
-      },
-    },
 
     headerBar: {
       color: palette.alternateTextColor,
@@ -72,7 +55,6 @@ export default (theme) => {
       disabledBackgroundColor: palette.borderColor,
     },
 
-    ...pageLayout(theme),
 
     raisedButton: {
       primaryColor: raisedButton.secondaryColor,
