@@ -2,7 +2,6 @@ import React from 'react'
 import RenderToLayer from 'material-ui/internal/RenderToLayer'
 
 import { injectStylesSheet } from './DrawerStyles'
-import ExpandVisible from './ExpandVisible'
 import MenuItemFlyOut from './MenuItemFlyOut'
 
 class MenuLabel extends React.Component {
@@ -13,47 +12,33 @@ class MenuLabel extends React.Component {
 
   componentDidMount() {
     this.setState({
-      top: this.container.getBoundingClientRect().top,
+      top: this.container.parentNode.getBoundingClientRect().top,
     })
   }
 
   render = () => {
     const {
-      styles,
-      prepareStyles,
-      children,
+      primaryText,
       onTouchTap,
-      leftIcon,
-      onHover,
-      hovered,
+      icon,
       active,
     } = this.props
-    const { domain } = this.context
     const top = this.state.top
     return (
-      <div
-        ref={(node) => { this.container = node }}
-        style={prepareStyles(styles.menuLabel.container)}
-      >
-        <ExpandVisible hideWhenNarrow style={styles.menuLabel.expanded}>{ children }</ExpandVisible>
-        { ! domain.expanded &&
-        <RenderToLayer
+      <div ref={(node) => { this.container = node }}>
+      <RenderToLayer
           render={() =>
             <MenuItemFlyOut
-              leftIcon={leftIcon}
+              primaryText={primaryText}
+              icon={icon}
               onTouchTap={onTouchTap}
-              onHover={onHover}
-              menuItemHovered={hovered}
               active={active}
               top={top}
-            >
-              { children }
-            </MenuItemFlyOut>
+            />
           }
           open
           useLayerForClickAway={false}
         />
-        }
       </div>
     )
   }

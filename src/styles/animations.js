@@ -8,6 +8,7 @@ export const CUBIC_BEZIER = 'cubic-bezier(0.23, 1, 0.32, 1)'
 export const trans = {
   cubicAll: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
   cubicAllFor: ms => `all ${ms}ms cubic-bezier(0.23, 1, 0.32, 1) 0ms`,
+  cubicBezier: ({property = 'all', duration = 450, delay=0} = {}) => `${property} ${duration}ms cubic-bezier(0.23, 1, 0.32, 1) ${delay}ms`,
 }
 
 export default {

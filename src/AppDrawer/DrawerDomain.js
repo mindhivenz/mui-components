@@ -1,5 +1,4 @@
 import { observable, computed, action } from 'mobx'
-import { app } from '@mindhive/di'
 import { WindowSize } from '../responsiveUi/windowMetrics'
 
 
@@ -11,18 +10,27 @@ export class DrawerDomain {
   @observable wantOpen = null
   @observable wantExpanded = true
 
-  constructor(theme, wantExpanded = true) {
-    this.init(theme, wantExpanded)
+  constructor(params) {
+    this.init(params)
   }
 
-  @action init = (theme, wantExpanded) => {
-    this.narrowWidth = theme.drawer.narrowWidth
-    this.expandedWidth = theme.drawer.expandedWidth
+  @action init = ({
+    domains: {
+      windowMetricsDomain,
+      themeDomain: { muiTheme },
+    },
+    options: {
+      wantExpanded = true,
+    },
+  }) => {
+    this.windowMetricsDomain = windowMetricsDomain
+    this.narrowWidth = muiTheme.drawer.narrowWidth
+    this.expandedWidth = muiTheme.drawer.expandedWidth
     this.wantExpanded = wantExpanded
   }
 
   @computed get canDock() {
-    return app().windowMetricsDomain.size.ordinal >= dockedWindowSize.ordinal
+    return this.windowMetricsDomain.size.ordinal >= dockedWindowSize.ordinal
   }
 
   @computed get docked() {
@@ -50,7 +58,7 @@ export class DrawerDomain {
   }
 
   @action toggle = () => {
-    if (this.canDock) {App
+    if (this.canDock) {
       this.wantDocked = ! this.wantDocked
     } else {
       this.wantOpen = ! this.wantOpen

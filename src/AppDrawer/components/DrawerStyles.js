@@ -54,11 +54,12 @@ const mapThemeToStyles = ({
     domains: { navDrawerDomain: domain } = app(),
   }
 ) => {
-  const menuItem = {
+  const menuItemRootStyles = {
     backgroundColor: hovered ? colorManipulator.darken(drawer.backgroundColor, 0.1) : drawer.backgroundColor,
   }
-  const showing = ! active && (hovered || menuItemHovered)
-  const translate = domain.expanded ? drawer.expandedWidth : drawer.narrowWidth
+  const showing = domain.expanded || hovered
+  const translateDistance = domain.expanded ? drawer.expandedWidth : drawer.narrowWidth
+  const transform = domain.docked || domain.open ? 'translate(0, 0)' : `translate(-${translateDistance}px, 0)`
   return ({
     expandVisible: {
       transition: transitions.cubicAll,
@@ -74,10 +75,10 @@ const mapThemeToStyles = ({
       marginTop: appBar.height,
       // left: domain.open || domain.docked ? 0 : -drawer.expandedWidth,
       transition: transitions.cubicAll,
-      transform: domain.docked || domain.open ? 'translate(0, 0)' : `translate(-${translate}px, 0)`,
+      transform,
     },
     divider: drawer.divider,
-    menuItem,
+    menuItem: menuItemRootStyles,
     icon: {
       ...drawer.menuItem,
       ...(active ? drawer.activeIcon : {}),
@@ -87,32 +88,21 @@ const mapThemeToStyles = ({
       container: {
         display: 'inline-block',
       },
-      expanded: {
-        position: 'relative',
-        ...drawer.menuItem,
-      },
     },
     menuItemFlyOut: {
       container: {
         position: 'absolute',
         zIndex: 10000,
         ...drawer.menuItem,
-        ...menuItem,
-        pointerEvents: showing ? 'auto' : 'none',
-        opacity: showing ? 1 : 0.01,
-        transition: transitions.cubicAllFor(450),
-        transform: `translate(-${drawer.narrowWidth}px, 0)`,
-        backgroundColor: colorManipulator.darken(drawer.backgroundColor, 0.1),
-        left: drawer.narrowWidth,
-        width: drawer.expandedWidth,
-        // backgroundColor: 'transparent',
-
-        //...(active ? drawer.active : {}),
+        ...menuItemRootStyles,
+        overflow: 'hidden',
+        left: 0,
+        transition: transitions.cubicAll,
+        transform,
+        width: showing ? drawer.expandedWidth : drawer.narrowWidth,
+        ...(active ? drawer.active : {}),
       },
       inner: {
-        position: 'relative',
-        backgroundColor: colorManipulator.darken(drawer.backgroundColor, 0.1),
-
       },
     },
     rowItem: {},
