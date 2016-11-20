@@ -45,13 +45,10 @@ export class DrawerDomain {
   }
 
   @action toggle = () => {
-    console.log('toggle')
-    if (this.canDock) {
+    if (this.canDock) {App
       this.wantDocked = ! this.wantDocked
-      console.log('this.wantDocked', this.wantDocked)
     } else {
       this.wantOpen = ! this.wantOpen
-      console.log('this.wantOpen', this.wantOpen)
     }
   }
 
