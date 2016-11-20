@@ -7,6 +7,10 @@ import MenuItemFlyOut from './MenuItemFlyOut'
 
 class MenuLabel extends React.Component {
 
+  state = {
+    top: 0,
+  }
+
   componentDidMount() {
     this.setState({
       top: this.container.getBoundingClientRect().top,
@@ -25,6 +29,7 @@ class MenuLabel extends React.Component {
       active,
     } = this.props
     const { domain } = this.context
+    const top = this.state.top
     return (
       <div
         ref={(node) => { this.container = node }}
@@ -40,7 +45,7 @@ class MenuLabel extends React.Component {
               onHover={onHover}
               menuItemHovered={hovered}
               active={active}
-              top={this.state.top}
+              top={top}
             >
               { children }
             </MenuItemFlyOut>
