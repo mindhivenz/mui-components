@@ -11,9 +11,14 @@ export class DrawerDomain {
   @observable wantOpen = null
   @observable wantExpanded = true
 
-  constructor(theme) {
+  constructor(theme, wantExpanded = true) {
+    this.init(theme, wantExpanded)
+  }
+
+  @action init = (theme, wantExpanded) => {
     this.narrowWidth = theme.drawer.narrowWidth
     this.expandedWidth = theme.drawer.expandedWidth
+    this.wantExpanded = wantExpanded
   }
 
   @computed get canDock() {
