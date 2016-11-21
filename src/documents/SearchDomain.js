@@ -19,7 +19,7 @@ export class SearchDomain {
     return this.source.filter(s => {
       let wanted = false
       this.filters.forEach(f => {
-        wanted = f(s).toLowerCase().includes(this.searchText.toLowerCase())
+        wanted = wanted || f(s).toLowerCase().includes(this.searchText.toLowerCase())
       })
       return wanted
     })
