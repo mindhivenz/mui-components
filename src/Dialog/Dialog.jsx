@@ -59,7 +59,7 @@ class Dialog extends Component {
     if (this.secondaryButton) {
       const Button = this.secondaryButton.primary ? RaisedButton : FlatButton
       const props = {
-        primary: this.secondaryButton.primary || false,
+        primary: this.secondaryButton.primary || null,
       }
       if (this.secondaryButton.color) {
         props.backgroundColor = this.secondaryButton.color
@@ -78,7 +78,9 @@ class Dialog extends Component {
       )
     }
     if (this.primaryButton) {
-      const props = {}
+      const props = {
+        primary: typeof this.primaryButton.primary === 'undefined' ? true : this.primaryButton.primary,
+      }
       if (this.primaryButton.color) {
         props.backgroundColor = this.primaryButton.color
         props.labelColor = styles.alternateTextColor
