@@ -1,13 +1,15 @@
 import { action, observable, computed } from 'mobx'
 
-export class SearchDomain {
+
+
+class SearchDomain {
 
   @observable
   searchText = ''
 
-  constructor({source = [], filters = []}) {
-    this.source = source
-    this.filters = filters
+  constructor({items = [], retrievers = []}) {
+    this.items = items
+    this.retrievers = retrievers
   }
 
   @action
@@ -15,14 +17,13 @@ export class SearchDomain {
     this.searchText = searchText
   }
 
-  @computed get filtered() {
-    return this.source.filter(s => {
-      let wanted = false
-      this.filters.forEach(f => {
-        wanted = wanted || f(s).toLowerCase().includes(this.searchText.toLowerCase())
-      })
-      return wanted
-    })
+  @computed get results() {
+    return this.items.filter(item =>
+      this.retrievers.reduce(
+        (includeItem, retrieve) => includeItem || retrieve(item).toLowerCase().includes(this.searchText.toLowerCase()),
+        false
+      )
+    )
   }
 
 }
