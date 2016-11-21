@@ -8,6 +8,7 @@ import DocAddFab from './DocAddFab'
 const DocContainer = ({
   addFab,
   search,
+  onSearch = () => {},
   children,
   style,
 }) =>
@@ -15,8 +16,8 @@ const DocContainer = ({
     {addFab &&
       <DocAddFab addFab={addFab} />
     }
-    {search ?
-      <SearchFilter />
+    {search || onSearch ?
+      <SearchFilter onSearch={onSearch} />
       :
         <div>&nbsp;</div>
     }
