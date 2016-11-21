@@ -21,7 +21,7 @@ export class DrawerDomain {
     },
     options: {
       wantExpanded = true,
-    },
+    } = {},
   }) => {
     this.windowMetricsDomain = windowMetricsDomain
     this.narrowWidth = muiTheme.drawer.narrowWidth
