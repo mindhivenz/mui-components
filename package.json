@@ -26,6 +26,14 @@
     "react",
     "mui"
   ],
+  "dependencies": {
+    "babel-runtime": "^6.18.0",
+    "date-fns": "^1.9.0",
+    "enumify": "^1.0.4",
+    "keycode": "^2.1.7",
+    "lru-memoize": "^1.0.1",
+    "react-event-listener": "^0.4.0"
+  },
   "devDependencies": {
     "@mindhive/di": "^3.0.0",
     "@mindhive/some": "^3.0.0",
@@ -45,33 +53,25 @@
     "eslint-plugin-react": "^6.4.1",
     "material-ui": "^0.16.1",
     "mobx": "^2.6.0",
-    "mobx-react": "^3.5.8",
+    "mobx-react": "^4.0.0",
     "mocha": "^3.1.2",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0"
-  },
-  "homepage": "https://github.com/mindhivenz/mui-components",
-  "bugs": {
-    "url": "https://github.com/mindhivenz/mui-components/issues"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "babel-runtime": "^6.18.0",
-    "date-fns": "^1.9.0",
-    "enumify": "^1.0.4",
-    "keycode": "^2.1.7",
-    "lru-memoize": "^1.0.1",
-    "react-event-listener": "^0.4.0"
   },
   "peerDependencies": {
     "@mindhive/di": "^3.0.0",
     "material-ui": "^0.16.1",
     "mobx": "^2.6.0",
-    "mobx-react": "^3.5.8",
+    "mobx-react": "^4.0.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",
     "redux-form": "^6.1.0"
-  }
+  },
+  "homepage": "https://github.com/mindhivenz/mui-components",
+  "bugs": {
+    "url": "https://github.com/mindhivenz/mui-components/issues"
+  },
+  "license": "MIT"
 }
