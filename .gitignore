@@ -1,6 +1,6 @@
 node_modules
 npm-debug.log
 .meteor-portable
-dist/
-.idea/workspace.xml
-
+/dist/
+/.idea/workspace.xml
+/.idea/libraries/
