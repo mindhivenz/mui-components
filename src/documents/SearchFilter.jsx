@@ -31,19 +31,21 @@ class SearchFilter extends Component {
     const {
       styles,
       hintText,
+      fullWidth = false,
     } = this.props
     const { searchText } = this.state
     return (
-      <div style={styles.search}>
-        <SearchIcon style={styles.search.icon} />
+      <div style={styles.container}>
+        <SearchIcon style={styles.icon} />
         <TextField
           ref="searchTextField"
           autoComplete="off"
           value={searchText}
-          style={styles.search.textField}
+          style={styles.textField}
           hintText={hintText || 'Filter list'}
           onChange={this.handleChange}
           autoFocus
+          fullWidth={fullWidth}
         />
       </div>
     )
@@ -54,21 +56,26 @@ class SearchFilter extends Component {
 
 const mapThemeToStyles = ({
   spacing,
-  search,
+  search: { color },
+}, {
+  style = {},
+  isList = true,
 }) => ({
-  search: {
-    ...search,
-    icon: {
-      ...search,
-      top: spacing.desktopGutterMini,
-      margin: `0 ${spacing.desktopGutterMini / 2}px 0 ${spacing.desktopGutterLess}px`,
-    },
-    textField: {
-      ...search,
-      left: `${spacing.desktopGutterMore}px`,
-    },
-    top: spacing.desktopGutterLess,
-    marginBottom: `${spacing.desktopGutterLess}px`,
+  container: {
+    boxSizing: 'border-box',
+    ...style.container,
+  },
+  icon: {
+    color,
+    padding: `${spacing.desktopGutterLess}px`,
+    paddingBottom: `${spacing.desktopGutterMini}px`,
+    ...style.icon,
+  },
+  textField: {
+    color,
+    top: -spacing.desktopGutterMini,
+    left: isList ? `${spacing.desktopGutterLess}px` : 0,
+    ...style.textField,
   },
 })
 
