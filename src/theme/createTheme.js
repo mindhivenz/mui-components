@@ -2,6 +2,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import muiTypography from 'material-ui/styles/typography'
 import * as colorManipulator from 'material-ui/utils/colorManipulator'
 import transitions from 'material-ui/styles/transitions'
+import animations from '../styles/animations'
 import getComponents from './components'
 
 const typography = muiTypography
@@ -27,6 +28,7 @@ export const createTheme = (isMobile, baseTheme, calcComponentsStyles) => {
   }
 
   const muiTheme = getMuiTheme({
+    animations,
     colorManipulator,
     typography,
     dimensions,
