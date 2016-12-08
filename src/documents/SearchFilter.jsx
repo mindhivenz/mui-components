@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 import TextField from 'material-ui/TextField'
 
-import withTheme from '../theme/withTheme'
-import { SearchIcon } from '../Icon'
+import SearchIcon from './SearchIcon'
+import { injectStylesSheet } from './SearchStyles'
 
 class SearchFilter extends Component {
 
@@ -32,11 +32,12 @@ class SearchFilter extends Component {
       styles,
       hintText,
       fullWidth = false,
+      searching = false,
     } = this.props
     const { searchText } = this.state
     return (
       <div style={styles.container}>
-        <SearchIcon style={styles.icon} />
+        <SearchIcon searching={searching} />
         <TextField
           ref="searchTextField"
           autoComplete="off"
@@ -54,29 +55,4 @@ class SearchFilter extends Component {
 
 }
 
-const mapThemeToStyles = ({
-  spacing,
-  search: { color },
-}, {
-  style = {},
-  isList = true,
-}) => ({
-  container: {
-    boxSizing: 'border-box',
-    ...style.container,
-  },
-  icon: {
-    color,
-    padding: `${spacing.desktopGutterLess}px`,
-    paddingBottom: `${spacing.desktopGutterMini}px`,
-    ...style.icon,
-  },
-  textField: {
-    color,
-    top: -spacing.desktopGutterMini,
-    left: isList ? `${spacing.desktopGutterLess}px` : 0,
-    ...style.textField,
-  },
-})
-
-export default withTheme(SearchFilter, mapThemeToStyles)
+export default injectStylesSheet(SearchFilter)

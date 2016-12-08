@@ -5,6 +5,7 @@ import drawer from '../AppDrawer/components/DrawerStyles'
 
 import pageLayout from '../PageLayout/PageLayoutStyles'
 import docList from '../documents/DocumentStyles'
+import search from '../documents/SearchStyles'
 
 export default (theme) => {
   const { spacing, palette, typography, colorManipulator, raisedButton } = theme
@@ -21,6 +22,7 @@ export default (theme) => {
     ...docList(theme),
     ...drawer(theme),
     ...pageLayout(theme),
+    ...search(theme),
 
     app: {
       container: {
@@ -101,10 +103,6 @@ export default (theme) => {
       closeHoverColor: palette.negativeColor,
     },
 
-    search: {
-      position: 'relative',
-      color: palette.disabledColor,
-    },
 
   })
 }
