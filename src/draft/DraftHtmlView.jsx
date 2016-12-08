@@ -7,9 +7,10 @@ const DraftHtmlView = ({
   styles,
 }) => {
   const content = convertFromRaw(JSON.parse(data))
+  let html = stateToHTML(content).replace(/<p><br><\/p>/g, '')
   return (
     content.hasText()
-      ? <div style={styles} dangerouslySetInnerHTML={{ __html: stateToHTML(content) }} />
+      ? <div style={styles} dangerouslySetInnerHTML={{ __html: html }} />
       : null
   )
 }
