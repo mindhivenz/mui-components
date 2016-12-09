@@ -124,6 +124,9 @@ const mapThemeToStyles = ({
     hintColor,
     focusColor,
   },
+}, {
+  containerStyle = {},
+  editorStyle = {},
 }) => ({
   focusColor,
   hintColor,
@@ -145,11 +148,17 @@ const mapThemeToStyles = ({
 
     paddingTop: spacing.desktopGutterLess,
     paddingBottom: spacing.desktopGutterMini,
+
+    ...containerStyle,
   },
   editor: {
+    position: 'relative',
+    width: 'calc(100% - 75px)',
+    display: 'inline-block',
     paddingTop: spacing.desktopGutterMini,
     fontWeight: typography.fontWeight300,
     fontSize: 14,
+    ...editorStyle,
 
   },
 })

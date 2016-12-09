@@ -34,7 +34,7 @@ const mapThemeToStyles = ({
       border: 'none',
       borderBottom: 'solid 1px',
       borderColor,
-      bottom: 8,
+      bottom: 0,
       boxSizing: 'content-box',
       margin: 0,
       position: 'absolute',
