@@ -4,6 +4,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton'
 import withTheme from '../theme/withTheme'
 import { Icon } from '../Icon'
 
+
 const mapThemeToStyles = () => {
   const fabRoot = {
     float: 'right',
@@ -29,8 +30,7 @@ const mapThemeToStyles = () => {
   }
 }
 
-
-const DocContainer = ({
+const DocAddFab = ({
   addFab,
   styles,
 }) =>
@@ -43,5 +43,5 @@ const DocContainer = ({
     <Icon ligature={addFab.icon} />
   </FloatingActionButton>
 
-export default withTheme(DocContainer, mapThemeToStyles)
+export default withTheme(DocAddFab, mapThemeToStyles)
 
