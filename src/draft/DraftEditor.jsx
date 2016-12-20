@@ -13,7 +13,8 @@ class DraftEditor extends React.Component {
   constructor(props) {
     super(props)
 
-    this.initialInputValue = props.input.value
+    console.log(props)
+    this.initialInputValue = props.value
     this.initialEditorState = this.initialInputValue ?
       EditorState.createWithContent(convertFromRaw(JSON.parse(this.initialInputValue))) :
       EditorState.createEmpty()
@@ -24,7 +25,7 @@ class DraftEditor extends React.Component {
   }
 
   onChange = (editorState) => {
-    const { input } = this.props
+    const { onChange } = this.props
     const currentContent = editorState.getCurrentContent()
     /*
       The following is to work out if the content has actually changed.
@@ -34,12 +35,12 @@ class DraftEditor extends React.Component {
       const currentRawContent = convertToRaw(currentContent)
       const isEqual = convertToRaw(this.initialEditorState.getCurrentContent()) === currentRawContent
       if (! isEqual) {
-        input.onChange(JSON.stringify(currentRawContent))
+        onChange(JSON.stringify(currentRawContent))
       }
     } else if (currentContent.hasText()) {
-      input.onChange(JSON.stringify(convertToRaw(currentContent)))
+      onChange(JSON.stringify(convertToRaw(currentContent)))
     } else {
-      input.onChange(this.initialInputValue)
+      onChange(this.initialInputValue)
     }
     this.setState({ editorState })
   }
@@ -56,10 +57,13 @@ class DraftEditor extends React.Component {
   }
 
   _handleOnBlur = () => {
+    this.props.onBlur()
     this._setFocus(false)
   }
 
   _handleOnFocus = () => {
+    console.log('DE_handleOnFocus')
+    this.props.onFocus()
     this._setFocus(true)
   }
 
@@ -83,14 +87,21 @@ class DraftEditor extends React.Component {
       theme,
       styles,
       prepareStyles,
+      errorText,
+      ...other,
     } = this.props
+    console.log(this.props)
     const { focused, editorState } = this.state
     const content = editorState.getCurrentContent()
+    console.log('=============================')
+    console.log({...other})
+    console.log('=============================')
     return (
       <div style={prepareStyles(styles.content)} onClick={this.focus}>
         <EditorLabel
           focused={focused}
           shrink={focused || content.hasText()}
+          errorText={errorText}
         >
           {labelText}
         </EditorLabel>
@@ -108,7 +119,8 @@ class DraftEditor extends React.Component {
             onFocus={this._handleOnFocus}
             onBlur={this._handleOnBlur}
           />
-          <EditorUnderline focus={focused} />
+          <EditorUnderline focus={focused} errorText={errorText}/>
+          {errorText && <div style={prepareStyles(styles.error)}>{errorText}</div>}
         </div>
 
       </div>
@@ -119,10 +131,12 @@ class DraftEditor extends React.Component {
 const mapThemeToStyles = ({
   spacing,
   typography,
+  transitions,
 
   textField: {
     hintColor,
     focusColor,
+    errorColor,
   },
 }, {
   containerStyle = {},
@@ -135,7 +149,7 @@ const mapThemeToStyles = ({
     position: 'relative',
     top: -5,
 
-    fontSize: 13,
+    fontSize: 103,
   },
   content: {
     position: 'relative',
@@ -161,6 +175,16 @@ const mapThemeToStyles = ({
     ...editorStyle,
 
   },
+  error: {
+    position: 'relative',
+    bottom: -8,
+    fontSize: 12,
+    fontWeight: 400,
+    lineHeight: '12px',
+    color: errorColor,
+    transition: transitions.easeOut(),
+  },
+
 })
 
 export default

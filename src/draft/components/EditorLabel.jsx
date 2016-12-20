@@ -25,6 +25,7 @@ const mapThemeToStyles = (
       floatingLabelColor,
       hintColor,
       focusColor,
+      errorColor,
     },
   }, {
     disabled,
@@ -32,6 +33,7 @@ const mapThemeToStyles = (
     shrink,
     shrinkStyle,
     style,
+    errorText,
   }) => {
   const defaultStyles = {
     position: 'absolute',
@@ -58,7 +60,7 @@ const mapThemeToStyles = (
   return {
     root: Object.assign(
       {
-        color: focused ? focusColor : hintColor,
+        color: focused ? (errorText ? errorColor : focusColor) : hintColor,
       },
       defaultStyles,
       style,

@@ -21,7 +21,7 @@ const mapThemeToStyles = ({
 }, {
   disabled,
   disabledStyle = {},
-  error,
+  errorText,
   errorStyle = {},
   focus,
   focusStyle = {},
@@ -34,7 +34,7 @@ const mapThemeToStyles = ({
       border: 'none',
       borderBottom: 'solid 1px',
       borderColor,
-      bottom: 0,
+      bottom: errorText ? 12 : 0,
       boxSizing: 'content-box',
       margin: 0,
       position: 'absolute',
@@ -49,7 +49,8 @@ const mapThemeToStyles = ({
       borderBottom: 'solid 2px',
       borderColor: focusColor,
       transform: 'scaleX(0)',
-      transition: transitions.easeOut(),
+      transition: 'transform 350ms ease-out',
+
     },
     error: {
       borderColor: errorStyleColor || errorColor,
@@ -62,7 +63,7 @@ const mapThemeToStyles = ({
 
   if (disabled) underline = Object.assign({}, underline, styles.disabled, disabledStyle)
   if (focus) focusedUnderline = Object.assign({}, focusedUnderline, {transform: 'scaleX(1)' })
-  if (error) focusedUnderline = Object.assign({}, focusedUnderline, styles.error)
+  if (errorText) focusedUnderline = Object.assign({}, focusedUnderline, styles.error)
 
   return ({
     underline,
