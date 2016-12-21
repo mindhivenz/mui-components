@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import { reduxForm } from 'redux-form'
-import { FocusTrap } from 'react-hotkeys'
 
 import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
@@ -12,6 +11,7 @@ import { ListItem } from 'material-ui/List'
 
 import withTheme from '../theme/withTheme'
 import { Icon, ClearIcon } from '../Icon'
+import FocusTrap from '../focus/FocusTrap'
 
 
 const docEditContextTypes = {
