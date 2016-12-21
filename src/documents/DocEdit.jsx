@@ -308,6 +308,9 @@ class DocEdit extends Component {
             onSubmit={handleSubmit}
           >
             {React.Children.map(children, child => {
+              if (! child) {
+                return child
+              }
               const isFirstFocus = child && child.props && child.props.autoFocus === true
               return React.cloneElement(child, { withRef: isFirstFocus, ref: isFirstFocus ? this.getFirstFocus : undefined });
             })}
