@@ -7,7 +7,7 @@ class SearchDomain {
   @observable
   searchText = ''
 
-  constructor({items = [], retrievers}) {
+  constructor(items = [], retrievers) {
     this.items = items
     this.retrievers = retrievers
   }
@@ -24,6 +24,9 @@ class SearchDomain {
   }
 
   @computed get results() {
+    if (! this.searchText) {
+      return this.items
+    }
     const searchText = this.searchText.toLowerCase()
     return this.items.filter((item, i) => this.itemsTexts[i].some(itemText => itemText.includes(searchText)))
   }

@@ -1,5 +1,4 @@
 import React from 'react'
-import DashTile from './DashTile'
 import { injectStylesSheet } from './DashboardStyles'
 import withOnClick from '../muiUtils/withOnClick'
 
