@@ -18,6 +18,7 @@ const EditorCommands = ({
       toggleStyle={toggleStyle}
       focused={focused}
       inlineStyle={'BOLD'}
+      tabIndex="-1"
     >
       <BoldIcon />
     </StyleButton>
@@ -26,6 +27,7 @@ const EditorCommands = ({
       toggleStyle={toggleStyle}
       focused={focused}
       inlineStyle={'ITALIC'}
+      tabIndex="-1"
     >
       <ItalicIcon />
     </StyleButton>
@@ -34,6 +36,7 @@ const EditorCommands = ({
       toggleStyle={toggleStyle}
       focused={focused}
       inlineStyle={'UNDERLINE'}
+      tabIndex="-1"
     >
       <UnderlineIcon />
     </StyleButton>

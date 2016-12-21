@@ -17,12 +17,17 @@ const StyleButton = ({
   children,
 
   styles,
+  theme,
+  prepareStyles,
+
+  ...other,
 }) =>
   <IconButton
     iconStyle={styles.icon}
     style={styles.button}
     onTouchTap={wrapPrevent(() => toggleStyle(inlineStyle))}
     onMouseDown={preventDefault}
+    {...other}
   >
     {React.cloneElement(children, {
       color: styles.color,

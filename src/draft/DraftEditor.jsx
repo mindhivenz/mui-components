@@ -14,7 +14,6 @@ class DraftEditor extends React.Component {
   constructor(props) {
     super(props)
 
-    console.log(props)
     this.initialInputValue = props.value
     this.initialEditorState = this.initialInputValue ?
       EditorState.createWithContent(convertFromRaw(JSON.parse(this.initialInputValue))) :

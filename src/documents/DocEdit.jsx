@@ -117,6 +117,7 @@ const mapThemeToStyles = (theme) => {
 class DocEdit extends Component {
 
   static childContextTypes = docEditContextTypes
+  autoFocusChild = undefined
 
   state = {
     show: false,
