@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 
+export const TAB = 13
+export const ENTER = 13
+
 class FocusTrap extends Component {
 
   // propTypes: {

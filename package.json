@@ -31,6 +31,7 @@
     "date-fns": "^1.9.0",
     "enumify": "^1.0.4",
     "keycode": "^2.1.7",
+    "keycomb": "^0.1.3",
     "lru-memoize": "^1.0.1",
     "react-event-listener": "^0.4.0"
   },

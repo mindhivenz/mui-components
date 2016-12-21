@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { reduxForm } from 'redux-form'
+import keycode from 'keycode'
+import keycomb from 'keycomb'
 
 import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
@@ -11,7 +13,7 @@ import { ListItem } from 'material-ui/List'
 
 import withTheme from '../theme/withTheme'
 import { Icon, ClearIcon } from '../Icon'
-import FocusTrap from '../focus/FocusTrap'
+import FocusTrap, { TAB } from '../focus/FocusTrap'
 
 
 const docEditContextTypes = {
@@ -260,9 +262,23 @@ class DocEdit extends Component {
 
     const handleBlur = (e) => {
       if (e.target.id === lastFocusId) {
-        console.log('Capture Blur')
-        console.log(this.firstFocusable.getRenderedComponent())
+        // console.log('Capture Blur')
+        // console.log(this.firstFocusable.getRenderedComponent())
         this.firstFocusable.getRenderedComponent().refs.component.input.focus()
+      }
+    }
+
+    const handleKeyUp = (e) => {
+      const keyCombo = keycomb(e)
+      console.log('handleKeyUp', keyCombo, keyCombo.indexOf("tab") )
+      if (keyCombo.indexOf("shift") > -1 && keyCombo.indexOf("tab") > -1) {
+        console.log('SHIFT-TAB')
+        console.log(e.target)
+      } else if (keyCombo.indexOf("tab") > -1) {
+        console.log('TAB')
+        if (e.target.id === lastFocusId) {
+          this.firstFocusable.getRenderedComponent().refs.component.input.focus()
+        }
       }
     }
 
@@ -271,6 +287,8 @@ class DocEdit extends Component {
         focusName="nodeEditor"
         // onFocus={this.onFocus}
         onBlur={handleBlur}
+        // onKeyUp={handleKeyUp}
+        // onKeyDown={handleKeyUp}
       >
         <Overlay autoLockScrolling={false} style={styles.overlay} show={isNew || ! pristine} />
         <ListItem
@@ -292,7 +310,15 @@ class DocEdit extends Component {
             })}
             <div style={styles.buttons}>
               {buttons.length &&
-                buttons.map((button, idx) => React.cloneElement(button, {key: `btn-${idx}-key`, id: button === lastBtn ? lastFocusId : undefined}))
+                buttons.map((button, idx) =>
+                  React.cloneElement(
+                    button,
+                    {
+                      key: `btn-${idx}-key`,
+                      id: button === lastBtn ? lastFocusId : undefined,
+                    }
+                  )
+                )
               }
             </div>
           </form>
