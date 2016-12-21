@@ -7,7 +7,7 @@ class SearchDomain {
   @observable
   searchText = ''
 
-  constructor({items = [], retrievers = []}) {
+  constructor({items = [], retrievers}) {
     this.items = items
     this.retrievers = retrievers
   }
@@ -17,13 +17,15 @@ class SearchDomain {
     this.searchText = searchText
   }
 
-  @computed get results() {
-    return this.items.filter(item =>
-      this.retrievers.reduce(
-        (includeItem, retrieve) => includeItem || retrieve(item).toLowerCase().includes(this.searchText.toLowerCase()),
-        false
-      )
+  @computed get itemsTexts() {
+    return this.items.map(item =>
+      this.retrievers.map(r => r(item).toLowerCase())
     )
+  }
+
+  @computed get results() {
+    const searchText = this.searchText.toLowerCase()
+    return this.items.filter((item, i) => this.itemsTexts[i].some(itemText => itemText.includes(searchText)))
   }
 
 }
