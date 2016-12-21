@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { reduxForm } from 'redux-form'
+import { FocusTrap } from 'react-hotkeys'
 
 import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
@@ -165,6 +166,15 @@ class DocEdit extends Component {
     this.leaveTimeout = setTimeout(callback, 450) // matches transition duration
   }
 
+  getAutoFocus = node => {
+    console.log('getAutoFocus')
+    console.log('node', node)
+    if (this.firstFocusable === undefined) {
+      this.firstFocusable = node
+    }
+    console.log('firstFocusable', this.firstFocusable)
+  }
+
   handleClose(callback) {
     this.setState({
       show: false,
@@ -245,8 +255,23 @@ class DocEdit extends Component {
         </IconButton>
       )
     }
+    const lastBtn = buttons[buttons.length - 1]
+    const lastFocusId = `${itemId}lastFocus`;
+
+    const handleBlur = (e) => {
+      if (e.target.id === lastFocusId) {
+        console.log('Capture Blur')
+        console.log(this.firstFocusable.getRenderedComponent())
+        this.firstFocusable.getRenderedComponent().refs.component.input.focus()
+      }
+    }
+
     return (
-      <div>
+      <FocusTrap
+        focusName="nodeEditor"
+        // onFocus={this.onFocus}
+        onBlur={handleBlur}
+      >
         <Overlay autoLockScrolling={false} style={styles.overlay} show={isNew || ! pristine} />
         <ListItem
           disableTouchRipple
@@ -261,15 +286,18 @@ class DocEdit extends Component {
             id={`${docType}-form`}
             onSubmit={handleSubmit}
           >
-            {children}
+            {React.Children.map(children, child => {
+              const isFirstFocus = child && child.props && child.props.autoFocus === true
+              return React.cloneElement(child, { withRef: isFirstFocus, ref: isFirstFocus ? this.getAutoFocus : undefined });
+            })}
             <div style={styles.buttons}>
               {buttons.length &&
-                buttons.map((button, idx) => React.cloneElement(button, {key: `btn-${idx}-key`}))
+                buttons.map((button, idx) => React.cloneElement(button, {key: `btn-${idx}-key`, id: button === lastBtn ? lastFocusId : undefined}))
               }
             </div>
           </form>
         </ListItem>
-      </div>
+      </FocusTrap>
     )
   }
 }
