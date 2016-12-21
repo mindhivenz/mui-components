@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { reduxForm } from 'redux-form'
+import keycode from 'keycode'
+import keycomb from 'keycomb'
+import { HotKeys } from 'react-hotkeys'
 
 import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
@@ -11,6 +14,7 @@ import { ListItem } from 'material-ui/List'
 
 import withTheme from '../theme/withTheme'
 import { Icon, ClearIcon } from '../Icon'
+// import FocusTrap, { TAB } from '../focus/FocusTrap'
 
 
 const docEditContextTypes = {
@@ -114,6 +118,9 @@ const mapThemeToStyles = (theme) => {
   }
 }
 
+const lastFocusId = 'DOC_EDIT_LAST_FOCUS'
+const firstFocusId = 'DOC_EDIT_FIRST_FOCUS'
+
 class DocEdit extends Component {
 
   static childContextTypes = docEditContextTypes
@@ -176,6 +183,41 @@ class DocEdit extends Component {
     this.setState({
       show: true,
     })
+  }
+
+  discardChanges = (e) => {
+    this.handleClose(this.props.onCancel)
+  }
+
+  submitChanges = (e) => {
+    e.preventDefault()
+    this.props.handleSubmit(this.props.fields)
+  }
+
+  getFirstFocus = node => {
+    if (this.firstFocusable === undefined) {
+      this.firstFocusable = node
+    }
+  }
+
+  focusForward = (e) => {
+    if (e.target.id === lastFocusId) {
+      e.preventDefault()
+      this.firstFocusable.getRenderedComponent().refs.component.input.focus()
+    }
+  }
+
+  keyMap = {
+    'focusForward': 'tab',
+    'submitChanges': ['command+enter', 'ctrl+enter'],
+    'discardChanges': 'esc',
+  }
+
+  handlers = {
+    'focusForward': this.focusForward,
+    'submitChanges': this.submitChanges,
+    'discardChanges': this.discardChanges,
+    'enter': () => {},
   }
 
   render() {
@@ -245,9 +287,12 @@ class DocEdit extends Component {
         </IconButton>
       )
     }
+
+    const lastBtn = buttons[buttons.length - 1]
+
     return (
-      <div>
-        <Overlay autoLockScrolling={false} style={styles.overlay} show={isNew || ! pristine} />
+    <HotKeys keyMap={this.keyMap} handlers={this.handlers}>
+      <Overlay autoLockScrolling={false} style={styles.overlay} show={isNew || ! pristine} />
         <ListItem
           disableTouchRipple
           disableFocusRipple
@@ -258,18 +303,30 @@ class DocEdit extends Component {
         >
           {error && <div style={styles.error}>{error.reason}</div>}
           <form
+            ref={node => this.docEditForm = node}
             id={`${docType}-form`}
             onSubmit={handleSubmit}
           >
-            {children}
+            {React.Children.map(children, child => {
+              const isFirstFocus = child && child.props && child.props.autoFocus === true
+              return React.cloneElement(child, { withRef: isFirstFocus, ref: isFirstFocus ? this.getFirstFocus : undefined });
+            })}
             <div style={styles.buttons}>
               {buttons.length &&
-                buttons.map((button, idx) => React.cloneElement(button, {key: `btn-${idx}-key`}))
+                buttons.map((button, idx) =>
+                  React.cloneElement(
+                    button,
+                    {
+                      key: `btn-${idx}-key`,
+                      id: button === lastBtn ? lastFocusId : undefined,
+                    }
+                  )
+                )
               }
             </div>
           </form>
         </ListItem>
-      </div>
+      </HotKeys>
     )
   }
 }

@@ -62,7 +62,6 @@ class DraftEditor extends React.Component {
   }
 
   _handleOnFocus = () => {
-    console.log('DE_handleOnFocus')
     this.props.onFocus()
     this._setFocus(true)
   }
@@ -88,7 +87,6 @@ class DraftEditor extends React.Component {
       prepareStyles,
       errorText,
     } = this.props
-    console.log(this.props)
     const { focused, editorState } = this.state
     const content = editorState.getCurrentContent()
     return (
