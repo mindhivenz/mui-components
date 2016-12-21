@@ -85,18 +85,13 @@ class DraftEditor extends React.Component {
   render() {
     const {
       labelText,
-      theme,
       styles,
       prepareStyles,
       errorText,
-      ...other,
     } = this.props
     console.log(this.props)
     const { focused, editorState } = this.state
     const content = editorState.getCurrentContent()
-    console.log('=============================')
-    console.log({...other})
-    console.log('=============================')
     return (
       <div style={prepareStyles(styles.content)} onClick={this.focus}>
         <EditorLabel

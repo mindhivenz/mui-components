@@ -27,7 +27,6 @@ class EditorError extends React.Component {
 
 
 const mapThemeToStyles = ({
-  transitions,
   textField: {
     errorColor,
   },
@@ -40,7 +39,6 @@ const mapThemeToStyles = ({
     error: {
       position: 'relative',
       bottom: -8,
-      // height: `${fontSize * scale}px`,
       fontSize: fontSize,
       fontWeight: 400,
       lineHeight: `${fontSize}px`,
