@@ -33,7 +33,8 @@
     "keycode": "^2.1.7",
     "keycomb": "^0.1.3",
     "lru-memoize": "^1.0.1",
-    "react-event-listener": "^0.4.0"
+    "react-event-listener": "^0.4.0",
+    "react-hotkeys": "^0.9.0"
   },
   "devDependencies": {
     "@mindhive/di": "^4.0.0",
