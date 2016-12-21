@@ -19,7 +19,10 @@ class SearchDomain {
 
   @computed get itemsTexts() {
     return this.items.map(item =>
-      this.retrievers.map(r => r(item).toLowerCase())
+      this.retrievers
+        .map(r => r(item))
+        .filter(t => t)
+        .map(t => t.toLowerCase())
     )
   }
 
