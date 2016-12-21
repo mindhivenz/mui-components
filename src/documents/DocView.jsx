@@ -8,7 +8,6 @@ import withHover from '../hover/withHover'
 import { renderDocListIcon } from './DocListIcon'
 
 const DocView = ({
-  id,
   leftIcon,
 
   disabled,
@@ -28,7 +27,6 @@ const DocView = ({
     disableTouchRipple
     disableFocusRipple
 
-    id={id}
     leftIcon={leftIcon && renderDocListIcon(leftIcon, { hovered, disabled })}
     primaryText={primaryText && <div style={styles.primaryText}>{primaryText}</div>}
     secondaryText={secondaryText && <div style={styles.secondaryText}>{secondaryText}</div>}

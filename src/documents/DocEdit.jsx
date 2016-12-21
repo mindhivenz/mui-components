@@ -340,8 +340,8 @@ const DocEditReduxForm = reduxForm()(
 
 export default ({
   document = {},
-  docType,
-  id,
+  docType = 'doc',
+  id = document._id,
   ...otherProps
 }) =>
   <DocEditReduxForm
