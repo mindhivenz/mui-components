@@ -5,6 +5,7 @@ import withStyleSheet from '../theme/withStyleSheet'
 
 import EditorUnderline from './components/EditorUnderline'
 import EditorLabel from './components/EditorLabel'
+import EditorError from './components/EditorError'
 import EditorCommands from './components/EditorCommands'
 
 @observer
@@ -120,7 +121,7 @@ class DraftEditor extends React.Component {
             onBlur={this._handleOnBlur}
           />
           <EditorUnderline focus={focused} errorText={errorText}/>
-          {errorText && <div style={prepareStyles(styles.error)}>{errorText}</div>}
+          <EditorError errorText={errorText} />
         </div>
 
       </div>
@@ -174,15 +175,6 @@ const mapThemeToStyles = ({
     fontSize: 14,
     ...editorStyle,
 
-  },
-  error: {
-    position: 'relative',
-    bottom: -8,
-    fontSize: 12,
-    fontWeight: 400,
-    lineHeight: '12px',
-    color: errorColor,
-    transition: transitions.easeOut(),
   },
 
 })

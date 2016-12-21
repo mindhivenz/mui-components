@@ -34,11 +34,12 @@ const mapThemeToStyles = ({
       border: 'none',
       borderBottom: 'solid 1px',
       borderColor,
-      bottom: errorText ? 12 : 0,
+      bottom: 12,
       boxSizing: 'content-box',
       margin: 0,
       position: 'absolute',
       width: '100%',
+      transition: 'all 450ms ease-out',
     },
     disabled: {
       borderBottom: 'dotted 2px',
@@ -49,7 +50,6 @@ const mapThemeToStyles = ({
       borderBottom: 'solid 2px',
       borderColor: focusColor,
       transform: 'scaleX(0)',
-      transition: 'transform 350ms ease-out',
 
     },
     error: {
