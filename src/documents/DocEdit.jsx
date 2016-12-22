@@ -158,7 +158,10 @@ class DocEdit extends Component {
       },
     })
 
-    this.enterTimeout = setTimeout(callback, 450) // matches transition duration
+    this.enterTimeout = setTimeout(() => {
+      this.enterTimeout = null
+      callback()
+    }, 450) // matches transition duration
   }
 
   componentWillLeave(callback) {
@@ -169,14 +172,20 @@ class DocEdit extends Component {
       },
     })
 
-    this.leaveTimeout = setTimeout(callback, 450) // matches transition duration
+    this.leaveTimeout = setTimeout(() => {
+      this.leaveTimeout = null
+      callback()
+    }, 450) // matches transition duration
   }
 
   handleClose(callback) {
     this.setState({
       show: false,
     })
-    this.leaveTimeout = setTimeout(callback, animationOut) // matches transition duration
+    this.leaveTimeout = setTimeout(() => {
+      this.leaveTimeout = null
+      callback()
+    }, animationOut) // matches transition duration
   }
 
   handleOpen() {

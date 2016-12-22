@@ -10,7 +10,7 @@ const withHover = ({ mouseLeaveDelay = 0, mouseOverOnMount = false, inline = fal
         touch: false,
       }
 
-      componentDidMount = () => {
+      componentDidMount() {
         // Check if we were rendered under the mouse, and if so,
         // trigger an onMouseEnter event.
         // This needs to be called from a setTimeout otherwise the browser won't have
@@ -28,6 +28,10 @@ const withHover = ({ mouseLeaveDelay = 0, mouseOverOnMount = false, inline = fal
         }
       }
 
+      componentWillUnmount() {
+        clearTimeout(this.handleMouseLeaveTimeout)
+      }
+
       setHovered = (hovered) => {
         this.setState({ hovered }, this.afterSetState)
       }
@@ -42,7 +46,8 @@ const withHover = ({ mouseLeaveDelay = 0, mouseOverOnMount = false, inline = fal
       }
 
       handleMouseLeave = () => {
-        setTimeout(() => {
+        this.handleMouseLeaveTimeout = setTimeout(() => {
+          this.handleMouseLeaveTimeout = null
           this.setHovered(false)
         }, mouseLeaveDelay)
       }
