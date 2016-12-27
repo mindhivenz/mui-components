@@ -300,8 +300,8 @@ class DocEdit extends Component {
     const lastBtn = buttons[buttons.length - 1]
 
     return (
-    <HotKeys keyMap={this.keyMap} handlers={this.handlers}>
-      <Overlay autoLockScrolling={false} style={styles.overlay} show={isNew || ! pristine} />
+      <HotKeys keyMap={this.keyMap} handlers={this.handlers}>
+        <Overlay autoLockScrolling={false} style={styles.overlay} show={isNew || ! pristine} />
         <ListItem
           disableTouchRipple
           disableFocusRipple
