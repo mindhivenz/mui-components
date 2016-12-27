@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react'
 
 import { List } from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
@@ -65,4 +66,4 @@ const DocList = ({
     <NoDocsLabel hideWhenEmpty={hideWhenEmpty}>No {vocab.documents} defined</NoDocsLabel>
 }
 
-export default DocList
+export default observer(DocList)
