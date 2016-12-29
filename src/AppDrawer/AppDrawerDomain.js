@@ -1,22 +1,14 @@
 import { observable, computed, action, autorun } from 'mobx'
 import { app } from '@mindhive/di'
-import { WindowSize } from '../responsiveUi/windowMetrics'
+import { DrawerDomain } from '../Drawer/DrawerDomain'
 
 
-const dockedWindowSize = WindowSize.MEDIUM
+export class AppDrawerDomain extends DrawerDomain {
 
-export class AppDrawerDomain {
-
-  @observable wantDocked = true
-  @observable wantOpen = null
   @observable wantExpanded = null
   storageKey
 
-  constructor(params) {
-    this.init(params)
-  }
-
-  @action init = ({
+  constructor({
     domains: {
       windowMetricsDomain,
       themeDomain: { muiTheme },
@@ -25,10 +17,10 @@ export class AppDrawerDomain {
       storageKey = null,
       wantExpanded = true,
     } = {},
-  }) => {
+  }) {
+    super({ domains: { windowMetricsDomain } })
     const { storage } = app()
     this.storageKey = storageKey
-    this.windowMetricsDomain = windowMetricsDomain
     this.narrowWidth = muiTheme.drawer.narrowWidth
     this.expandedWidth = muiTheme.drawer.expandedWidth
     this.wantExpanded = wantExpanded
@@ -47,20 +39,8 @@ export class AppDrawerDomain {
     }
   }
 
-  @computed get canDock() {
-    return this.windowMetricsDomain.size.ordinal >= dockedWindowSize.ordinal
-  }
-
-  @computed get docked() {
-    return this.canDock && this.wantDocked
-  }
-
   @computed get expanded() {
     return this.wantExpanded
-  }
-
-  @computed get open() {
-    return this.docked ? null : this.wantOpen
   }
 
   @computed get translateWidth() {
@@ -75,14 +55,6 @@ export class AppDrawerDomain {
     return 0
   }
 
-  @action toggle = () => {
-    if (this.canDock) {
-      this.wantDocked = ! this.wantDocked
-    } else {
-      this.wantOpen = ! this.wantOpen
-    }
-  }
-
   @action toggleExpand = () => {
     this.wantExpanded = ! this.wantExpanded
   }
@@ -92,15 +64,5 @@ export class AppDrawerDomain {
       this.setWantOpen(false)
     }
     itemOnTouchTap && itemOnTouchTap()
-  }
-
-  onTouchTap = () => {
-    if (! this.docked) {
-      this.setWantOpen(false)
-    }
-  }
-
-  @action setWantOpen = (open) => {
-    this.wantOpen = open
   }
 }

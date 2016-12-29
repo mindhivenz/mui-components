@@ -10,8 +10,16 @@ export class DrawerDomain {
   @observable wantDocked = true
   @observable wantOpen = null
 
+  constructor({
+    domains: {
+      windowMetricsDomain,
+    } = app(),
+  }) {
+    this.windowMetricsDomain = windowMetricsDomain
+  }
+
   @computed get canDock() {
-    return app().windowMetricsDomain.size.ordinal >= dockedWindowSize.ordinal
+    return this.windowMetricsDomain.size.ordinal >= dockedWindowSize.ordinal
   }
 
   @computed get docked() {
