@@ -20,9 +20,9 @@ export class AppDrawerDomain {
     domains: {
       windowMetricsDomain,
       themeDomain: { muiTheme },
-    },
+    } = app(),
     options: {
-      storageKey,
+      storageKey = null,
       wantExpanded = true,
     } = {},
   }) => {
