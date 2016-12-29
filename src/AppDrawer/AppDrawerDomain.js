@@ -1,14 +1,16 @@
-import { observable, computed, action } from 'mobx'
+import { observable, computed, action, autorun } from 'mobx'
+import { app } from '@mindhive/di'
 import { WindowSize } from '../responsiveUi/windowMetrics'
 
 
 const dockedWindowSize = WindowSize.MEDIUM
 
-export class DrawerDomain {
+export class AppDrawerDomain {
 
   @observable wantDocked = true
   @observable wantOpen = null
-  @observable wantExpanded = true
+  @observable wantExpanded = null
+  storageKey
 
   constructor(params) {
     this.init(params)
@@ -20,13 +22,29 @@ export class DrawerDomain {
       themeDomain: { muiTheme },
     },
     options: {
+      storageKey,
       wantExpanded = true,
     } = {},
   }) => {
+    const { storage } = app()
+    this.storageKey = storageKey
     this.windowMetricsDomain = windowMetricsDomain
     this.narrowWidth = muiTheme.drawer.narrowWidth
     this.expandedWidth = muiTheme.drawer.expandedWidth
     this.wantExpanded = wantExpanded
+    if (storageKey) {
+      const storedState = storage.read(storageKey)
+      if (storedState) {
+        this.wantDocked = storedState.wantDocked
+        this.wantExpanded = storedState.wantExpanded
+      }
+      autorun('Save AppDrawerDomain state', () => {
+        storage.write(storageKey, {
+          wantDocked: this.wantDocked,
+          wantExpanded: this.wantExpanded,
+        })
+      })
+    }
   }
 
   @computed get canDock() {
@@ -68,7 +86,6 @@ export class DrawerDomain {
   @action toggleExpand = () => {
     this.wantExpanded = ! this.wantExpanded
   }
-
 
   onItemTouch = (itemOnTouchTap) => {
     if (! this.docked) {
