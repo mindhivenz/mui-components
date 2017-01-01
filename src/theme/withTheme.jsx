@@ -3,8 +3,8 @@ import { observer } from 'mobx-react'
 import { app } from '@mindhive/di'
 
 
-export default (Component, themeToStyles) =>
-  observer((ownProps) => {
+export default (Component, themeToStyles) => {
+  const hoc = observer((ownProps) => {
     const themeDomain = app().themeDomain
     const muiTheme = themeDomain.muiTheme
     const props = {
@@ -16,3 +16,7 @@ export default (Component, themeToStyles) =>
     }
     return <Component {...props} {...ownProps} />
   })
+  hoc.displayName = 'withTheme'
+  return hoc
+}
+
