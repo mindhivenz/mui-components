@@ -131,7 +131,7 @@ class Dialog extends Component {
   }
 }
 
-const calcStyles = ({
+const mapThemeToStyles = ({
   dialog,
   spacing,
   palette,
@@ -175,4 +175,7 @@ const calcStyles = ({
   })
 }
 
-export default withTheme(Dialog, calcStyles)
+export default
+  withTheme(mapThemeToStyles)(
+    Dialog
+  )

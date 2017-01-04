@@ -9,6 +9,7 @@ import { app } from '@mindhive/di'
 import { Icon } from '../Icon'
 import withTheme from '../theme/withTheme'
 
+
 const FollowPointerFab = ({
   domains: { inlineFabDomain } = app(),
   styles,
@@ -34,7 +35,7 @@ const mapThemeToStyles = (_, { open }) => {
   })
 }
 
-export default withTheme(
-  observer(FollowPointerFab),
-  mapThemeToStyles
-)
+export default
+  withTheme(mapThemeToStyles)(
+    observer(FollowPointerFab)
+  )

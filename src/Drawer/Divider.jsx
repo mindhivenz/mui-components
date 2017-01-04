@@ -4,4 +4,7 @@ import withTheme from '../theme/withTheme'
 
 const Divider = ({ theme }) => <MuiDivider style={theme.drawer.divider} />
 
-export default withTheme(Divider)
+export default
+  withTheme()(
+    Divider
+  )

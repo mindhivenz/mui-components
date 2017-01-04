@@ -29,7 +29,7 @@ const AppLayout = (
     {NavDrawer}
   </div>
 
-const calcStylesStyles = (
+const mapThemeToStyles = (
   {
     spacing,
     app: {
@@ -68,7 +68,7 @@ const calcStylesStyles = (
 })
 
 
-export default withTheme(
-  observer(AppLayout),
-  calcStylesStyles,
-)
+export default
+  withTheme(mapThemeToStyles)(
+    observer(AppLayout)
+  )

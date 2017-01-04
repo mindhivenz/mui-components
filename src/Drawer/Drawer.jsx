@@ -38,7 +38,7 @@ class Drawer extends Component {
   }
 }
 
-const calcStyles = ({
+const mapThemeToStyles = ({
   appBar,
   drawer,
   fillParent,
@@ -58,4 +58,7 @@ const calcStyles = ({
   },
 })
 
-export default withTheme(Drawer, calcStyles)
+export default
+  withTheme(mapThemeToStyles)(
+    Drawer
+  )

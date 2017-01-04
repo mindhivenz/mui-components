@@ -19,4 +19,7 @@ const MenuItemOptional = ({
     {...other}
   />
 
-export default withTheme(MenuItemOptional)
+export default
+  withTheme()(
+    MenuItemOptional
+  )

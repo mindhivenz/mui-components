@@ -37,4 +37,7 @@ const Error = ({
     </div>
   </div>
 
-export default withTheme(Error, mapThemeToStyles)
+export default
+  withTheme(mapThemeToStyles)(
+    Error
+  )

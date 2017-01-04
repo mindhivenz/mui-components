@@ -3,7 +3,7 @@ import withTheme from '../theme/withTheme'
 
 const scaledComponent = (Component) => {
 
-  const calcStyles = (_, {
+  const mapThemeToStyles = (_, {
     page: { width, height },
     containerWidth,
     containerHeight,
@@ -24,7 +24,9 @@ const scaledComponent = (Component) => {
   }
 
   return measureIt({ fill: false })(
-    withTheme(Component, calcStyles)
+    withTheme(mapThemeToStyles)(
+      Component
+    )
   )
 
 }

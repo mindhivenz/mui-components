@@ -66,8 +66,9 @@ const mapThemeToStyles = ({
   },
 })
 
-export default withHover({ mouseLeaveDelay: 150 })(
-  withTheme(
-  observer(InlineFab),
-  mapThemeToStyles
-))
+export default
+  withHover({ mouseLeaveDelay: 150 })(
+    withTheme(mapThemeToStyles)(
+      observer(InlineFab)
+    )
+  )

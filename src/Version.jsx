@@ -20,7 +20,7 @@ const Version = ({
     }
   </div>
 
-const calcStyles = ({
+const mapThemeToStyles = ({
   version,
 }) => ({
   ...version,
@@ -31,5 +31,8 @@ const calcStyles = ({
   width: '100%',
 })
 
-export default withTheme(observer(Version), calcStyles)
+export default
+  withTheme(mapThemeToStyles)(
+    observer(Version)
+  )
 

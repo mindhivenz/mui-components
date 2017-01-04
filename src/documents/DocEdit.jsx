@@ -344,9 +344,8 @@ class DocEdit extends Component {
 }
 
 const DocEditReduxForm = reduxForm()(
-  withTheme(
-    DocEdit,
-    mapThemeToStyles,
+  withTheme(mapThemeToStyles)(
+    DocEdit
   )
 )
 

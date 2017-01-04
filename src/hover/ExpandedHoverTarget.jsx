@@ -3,6 +3,7 @@ import { observer } from 'mobx-react'
 
 import withTheme from '../theme/withTheme'
 
+
 const ExpandedHoverTarget = ({
   styles,
   children,
@@ -22,7 +23,7 @@ const mapThemeToStyles = (_, { open }) => {
   })
 }
 
-export default withTheme(
-  observer(ExpandedHoverTarget),
-  mapThemeToStyles
-)
+export default
+  withTheme(mapThemeToStyles)(
+    observer(ExpandedHoverTarget)
+  )

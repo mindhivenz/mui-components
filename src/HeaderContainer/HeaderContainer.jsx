@@ -21,7 +21,7 @@ const HeaderContainer = ({
     </div>
   </Paper>
 
-const calcStyles = ({ spacing }) => ({
+const mapThemeToStyles = ({ spacing }) => ({
   container: {
     margin: '0 auto',
   },
@@ -32,4 +32,7 @@ const calcStyles = ({ spacing }) => ({
 })
 
 
-export default withTheme(HeaderContainer, calcStyles)
+export default
+  withTheme(mapThemeToStyles)(
+    HeaderContainer
+  )

@@ -65,7 +65,9 @@ const mapThemeToStyles = ({
 
 
 export default
-observer(
-  withHover()(withTheme(ConnectionStatus, mapThemeToStyles))
-)
+  withHover()(
+    withTheme(mapThemeToStyles)(
+      observer(ConnectionStatus)
+    )
+  )
 

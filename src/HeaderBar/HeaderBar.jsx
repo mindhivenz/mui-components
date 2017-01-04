@@ -9,7 +9,7 @@ const HeaderBar = ({
   <header style={styles}>{children}</header>
 
 
-const calcStyles = ({
+const mapThemeToStyles = ({
   palette,
   spacing,
   dialog,
@@ -29,4 +29,7 @@ const calcStyles = ({
 })
 
 
-export default withTheme(HeaderBar, calcStyles)
+export default
+  withTheme(mapThemeToStyles)(
+    HeaderBar
+  )

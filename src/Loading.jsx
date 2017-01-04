@@ -24,4 +24,7 @@ const Loading = ({
     color={styles.loading.color}
   />
 
-export default withTheme(Loading, mapThemeToStyles)
+export default
+  withTheme(mapThemeToStyles)(
+    Loading
+  )

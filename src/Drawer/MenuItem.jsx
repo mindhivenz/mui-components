@@ -40,7 +40,7 @@ class MenuItem extends Component {
   }
 }
 
-const calcStyles = ({ drawer }, { active }) => ({
+const mapThemeToStyles = ({ drawer }, { active }) => ({
   icon: {
     ...drawer.menuItem,
     ...(active ? drawer.active : {}),
@@ -50,4 +50,7 @@ const calcStyles = ({ drawer }, { active }) => ({
   },
 })
 
-export default withTheme(MenuItem, calcStyles)
+export default
+  withTheme(mapThemeToStyles)(
+    MenuItem
+  )

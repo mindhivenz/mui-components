@@ -43,5 +43,8 @@ const DocAddFab = ({
     <Icon ligature={addFab.icon} />
   </FloatingActionButton>
 
-export default withTheme(DocAddFab, mapThemeToStyles)
+export default
+  withTheme(mapThemeToStyles)(
+    DocAddFab
+  )
 
