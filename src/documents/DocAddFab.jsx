@@ -1,7 +1,7 @@
 import React from 'react'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 
-import withTheme from '../theme/withTheme'
+import withStyles from '../theme/withStyles'
 import { Icon } from '../Icon'
 
 
@@ -44,7 +44,7 @@ const DocAddFab = ({
   </FloatingActionButton>
 
 export default
-  withTheme(mapThemeToStyles)(
+  withStyles(mapThemeToStyles)(
     DocAddFab
   )
 

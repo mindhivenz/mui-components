@@ -1,6 +1,6 @@
 import React from 'react'
 
-import withStyleSheet from '../theme/withStyleSheet'
+import withStyles from '../theme/withStyles'
 
 const _DocListIcon = ({
   styles,
@@ -32,7 +32,7 @@ const mapThemeToStyles = ({
   })
 }
 
-const WithStylesComponent = withStyleSheet(mapThemeToStyles)(_DocListIcon)
+const WithStylesComponent = withStyles(mapThemeToStyles)(_DocListIcon)
 
 
 const DOC_LIST_ICON = 'DocListIcon'

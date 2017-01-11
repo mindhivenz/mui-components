@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 import transitions from 'material-ui/styles/transitions'
-import withStyleSheet from '../../theme/withStyleSheet'
+import withStyles from '../../theme/withStyles'
 
 
 const EditorLabel = ({
@@ -109,4 +109,4 @@ EditorLabel.defaultProps = {
   shrink: false,
 };
 
-export default withStyleSheet(mapThemeToStyles)(EditorLabel)
+export default withStyles(mapThemeToStyles)(EditorLabel)

@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
-import withTheme from '../theme/withTheme'
+import withStyles from '../theme/withStyles'
 
 
 const ExpandedHoverTarget = ({
@@ -24,6 +24,6 @@ const mapThemeToStyles = (_, { open }) => {
 }
 
 export default
-  withTheme(mapThemeToStyles)(
+  withStyles(mapThemeToStyles)(
     observer(ExpandedHoverTarget)
   )

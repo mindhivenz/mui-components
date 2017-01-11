@@ -4,7 +4,7 @@ import Chip from 'material-ui/Chip'
 import transitions from 'material-ui/styles/transitions'
 import { app } from '@mindhive/di'
 
-import withTheme from './theme/withTheme'
+import withStyles from './theme/withStyles'
 import withHover from './hover/withHover'
 
 
@@ -66,7 +66,7 @@ const mapThemeToStyles = ({
 
 export default
   withHover()(
-    withTheme(mapThemeToStyles)(
+    withStyles(mapThemeToStyles)(
       observer(ConnectionStatus)
     )
   )

@@ -7,7 +7,7 @@ import transitions from 'material-ui/styles/transitions'
 import { app } from '@mindhive/di'
 
 import { Icon } from '../Icon'
-import withTheme from '../theme/withTheme'
+import withStyles from '../theme/withStyles'
 
 
 const FollowPointerFab = ({
@@ -36,6 +36,6 @@ const mapThemeToStyles = (_, { open }) => {
 }
 
 export default
-  withTheme(mapThemeToStyles)(
+  withStyles(mapThemeToStyles)(
     observer(FollowPointerFab)
   )

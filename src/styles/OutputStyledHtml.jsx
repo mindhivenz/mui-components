@@ -1,6 +1,6 @@
 import React from 'react'
 
-import withStyleSheet from '../theme/withStyleSheet'
+import withStyles from '../theme/withStyles'
 
 const OutputStyledHtml = ({
   rawHtml,
@@ -14,5 +14,5 @@ const OutputStyledHtml = ({
   />
 
 
-export default withStyleSheet()(OutputStyledHtml)
+export default withStyles()(OutputStyledHtml)
 

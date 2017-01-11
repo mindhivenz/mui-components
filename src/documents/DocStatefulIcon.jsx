@@ -1,7 +1,7 @@
 import React from 'react'
 import IconButton from 'material-ui/IconButton'
 
-import withStyleSheet from '@mindhive/components/withStyleSheet'
+import withStyles from '../theme/withStyles'
 
 
 const DocStatefulIcon = ({
@@ -34,5 +34,5 @@ const mapThemeToStyles = (
   }
 )
 
-export default withStyleSheet(mapThemeToStyles)(DocStatefulIcon)
+export default withStyles(mapThemeToStyles)(DocStatefulIcon)
 

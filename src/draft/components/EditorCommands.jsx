@@ -2,7 +2,7 @@ import React from 'react'
 import BoldIcon from 'material-ui/svg-icons/editor/format-bold'
 import UnderlineIcon from 'material-ui/svg-icons/editor/format-underlined'
 import ItalicIcon from 'material-ui/svg-icons/editor/format-italic'
-import withStyleSheet from '../../theme/withStyleSheet'
+import withStyles from '../../theme/withStyles'
 import StyleButton from './StyleButton'
 
 const EditorCommands = ({
@@ -65,4 +65,4 @@ const mapThemeToStyles = ({
   },
 })
 
-export default withStyleSheet(mapThemeToStyles)(EditorCommands)
+export default withStyles(mapThemeToStyles)(EditorCommands)

@@ -1,5 +1,5 @@
 import { app } from '@mindhive/di'
-import withStyleSheet from '../theme/withStyleSheet'
+import withStyles from '../theme/withStyles'
 import { trans as transitions } from '../styles/animations'
 
 /**
@@ -109,5 +109,5 @@ const mapThemeToStyles = ({
 })
 
 export const injectStylesSheet = PageLayout =>
-  withStyleSheet(mapThemeToStyles)(PageLayout)
+  withStyles(mapThemeToStyles)(PageLayout)
 

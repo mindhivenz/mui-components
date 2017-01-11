@@ -7,7 +7,7 @@ import IconButton from 'material-ui/IconButton'
 import EventListener from 'react-event-listener'
 import keycode from 'keycode'
 
-import withTheme from '../theme/withTheme'
+import withStyles from '../theme/withStyles'
 import { ClearIcon } from '../Icon/Icon'
 
 
@@ -176,6 +176,6 @@ const mapThemeToStyles = ({
 }
 
 export default
-  withTheme(mapThemeToStyles)(
+  withStyles(mapThemeToStyles)(
     Dialog
   )

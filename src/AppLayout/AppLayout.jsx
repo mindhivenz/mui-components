@@ -3,7 +3,7 @@ import { observer } from 'mobx-react'
 
 import transitions from 'material-ui/styles/transitions'
 
-import withTheme from '../theme/withTheme'
+import withStyles from '../theme/withStyles'
 
 // import ViewerControl from '../viewer/ViewerControl'
 
@@ -69,6 +69,6 @@ const mapThemeToStyles = (
 
 
 export default
-  withTheme(mapThemeToStyles)(
+  withStyles(mapThemeToStyles)(
     observer(AppLayout)
   )

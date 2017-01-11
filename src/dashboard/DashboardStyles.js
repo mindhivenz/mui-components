@@ -1,4 +1,4 @@
-import withStyleSheet from '../theme/withStyleSheet'
+import withStyles from '../theme/withStyles'
 import transitions from 'material-ui/styles/transitions'
 
 export default ({
@@ -107,5 +107,5 @@ const mapThemeToStyles = ({
 }
 
 export const injectStylesSheet = Component =>
-  withStyleSheet(mapThemeToStyles)(Component)
+  withStyles(mapThemeToStyles)(Component)
 

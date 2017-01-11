@@ -2,7 +2,7 @@ import React from 'react'
 
 import { ListItem } from 'material-ui/List'
 
-import withStyleSheet from '../theme/withStyleSheet'
+import withStyles from '../theme/withStyles'
 import withHover from '../hover/withHover'
 
 import { renderDocListIcon } from './DocListIcon'
@@ -72,6 +72,6 @@ const mapThemeToStyles = ({
 }
 
 export default withHover()(
-  withStyleSheet(mapThemeToStyles)(DocView)
+  withStyles(mapThemeToStyles)(DocView)
 )
 

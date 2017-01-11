@@ -12,7 +12,7 @@ import Overlay from 'material-ui/internal/Overlay'
 import spacing from 'material-ui/styles/spacing'
 import { ListItem } from 'material-ui/List'
 
-import withTheme from '../theme/withTheme'
+import withStyles from '../theme/withStyles'
 import { Icon, ClearIcon } from '../Icon'
 // import FocusTrap, { TAB } from '../focus/FocusTrap'
 
@@ -344,7 +344,7 @@ class DocEdit extends Component {
 }
 
 const DocEditReduxForm = reduxForm()(
-  withTheme(mapThemeToStyles)(
+  withStyles(mapThemeToStyles)(
     DocEdit
   )
 )

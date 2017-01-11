@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import MuiDrawer from 'material-ui/Drawer'
 import { observer } from 'mobx-react'
 
-import withTheme from '../theme/withTheme'
+import withStyles from '../theme/withStyles'
 import { trans as transitions } from '../styles/animations'
 
 
@@ -59,6 +59,6 @@ const mapThemeToStyles = ({
 })
 
 export default
-  withTheme(mapThemeToStyles)(
+  withStyles(mapThemeToStyles)(
     Drawer
   )

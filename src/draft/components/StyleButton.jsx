@@ -1,6 +1,6 @@
 import React from 'react'
 import IconButton from 'material-ui/IconButton'
-import withStyleSheet from '../../theme/withStyleSheet'
+import withStyles from '../../theme/withStyles'
 
 const preventDefault = (event) => event.preventDefault();
 
@@ -59,4 +59,4 @@ const mapThemeToStyles = ({
 })
 
 
-export default withStyleSheet(mapThemeToStyles)(StyleButton)
+export default withStyles(mapThemeToStyles)(StyleButton)

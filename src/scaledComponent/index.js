@@ -1,5 +1,5 @@
 import measureIt from '../measureIt'
-import withTheme from '../theme/withTheme'
+import withStyles from '../theme/withStyles'
 
 const scaledComponent = (Component) => {
 
@@ -24,7 +24,7 @@ const scaledComponent = (Component) => {
   }
 
   return measureIt({ fill: false })(
-    withTheme(mapThemeToStyles)(
+    withStyles(mapThemeToStyles)(
       Component
     )
   )

@@ -1,6 +1,6 @@
 import React from 'react'
 import transitions from 'material-ui/styles/transitions'
-import withStyleSheet from '../../theme/withStyleSheet'
+import withStyles from '../../theme/withStyles'
 
 const EditorUnderline = ({
   prepareStyles,
@@ -70,4 +70,4 @@ const mapThemeToStyles = ({
     focusedUnderline,
   })
 }
-export default withStyleSheet(mapThemeToStyles)(EditorUnderline)
+export default withStyles(mapThemeToStyles)(EditorUnderline)

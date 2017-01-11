@@ -4,8 +4,8 @@ import IconButton from 'material-ui/IconButton'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import IconMenu from 'material-ui/IconMenu'
 
-import withStyleSheet from '@mindhive/components/withStyleSheet'
-import { PassPropsWrapper } from '@mindhive/components/muiUtils'
+import withStyles from '../theme/withStyles'
+import PassPropsWrapper from '../muiUtils/PassPropsWrapper'
 
 
 const DocDropDownMenu = ({
@@ -45,5 +45,5 @@ const mapThemeToStyles = ({
   color: iconColor,
 })
 
-export default withStyleSheet(mapThemeToStyles)(DocDropDownMenu)
+export default withStyles(mapThemeToStyles)(DocDropDownMenu)
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 import Paper from 'material-ui/Paper'
 
-import withTheme from '../theme/withTheme'
+import withStyles from '../theme/withStyles'
 import HeaderBar from '../HeaderBar/HeaderBar'
 
 
@@ -33,6 +33,6 @@ const mapThemeToStyles = ({ spacing }) => ({
 
 
 export default
-  withTheme(mapThemeToStyles)(
+  withStyles(mapThemeToStyles)(
     HeaderContainer
   )

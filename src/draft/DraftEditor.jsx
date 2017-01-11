@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import { EditorState, RichUtils, Editor, convertFromRaw, convertToRaw } from 'draft-js'
-import withStyleSheet from '../theme/withStyleSheet'
+import withStyles from '../theme/withStyles'
 
 import EditorUnderline from './components/EditorUnderline'
 import EditorLabel from './components/EditorLabel'
@@ -172,7 +172,7 @@ const mapThemeToStyles = ({
 })
 
 export default
-  withStyleSheet(mapThemeToStyles)(
+  withStyles(mapThemeToStyles)(
     observer(
       DraftEditor
     )

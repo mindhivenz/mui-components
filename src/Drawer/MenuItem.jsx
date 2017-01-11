@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import MuiMenuItem from 'material-ui/MenuItem'
 
-import withTheme from '../theme/withTheme'
+import withStyles from '../theme/withStyles'
 import { Icon } from '../Icon'
 
 
@@ -51,6 +51,6 @@ const mapThemeToStyles = ({ drawer }, { active }) => ({
 })
 
 export default
-  withTheme(mapThemeToStyles)(
+  withStyles(mapThemeToStyles)(
     MenuItem
   )

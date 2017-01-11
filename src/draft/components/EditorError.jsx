@@ -1,5 +1,5 @@
 import React from 'react'
-import withStyleSheet from '../../theme/withStyleSheet'
+import withStyles from '../../theme/withStyles'
 
 class EditorError extends React.Component {
 
@@ -49,4 +49,4 @@ const mapThemeToStyles = ({
   });
 }
 
-export default withStyleSheet(mapThemeToStyles)(EditorError)
+export default withStyles(mapThemeToStyles)(EditorError)

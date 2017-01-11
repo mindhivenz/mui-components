@@ -1,5 +1,5 @@
 import React from 'react'
-import withTheme from '../theme/withTheme'
+import withStyles from '../theme/withStyles'
 
 
 const HeaderBar = ({
@@ -30,6 +30,6 @@ const mapThemeToStyles = ({
 
 
 export default
-  withTheme(mapThemeToStyles)(
+  withStyles(mapThemeToStyles)(
     HeaderBar
   )

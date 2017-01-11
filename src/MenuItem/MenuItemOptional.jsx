@@ -1,6 +1,6 @@
 import React from 'react'
 import MenuItem from 'material-ui/MenuItem'
-import withTheme from '../theme/withTheme'
+import withStyles from '../theme/withStyles'
 
 
 const MenuItemOptional = ({
@@ -20,6 +20,6 @@ const MenuItemOptional = ({
   />
 
 export default
-  withTheme()(
+  withStyles()(
     MenuItemOptional
   )

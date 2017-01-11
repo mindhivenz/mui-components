@@ -1,6 +1,6 @@
 import React from 'react'
 
-import withStyleSheet from '../theme/withStyleSheet'
+import withStyles from '../theme/withStyles'
 
 
 const NoDocsLabel = ({ hideWhenEmpty, children, styles, prepareStyles }) =>
@@ -21,4 +21,4 @@ const mapThemeToStyles = ({
   },
 })
 
-export default withStyleSheet(mapThemeToStyles)(NoDocsLabel)
+export default withStyles(mapThemeToStyles)(NoDocsLabel)

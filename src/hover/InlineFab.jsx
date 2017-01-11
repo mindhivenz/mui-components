@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import { observer } from 'mobx-react'
 import { app } from '@mindhive/di'
 
-import withTheme from '../theme/withTheme'
+import withStyles from '../theme/withStyles'
 import withHover from '../hover/withHover'
 
 import FollowPointerFab from './FollowPointerFab'
@@ -68,7 +68,7 @@ const mapThemeToStyles = ({
 
 export default
   withHover({ mouseLeaveDelay: 150 })(
-    withTheme(mapThemeToStyles)(
+    withStyles(mapThemeToStyles)(
       observer(InlineFab)
     )
   )

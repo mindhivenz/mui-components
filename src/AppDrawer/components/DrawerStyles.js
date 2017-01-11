@@ -1,5 +1,5 @@
 import { app } from '@mindhive/di'
-import withStyleSheet from '../../theme/withStyleSheet'
+import withStyles from '../../theme/withStyles'
 import { trans as transitions } from '../../styles/animations'
 import { observer } from 'mobx-react'
 
@@ -118,5 +118,5 @@ const mapThemeToStyles = ({
 }
 
 export const injectStylesSheet = Component =>
-  observer(withStyleSheet(mapThemeToStyles)(Component))
+  observer(withStyles(mapThemeToStyles)(Component))
 

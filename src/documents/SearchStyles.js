@@ -1,4 +1,4 @@
-import withStyleSheet from '../theme/withStyleSheet'
+import withStyles from '../theme/withStyles'
 
 export default ({
   palette,
@@ -59,5 +59,5 @@ const mapThemeToStyles = ({
 })
 
 export const injectStylesSheet = Component =>
-  withStyleSheet(mapThemeToStyles)(Component)
+  withStyles(mapThemeToStyles)(Component)
 

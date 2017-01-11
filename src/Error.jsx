@@ -1,7 +1,7 @@
 import React from 'react'
 import FlatButton from 'material-ui/FlatButton'
 
-import withTheme from './theme/withTheme'
+import withStyles from './theme/withStyles'
 
 
 const mapThemeToStyles = theme => ({
@@ -38,6 +38,6 @@ const Error = ({
   </div>
 
 export default
-  withTheme(mapThemeToStyles)(
+  withStyles(mapThemeToStyles)(
     Error
   )

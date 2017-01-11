@@ -16,7 +16,7 @@ export default (mapThemeToStyles) => {
       const themedComponent = observer(props =>
         React.createElement(Component, { ...props, ...copyProps(app().themeDomain) })
       )
-      themedComponent.displayName = 'withTheme'
+      themedComponent.displayName = 'withStyles'
       return themedComponent
     }
   }
@@ -26,7 +26,7 @@ export default (mapThemeToStyles) => {
     return Component =>
       observer(class extends React.Component {
 
-        static displayName = 'withTheme(props)'
+        static displayName = 'withStyles(props)'
 
         @computed get themeProps() {
           const { themeDomain } = app()
@@ -55,7 +55,7 @@ export default (mapThemeToStyles) => {
     const themedComponent = observer(props =>
       React.createElement(Component, { ...props, ...cache.themeProps })
     )
-    themedComponent.displayName = 'withTheme'
+    themedComponent.displayName = 'withStyles'
     return themedComponent
   }
 }

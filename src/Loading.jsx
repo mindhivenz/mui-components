@@ -1,7 +1,7 @@
 import React from 'react'
 import CircularProgress from 'material-ui/CircularProgress'
 
-import withTheme from './theme/withTheme'
+import withStyles from './theme/withStyles'
 
 
 // TODO: delay the display of this
@@ -25,6 +25,6 @@ const Loading = ({
   />
 
 export default
-  withTheme(mapThemeToStyles)(
+  withStyles(mapThemeToStyles)(
     Loading
   )
