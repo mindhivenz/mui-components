@@ -20,6 +20,9 @@ const StyleButton = ({
   theme,
   prepareStyles,
 
+  editorState: omitEditorState,
+  focused: omitFocused,
+
   ...other,
 }) =>
   <IconButton

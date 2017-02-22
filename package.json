@@ -54,7 +54,7 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.1",
     "material-ui": "^0.16.1",
-    "mobx": "^2.6.0",
+    "mobx": "^3.0.0",
     "mobx-react": "^4.0.0",
     "mocha": "^3.1.2",
     "sinon": "^1.17.6",
@@ -63,7 +63,7 @@
   "peerDependencies": {
     "@mindhive/di": "^4.0.0",
     "material-ui": "^0.16.1",
-    "mobx": "^2.6.0",
+    "mobx": "^3.0.0",
     "mobx-react": "^4.0.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
