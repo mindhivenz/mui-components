@@ -4,13 +4,13 @@ import { convertFromRaw } from 'draft-js'
 
 const DraftHtmlView = ({
   data,
-  styles,
+  style,
 }) => {
   const content = convertFromRaw(JSON.parse(data))
   let html = stateToHTML(content).replace(/<p><br><\/p>/g, '')
   return (
     content.hasText()
-      ? <div style={styles} dangerouslySetInnerHTML={{ __html: html }} />
+      ? <div style={style} dangerouslySetInnerHTML={{ __html: html }} />
       : null
   )
 }
