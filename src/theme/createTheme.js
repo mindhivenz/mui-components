@@ -5,13 +5,38 @@ import transitions from 'material-ui/styles/transitions'
 import animations from '../styles/animations'
 import getComponents from './components'
 
-const typography = muiTypography
-typography.fontWeight100 = 100
-typography.fontWeight300 = 300
-typography.fontWeight400 = 400
-typography.fontWeight500 = 500
-typography.fontWeight700 = 700
-typography.fontWeight900 = 900
+
+const typography = (isMobile) => ({
+  ...muiTypography,
+
+  fontWeightRegular: muiTypography.fontWeightNormal,
+
+  headline: {
+    fontSize: 24,
+    fontWeight: muiTypography.fontWeightNormal,
+    whiteSpace: 'nowrap',
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: muiTypography.fontWeightMedium,
+    whiteSpace: 'nowrap',
+  },
+  subheading: {
+    fontSize: isMobile ? 16 : 15,
+    fontWeight: muiTypography.fontWeightNormal,
+    lineHeight: `24px`,
+  },
+  body2: {
+    fontSize: isMobile ? 14 : 13,
+    fontWeight: muiTypography.fontWeightMedium,
+    lineHeight: `24px`,
+  },
+  body: {
+    fontSize: isMobile ? 14 : 13,
+    fontWeight: muiTypography.fontWeightNormal,
+    lineHeight: `20px`,
+  },
+})
 
 const dimensions = {
   contentMaxWidthWide: 980,
@@ -30,10 +55,8 @@ export const createTheme = (isMobile, baseTheme, calcComponentsStyles) => {
   const muiTheme = getMuiTheme({
     animations,
     colorManipulator,
-    typography,
+    typography: typography(isMobile),
     dimensions,
-    // palette: blueGreyThemeLightBody.palette,
-    // palette: blueGreyThemeDarkBody.palette,
     palette: baseTheme.palette,
     zIndex: baseZIndex,
     transitions,
