@@ -10,6 +10,7 @@ module.exports = {
   alphaNumeric: validators.alphaNumeric,
   email: validators.email,
   required: validators.required,
+  ifField: validators.ifField,
   requiredIf: validators.requiredIf,
   minLength: validators.minLength,
   maxLength: validators.maxLength,

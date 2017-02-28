@@ -53,14 +53,12 @@ export const required = (value) => {
   return null
 }
 
+export const ifField = (field, validator) =>
+  (value, data) =>
+    data[field] ? validator(value, data) : null
+
 export const requiredIf = field =>
-  (value, data) => {
-    const isReq = data[field]
-    if (isReq) {
-      return required(value)
-    }
-    return null
-  }
+  ifField(field, required)
 
 export const minLength = min =>
   (value) => {
