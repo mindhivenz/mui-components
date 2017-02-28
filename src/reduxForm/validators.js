@@ -108,7 +108,7 @@ export const uniqueName = (namesToAvoid, nameLabel = 'name', entityLabel = null)
 export const match = field =>
   (value, data) => {
     if (data) {
-      if (value !== data[field]) {
+      if (value != data[field]) {
         return 'Do not match'
       }
     }
