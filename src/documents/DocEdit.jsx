@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import { reduxForm } from 'redux-form'
-import keycode from 'keycode'
-import keycomb from 'keycomb'
 import { HotKeys } from 'react-hotkeys'
 
 import RaisedButton from 'material-ui/RaisedButton'
@@ -14,7 +12,6 @@ import { ListItem } from 'material-ui/List'
 
 import withStyles from '../theme/withStyles'
 import { Icon, ClearIcon } from '../Icon'
-// import FocusTrap, { TAB } from '../focus/FocusTrap'
 
 
 const docEditContextTypes = {
