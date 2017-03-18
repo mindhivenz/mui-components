@@ -8,7 +8,7 @@ import EventListener from 'react-event-listener'
 import keycode from 'keycode'
 
 import withStyles from '../theme/withStyles'
-import { ClearIcon } from '../Icon/Icon'
+import { ClearIcon } from '../Icon'
 
 
 class Dialog extends Component {
