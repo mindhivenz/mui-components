@@ -37,7 +37,6 @@ const DocAddFab = ({
   <FloatingActionButton
     id={addFab.selector}
     style={styles.top}
-    secondary
     onTouchTap={addFab.action}
   >
     <Icon ligature={addFab.icon} />
