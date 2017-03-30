@@ -2000,10 +2000,6 @@ loose-envify@^1.0.0:
   dependencies:
     js-tokens "^3.0.0"
 
-lru-memoize@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/lru-memoize/-/lru-memoize-1.0.1.tgz#25afa87290562ab6addac4f323d16e8724306a9d"
-
 material-ui@^0.17.0:
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-0.17.0.tgz#fd0e2e16f55184f66bc770225a053444e4ae7d33"
