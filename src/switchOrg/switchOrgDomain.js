@@ -9,7 +9,7 @@ class SwitchOrgDomain {
   @observable orgs = null
 
   @computed get offerToViewer() {
-    return app().viewerDomain.isSuperUser
+    return app().viewerStore.isSuperUser
   }
 
   @computed get dialogOpen() {
@@ -43,8 +43,8 @@ class SwitchOrgDomain {
   }
 
   @action start = async () => {
-    const { viewerDomain, api } = app()
-    this._viewerOrg = viewerDomain.org
+    const { viewerStore, api } = app()
+    this._viewerOrg = viewerStore.org
     const orgs = await api.call('switchOrg.orgs.selectionList', { notifyViewerPending: false })
     runInAction('orgsLoaded', () => {
       this.orgs = orgs
