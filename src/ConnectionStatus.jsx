@@ -4,7 +4,7 @@ import CircularProgress from 'material-ui/CircularProgress'
 import { app } from '@mindhive/di'
 import compose from 'recompose/compose'
 
-import Icon from './Icon'
+import { Icon } from './Icon'
 import withStyles from './theme/withStyles'
 
 
@@ -25,7 +25,8 @@ const FlashOffline = observer(({
 )
 
 const ConnectionStatus = ({
-  inject: { connectionDomain, observableClock } = app(),
+  inject: { connectionDomain } = app(),
+  reserveSpace,
   styles,
   prepareStyles,
   theme: ignoreTheme,
@@ -44,7 +45,10 @@ const ConnectionStatus = ({
       connectionDomain.connectionDown ?
         <Icon ligature="cloud_off" {...props} />
         :
-        <div style={prepareStyles(styles.placeholder)} />
+        reserveSpace ?
+          <div style={prepareStyles(styles.placeholder)} />
+          :
+          null
 
 const mapThemeToStyles = ({
   spacing,
@@ -52,6 +56,7 @@ const mapThemeToStyles = ({
   placeholder: {
     width: spacing.iconSize,
     height: spacing.iconSize,
+    display: 'inline-block',
   },
   circularProgressProps: {
     size: spacing.iconSize,
