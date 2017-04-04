@@ -30,36 +30,42 @@ const ConnectionStatus = ({
   styles,
   prepareStyles,
   theme: ignoreTheme,
+  size: ignoreSize,
   ...props,
 }) =>
   connectionDomain.viewerWaitingTooLong ?
-    <FlashOffline {...props}>
+    <FlashOffline {...styles.iconProps} {...props}>
       <CircularProgress {...styles.circularProgressProps} {...props} />
     </FlashOffline>
     :
     connectionDomain.callRunningTooLong ?
-      <FlashOffline {...props}>
-        <Icon ligature="cloud_upload" {...props} />
+      <FlashOffline {...styles.iconProps} {...props}>
+        <Icon ligature="cloud_upload" {...styles.iconProps} {...props} />
       </FlashOffline>
       :
       connectionDomain.connectionDown ?
-        <Icon ligature="cloud_off" {...props} />
+        <Icon ligature="cloud_off" {...styles.iconProps} {...props} />
         :
         reserveSpace ?
           <div style={prepareStyles(styles.placeholder)} />
           :
           null
 
-const mapThemeToStyles = ({
-  spacing,
-}) => ({
+const mapThemeToStyles = (
+  { spacing },
+  { size = spacing.iconSize },
+) => ({
   placeholder: {
-    width: spacing.iconSize,
-    height: spacing.iconSize,
+    width: size,
+    height: size,
     display: 'inline-block',
   },
+  iconProps: {
+    fontSize: size,
+  },
   circularProgressProps: {
-    size: spacing.iconSize,
+    size,
+    thickness: 2.5,
   },
 })
 
