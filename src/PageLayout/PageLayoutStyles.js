@@ -60,7 +60,7 @@ const mapThemeToStyles = ({
   drawer,
   appBar,
 }, {
-  domains: { layoutDomain } = app(),
+  inject: { layoutDomain } = app(),
   style = {},
   contentWidth,
 }) => ({

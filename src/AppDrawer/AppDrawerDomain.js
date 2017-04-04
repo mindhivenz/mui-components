@@ -9,7 +9,7 @@ export class AppDrawerDomain extends DrawerDomain {
   storageKey
 
   constructor({
-    domains: {
+    inject: {
       windowMetricsDomain,
       themeDomain: { muiTheme },
     } = app(),
@@ -18,7 +18,7 @@ export class AppDrawerDomain extends DrawerDomain {
       wantExpanded = true,
     } = {},
   }) {
-    super({ domains: { windowMetricsDomain } })
+    super({ inject: { windowMetricsDomain } })
     const { storage } = app()
     this.storageKey = storageKey
     this.narrowWidth = muiTheme.drawer.narrowWidth

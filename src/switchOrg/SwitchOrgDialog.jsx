@@ -9,7 +9,7 @@ import Dialog from '../Dialog/Dialog'
 
 
 const SwitchOrgDialog = ({
-  domains: { switchOrgDomain } = app(),
+  inject: { switchOrgDomain } = app(),
 }) =>
   <Dialog
     open={switchOrgDomain.dialogOpen}

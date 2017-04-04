@@ -51,7 +51,7 @@ const mapThemeToStyles = ({
     menuItemHovered,
     hideWhenExpanded,
     hideWhenNarrow,
-    domains: { navDrawerDomain: domain } = app(),
+    inject: { navDrawerDomain: domain } = app(),
   }
 ) => {
   const menuItemRootStyles = {

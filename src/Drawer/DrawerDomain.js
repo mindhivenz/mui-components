@@ -11,7 +11,7 @@ export class DrawerDomain {
   @observable wantOpen = null
 
   constructor({
-    domains: {
+    inject: {
       windowMetricsDomain,
     } = app(),
   }) {

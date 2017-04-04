@@ -8,7 +8,7 @@ import withStyles from './theme/withStyles'
 const Version = ({
   showInternalInfo,
 
-  domains: { versionDomain } = app(),
+  inject: { versionDomain } = app(),
   styles,
   prepareStyles,
 }) =>

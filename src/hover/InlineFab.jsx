@@ -38,7 +38,7 @@ class InlineFab extends Component {
   render() {
     const {
       styles,
-      domains: { inlineFabDomain } = app(),
+      inject: { inlineFabDomain } = app(),
       hovered,
     } = this.props
     inlineFabDomain.setHovered(hovered)

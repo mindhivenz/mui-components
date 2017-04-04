@@ -11,7 +11,7 @@ import withStyles from '../theme/withStyles'
 
 
 const FollowPointerFab = ({
-  domains: { inlineFabDomain } = app(),
+  inject: { inlineFabDomain } = app(),
   styles,
   onTouchTap,
 }) =>

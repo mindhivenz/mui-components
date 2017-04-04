@@ -1,73 +1,64 @@
 import { observer } from 'mobx-react'
 import React from 'react'
-import Chip from 'material-ui/Chip'
-import transitions from 'material-ui/styles/transitions'
+import CircularProgress from 'material-ui/CircularProgress'
 import { app } from '@mindhive/di'
+import compose from 'recompose/compose'
 
+import Icon from './Icon'
 import withStyles from './theme/withStyles'
-import withHover from './hover/withHover'
 
+
+const OFFLINE_FLASH_SECONDS = 1.0
+
+const flashOn = (date) =>
+  (Math.floor(date.getTime() / 1000 / OFFLINE_FLASH_SECONDS) % 2) === 0
+
+const FlashOffline = observer(({
+  inject: { connectionDomain, observableClock } = app(),
+  children,
+  ...props,
+}) =>
+  connectionDomain.connectionDown && flashOn(observableClock(1)) ?
+    <Icon ligature="cloud_off" {...props} />
+    :
+    children
+)
 
 const ConnectionStatus = ({
-  domains: { connectionDomain } = app(),
+  inject: { connectionDomain, observableClock } = app(),
   styles,
+  prepareStyles,
+  theme: ignoreTheme,
+  ...props,
 }) =>
-  <Chip
-    style={styles.container}
-    labelStyle={styles.labelStyle}
-    onTouchTap={connectionDomain.reconnect}
-  >
-    Can't connect the the server, will keep trying. Check your Internet connection.<br />
-    {connectionDomain.hasPendingCalls &&
-      <span>
-        Changes you've made are waiting to be sent, and will be lost unless you reconnect.
-      </span>
-    }
-    <span style={styles.click}>Click to try again</span>
-  </Chip>
+  connectionDomain.viewerWaitingTooLong ?
+    <FlashOffline {...props}>
+      <CircularProgress {...styles.circularProgressProps} {...props} />
+    </FlashOffline>
+    :
+    connectionDomain.callRunningTooLong ?
+      <FlashOffline {...props}>
+        <Icon ligature="cloud_upload" {...props} />
+      </FlashOffline>
+      :
+      connectionDomain.connectionDown ?
+        <Icon ligature="cloud_off" {...props} />
+        :
+        <div style={prepareStyles(styles.placeholder)} />
 
 const mapThemeToStyles = ({
-  connectionStatus,
   spacing,
-  drawer,
-}, {
-  domains: { connectionDomain, layoutDomain } = app(),
-  hovered,
-}) => {
-  const show = connectionDomain.connectionDown
-  return ({
-    container: {
-      backgroundColor: connectionStatus.backgroundColor,
-      opacity: show ? (hovered ? 1 : 0.75) : 0,
-      textAlign: 'center',
-      position: 'absolute',
-      display: 'inline-block',
-      padding: spacing.desktopGutterMini,
-      bottom: spacing.desktopGutterLess,
-      left: layoutDomain.leftOffset + spacing.desktopGutterLess,
-      transition: transitions.easeOut(null, 'all', null),
+}) => ({
+  placeholder: {
+    width: spacing.iconSize,
+    height: spacing.iconSize,
+  },
+  circularProgressProps: {
+    size: spacing.iconSize,
+  },
+})
 
-      zIndex: 10000,
-    },
-    labelStyle: {
-      fontSize: 12,
-      color: connectionStatus.textColor,
-      lineHeight: 'inherit',
-    },
-    click: {
-      fontSize: 14,
-      fontWeight: hovered ? 400 : 200,
-      color: connectionStatus.clickColor,
-      lineHeight: 'inherit',
-    },
-  })
-}
-
-
-export default
-  withHover()(
-    withStyles(mapThemeToStyles)(
-      observer(ConnectionStatus)
-    )
-  )
-
+export default compose(
+  withStyles(mapThemeToStyles),
+  observer,
+)(ConnectionStatus)
