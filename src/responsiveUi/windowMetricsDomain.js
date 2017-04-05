@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx'
-import { WindowSize } from './windowMetrics'
+import WindowSize from './WindowSize'
 
 
 class WindowMetricsDomain {

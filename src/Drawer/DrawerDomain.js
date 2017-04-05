@@ -1,6 +1,6 @@
 import { observable, computed, action } from 'mobx'
 import { app } from '@mindhive/di'
-import { WindowSize } from '../responsiveUi/windowMetrics'
+import WindowSize from '../responsiveUi/WindowSize'
 
 
 const dockedWindowSize = WindowSize.MEDIUM

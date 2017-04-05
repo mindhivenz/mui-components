@@ -3,7 +3,7 @@ import { Enum } from 'enumify'
 
 const DESKTOP_CHROME_ALLOWANCE = 16  // As per spec: https://material.io/guidelines/layout/responsive-ui.html#responsive-ui-breakpoints
 
-export class WindowSize extends Enum {}
+export default class WindowSize extends Enum {}
 
 // https://material.io/guidelines/layout/responsive-ui.html#responsive-ui-breakpoints
 // Keep in size order

@@ -1576,7 +1576,7 @@ hoek@2.x.x:
   version "2.16.3"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
 
-hoist-non-react-statics@^1.0.0, hoist-non-react-statics@^1.2.0:
+hoist-non-react-statics@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
 
@@ -2063,16 +2063,6 @@ mkdirp@0.5.1, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
-
-mobx-react@^4.0.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-4.1.0.tgz#0b4927a8c4457dbb296c512693acdf9073d9afc7"
-  dependencies:
-    hoist-non-react-statics "^1.2.0"
-
-mobx@^3.0.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/mobx/-/mobx-3.1.0.tgz#e5f15b475efdd1eea1f5c43a0afccde6e6f322ee"
 
 mocha@^3.1.2:
   version "3.2.0"

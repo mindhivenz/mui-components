@@ -1,11 +1,11 @@
-import { observer } from 'mobx-react'
 import React from 'react'
+import { observer } from 'mobx-react'
 import CircularProgress from 'material-ui/CircularProgress'
 import { app } from '@mindhive/di'
 import compose from 'recompose/compose'
 
-import { Icon } from './Icon'
-import withStyles from './theme/withStyles'
+import { Icon } from '../Icon'
+import withStyles from '../theme/withStyles'
 
 
 const OFFLINE_FLASH_SECONDS = 1.0
@@ -31,6 +31,7 @@ const ConnectionStatus = ({
   prepareStyles,
   theme: ignoreTheme,
   size: ignoreSize,
+  style: ignoreStyle,
   ...props,
 }) =>
   connectionDomain.viewerWaitingTooLong ?
@@ -53,19 +54,24 @@ const ConnectionStatus = ({
 
 const mapThemeToStyles = (
   { spacing },
-  { size = spacing.iconSize },
+  { size = spacing.iconSize, style = {} },
 ) => ({
   placeholder: {
     width: size,
     height: size,
     display: 'inline-block',
+    ...style,
   },
   iconProps: {
-    fontSize: size,
+    style: {
+      fontSize: size,
+      ...style,
+    },
   },
   circularProgressProps: {
     size,
-    thickness: 2.5,
+    thickness: size / 11,
+    style,
   },
 })
 
