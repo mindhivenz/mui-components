@@ -43,10 +43,7 @@ const dimensions = {
   contentMaxWidthNarrow: 640,
 }
 
-
 export const createTheme = (isMobile, baseTheme, calcComponentsStyles) => {
-
-  // console.log(baseTheme.description.label)
 
   const baseZIndex = {
     transition: 500,

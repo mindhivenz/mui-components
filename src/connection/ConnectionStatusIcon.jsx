@@ -14,43 +14,70 @@ const flashOn = (date) =>
   (Math.floor(date.getTime() / 1000 / OFFLINE_FLASH_SECONDS) % 2) === 0
 
 const FlashOffline = observer(({
-  inject: { connectionDomain, observableClock } = app(),
+  inject: { connectionStore, observableClock } = app(),
   children,
   ...props,
 }) =>
-  connectionDomain.connectionDown && flashOn(observableClock(1)) ?
+  connectionStore.connectionDown && flashOn(observableClock(1)) ?
     <Icon ligature="cloud_off" {...props} />
     :
     children
 )
 
+const onClick = () => {
+  const { connectionStore, systemMessageStore } = app()
+  if (connectionStore.connectionDown) {
+    systemMessageStore.addMessage({
+      message: 'You are offline, attempting to reconnect...',
+      actionLabel: 'Connect',
+      onAction: () => { connectionStore.reconnect() },
+      cancelWhen: () => ! connectionStore.connectionDown,
+    })
+  } else if (connectionStore.callInProgress) {
+    systemMessageStore.addMessage({
+      message: 'This is taking longer than usual, still trying...',
+      cancelWhen: () => ! connectionStore.callInProgress,
+    })
+  } else if (connectionStore.backgroundComms) {
+    systemMessageStore.addMessage({
+      message: 'Your work is being uploaded to the cloud',
+      cancelWhen: () => ! connectionStore.backgroundComms,
+    })
+  }
+}
+
 const ConnectionStatus = ({
-  inject: { connectionDomain } = app(),
+  inject: { connectionStore } = app(),
   reserveSpace,
   styles,
   prepareStyles,
   theme: ignoreTheme,
   size: ignoreSize,
   style: ignoreStyle,
-  ...props,
-}) =>
-  connectionDomain.viewerWaitingTooLong ?
+  ...otherProps,
+}) => {
+  const props = {
+    onClick,
+    ...otherProps,
+  }
+  return connectionStore.callInProgress ?
     <FlashOffline {...styles.iconProps} {...props}>
       <CircularProgress {...styles.circularProgressProps} {...props} />
     </FlashOffline>
     :
-    connectionDomain.callRunningTooLong ?
+    connectionStore.backgroundComms ?
       <FlashOffline {...styles.iconProps} {...props}>
         <Icon ligature="cloud_upload" {...styles.iconProps} {...props} />
       </FlashOffline>
       :
-      connectionDomain.connectionDown ?
+      connectionStore.connectionDown ?
         <Icon ligature="cloud_off" {...styles.iconProps} {...props} />
         :
         reserveSpace ?
-          <div style={prepareStyles(styles.placeholder)} />
+          <div style={prepareStyles(styles.placeholder)}/>
           :
           null
+}
 
 const mapThemeToStyles = (
   { spacing },
@@ -65,13 +92,17 @@ const mapThemeToStyles = (
   iconProps: {
     style: {
       fontSize: size,
+      cursor: 'pointer',
       ...style,
     },
   },
   circularProgressProps: {
     size,
     thickness: size / 11,
-    style,
+    style: {
+      cursor: 'pointer',
+      ...style,
+    },
   },
 })
 

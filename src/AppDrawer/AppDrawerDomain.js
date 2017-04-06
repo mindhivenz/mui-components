@@ -44,8 +44,6 @@ export class AppDrawerDomain extends DrawerDomain {
   }
 
   @computed get canFlyOut() {
-    console.log('canFlyOut')
-    console.log(this.docked)
     return this.docked
   }
 
