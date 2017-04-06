@@ -40,7 +40,13 @@ export class AppDrawerDomain extends DrawerDomain {
   }
 
   @computed get expanded() {
-    return this.wantExpanded
+    return ! this.canFlyOut || this.wantExpanded
+  }
+
+  @computed get canFlyOut() {
+    console.log('canFlyOut')
+    console.log(this.docked)
+    return this.docked
   }
 
   @computed get translateWidth() {

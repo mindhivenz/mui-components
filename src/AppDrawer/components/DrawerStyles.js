@@ -86,12 +86,13 @@ const mapThemeToStyles = ({
     },
     menuLabel: {
       container: {
+        position: 'fixed',
         display: 'inline-block',
       },
     },
     menuItemFlyOut: {
       container: {
-        position: 'absolute',
+        position: 'fixed',
         zIndex: 10000,
         ...drawer.menuItem,
         ...menuItemRootStyles,

@@ -19,7 +19,9 @@ const Container = ({
       onRequestChange={domain.setWantOpen}
     >
       {children}
+      {domain.canFlyOut &&
       <ToggleExpandDrawer />
+      }
     </MuiDrawer>
   </nav>
 

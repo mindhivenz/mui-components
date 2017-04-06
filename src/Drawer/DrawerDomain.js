@@ -5,7 +5,7 @@ import WindowSize from '../responsiveUi/WindowSize'
 
 const dockedWindowSize = WindowSize.MEDIUM
 
-export class DrawerDomain {
+export class  DrawerDomain {
 
   @observable wantDocked = true
   @observable wantOpen = null
