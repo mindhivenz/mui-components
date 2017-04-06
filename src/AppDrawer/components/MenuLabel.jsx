@@ -22,6 +22,7 @@ class MenuLabel extends React.Component {
       onTouchTap,
       icon,
       active,
+      menuItems,
     } = this.props
     const top = this.state.top
     return (
@@ -33,6 +34,7 @@ class MenuLabel extends React.Component {
               icon={icon}
               onTouchTap={onTouchTap}
               active={active}
+              menuItems={menuItems}
               top={top}
             />
           }

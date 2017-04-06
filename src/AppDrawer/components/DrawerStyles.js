@@ -103,6 +103,10 @@ const mapThemeToStyles = ({
         width: showing ? drawer.expandedWidth : drawer.narrowWidth,
         ...(active ? drawer.active : {}),
       },
+      subMenu: {
+        paddingLeft: showing ? 24 : 0,
+        zIndex: 1395,
+      },
       inner: {
       },
     },
