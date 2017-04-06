@@ -81,7 +81,10 @@ const ConnectionStatus = ({
 
 const mapThemeToStyles = (
   { spacing },
-  { size = spacing.iconSize, style = {} },
+  {
+    size = spacing.iconSize,
+    style = {},
+  },
 ) => ({
   placeholder: {
     width: size,
