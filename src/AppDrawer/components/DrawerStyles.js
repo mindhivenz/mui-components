@@ -93,7 +93,7 @@ const mapThemeToStyles = ({
     menuItemFlyOut: {
       container: {
         position: 'fixed',
-        zIndex: 10000,
+        zIndex: 1390,
         ...drawer.menuItem,
         ...menuItemRootStyles,
         overflow: 'hidden',
