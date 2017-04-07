@@ -10,23 +10,23 @@ export class  MenuItemDomain {
   constructor(
     menuItems,
   ) {
-    console.log('constructor', menuItems)
+    // console.log('constructor', menuItems)
     this.menuItems = menuItems
-    console.log('after constructor', this.menuItems)
+    // console.log('after constructor', this.menuItems)
   }
 
   @computed get hasMenu() {
-    console.log('hasMenu', this.menuItems)
+    // console.log('hasMenu', this.menuItems)
     return this.menuItems
   }
 
   @computed get menuLength() {
-    console.log('menuLength', this.menuItems ? this.menuItems.length : 0)
+    // console.log('menuLength', this.menuItems ? this.menuItems.length : 0)
     return this.menuItems ? this.menuItems.length : 0
   }
 
   @computed get open() {
-    console.log('open', this.hasMenu && this.wantOpen)
+    // console.log('open', this.hasMenu && this.wantOpen)
     return this.hasMenu && this.wantOpen
   }
 
@@ -35,8 +35,8 @@ export class  MenuItemDomain {
     if (this.open) {
       result += (this.menuLength * menuItemHeight)
     }
-    console.log('length', this.menuLength)
-    console.log('height', result)
+    // console.log('length', this.menuLength)
+    // console.log('height', result)
     return result
   }
 

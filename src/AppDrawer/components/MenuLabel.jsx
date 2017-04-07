@@ -10,7 +10,13 @@ class MenuLabel extends React.Component {
     top: 0,
   }
 
-  handleResize(e) {
+  handleResize = (e) => {
+    clearTimeout(this.deferTimer)
+    this.updateTop()
+    this.deferTimer = setTimeout(this.handleResize, 150)
+  }
+
+  updateTop = (e) => {
     this.setState({
       top: this.container.parentNode.getBoundingClientRect().top,
     })

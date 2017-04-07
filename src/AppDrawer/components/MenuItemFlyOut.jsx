@@ -26,7 +26,7 @@ const MenuItemFlyOut = ({
     style={Object.assign({}, styles.menuItemFlyOut.container, { top })}
     innerDivStyle={styles.menuItemFlyOut.inner}
   />
-  {subMenuDomain.open && subMenuDomain.menuItems.map((menuItem, index) => {
+  {subMenuDomain.hasMenu && subMenuDomain.menuItems.map((menuItem, index) => {
     console.log(menuItem)
       return (
         <MuiMenuItem
@@ -36,7 +36,14 @@ const MenuItemFlyOut = ({
             cancelHovered()
             menuItem.onTouchTap()
           }}
-          style={Object.assign({}, styles.menuItemFlyOut.container, styles.menuItemFlyOut.subMenu, { top: top + ((index + 1) * 48) })}
+          style={Object.assign({},
+            styles.menuItemFlyOut.container,
+            styles.menuItemFlyOut.subMenu,
+            {
+              opacity: subMenuDomain.open ? 1 : 0.01,
+              top: subMenuDomain.open ? top + ((index + 1) * 48) : top + 48,
+              height: subMenuDomain.open ? 48 : 0,
+          })}
           innerDivStyle={styles.menuItemFlyOut.inner}
         />
       )
