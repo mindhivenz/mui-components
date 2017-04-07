@@ -84,9 +84,13 @@ const mapThemeToStyles = ({
       ...(active ? drawer.activeIcon : {}),
       transform: `translate(3px, 3px) ${active ? drawer.activeIcon.transform : ''}`,
     },
+    subIcon: isActive => ({
+      ...drawer.menuItem,
+      ...(isActive ? drawer.activeIcon : {}),
+      transform: `translate(3px, 3px) ${isActive ? drawer.activeIcon.transform : ''}`,
+    }),
     menuLabel: {
       container: {
-        position: 'fixed',
         display: 'inline-block',
       },
     },
@@ -102,6 +106,10 @@ const mapThemeToStyles = ({
         transform,
         width: showing ? drawer.expandedWidth : drawer.narrowWidth,
         ...(active ? drawer.active : {}),
+      },
+      subMenu: {
+        paddingLeft: showing ? 24 : 0,
+        zIndex: 1395,
       },
       inner: {
       },
