@@ -73,6 +73,7 @@ const MenuItemFlyOut = ({
   {subMenuDomain.hasMenu && subMenuDomain.menuItems.map((menuItem, index) => {
       return (
         <SubMenuItem
+          key={index}
           index={index}
           menuItem={menuItem}
           subMenuDomain={subMenuDomain}
