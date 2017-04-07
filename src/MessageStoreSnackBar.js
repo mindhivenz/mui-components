@@ -19,7 +19,12 @@ const MessageStoreSnackBar = ({
     action={message && message.actionLabel}
     onActionTouchTap={message && message.onAction}
     open={message != null}
-    onRequestClose={() => message.stop()}
+    onRequestClose={(reason) => {
+      if (reason !== 'clickaway') {
+        message.stop()
+      }
+    }}
+    onClick={() => { message.stop() }}
     {...styles.snackbarProps}
   />
 
@@ -39,20 +44,28 @@ const mapThemeToStyles = (
 ) => ({
   snackbarProps: {
     bodyStyle: {
+      // To allow multiline, from here: https://github.com/callemall/material-ui/issues/3860
       height: 'auto',
       padding: `${spacing.desktopGutterLess}px ${spacing.desktopGutter}px`,
-      ...typography.body,
-      fontSize: 14,  // As per spec
       whiteSpace: 'pre-line',
+
+      ...typography.body,
+      fontSize: 14,  // As per spec (desktop is 14 rather than usual 13)
     },
     style: desktopDevice
       ? {
+        cursor: 'pointer',  // Since we click to close
+
+        // Alternative positioning (on desktop), as per spec and how Google usually does it.
+        // Also means when using a dark theme that it covers AppDrawer making it's appearance more obvious
         position: 'fixed',
         left: spacing.desktopGutter,
         bottom: spacing.desktopGutter,
         transform: open ? 'translate(0, 0)' : 'translate(0, ' + GUESS_MAX_HEIGHT + 'px)',  // Copied from MUI, x translate removed
       }
-      : {}
+      : {
+        cursor: 'pointer',
+      }
   },
 })
 
