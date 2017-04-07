@@ -84,6 +84,11 @@ const mapThemeToStyles = ({
       ...(active ? drawer.activeIcon : {}),
       transform: `translate(3px, 3px) ${active ? drawer.activeIcon.transform : ''}`,
     },
+    subIcon: isActive => ({
+      ...drawer.menuItem,
+      ...(isActive ? drawer.activeIcon : {}),
+      transform: `translate(3px, 3px) ${isActive ? drawer.activeIcon.transform : ''}`,
+    }),
     menuLabel: {
       container: {
         display: 'inline-block',

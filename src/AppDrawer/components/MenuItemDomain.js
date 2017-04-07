@@ -10,7 +10,7 @@ export class  MenuItemDomain {
   constructor(
     menuItems,
   ) {
-    // console.log('constructor', menuItems)
+    // console.log('SubMenu.constructor', menuItems)
     this.menuItems = menuItems
     // console.log('after constructor', this.menuItems)
   }
@@ -44,10 +44,12 @@ export class  MenuItemDomain {
     if ( this.hasMenu ) {
       this.wantOpen = !this.wantOpen
     }
+    // console.log('SubMenu.toggle', this.open)
   }
 
   onTouchTap = () => {
     this.toggle()
+    // console.log('SubMenu.onTouchTap', this.open)
   }
 
 }

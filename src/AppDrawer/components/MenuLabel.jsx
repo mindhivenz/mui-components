@@ -46,6 +46,7 @@ class MenuLabel extends React.Component {
               onTouchTap={onTouchTap}
               active={active}
               subMenuDomain={subMenuDomain}
+              drawerDomain={drawerDomain}
               top={top}
             />
           }

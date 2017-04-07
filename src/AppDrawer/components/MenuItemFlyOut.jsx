@@ -14,11 +14,13 @@ const MenuItemFlyOut = ({
   cancelHovered,
   icon,
   subMenuDomain,
+  drawerDomain,
 }) =>
 <div>
   <MuiMenuItem
     primaryText={primaryText}
     leftIcon={<Icon style={styles.icon} ligature={icon} />}
+    rightIcon={subMenuDomain.hasMenu && <Icon style={styles.icon} ligature="keyboard_arrow_down" />}
     onTouchTap={() => {
       cancelHovered()
       onTouchTap()
@@ -27,14 +29,13 @@ const MenuItemFlyOut = ({
     innerDivStyle={styles.menuItemFlyOut.inner}
   />
   {subMenuDomain.hasMenu && subMenuDomain.menuItems.map((menuItem, index) => {
-    console.log(menuItem)
       return (
         <MuiMenuItem
           primaryText={menuItem.primaryText}
-          leftIcon={<Icon style={styles.icon} ligature={menuItem.icon}/>}
+          leftIcon={<Icon style={styles.subIcon(menuItem.active)} ligature={menuItem.icon}/>}
           onTouchTap={() => {
-            cancelHovered()
-            menuItem.onTouchTap()
+            // cancelHovered()
+            drawerDomain.onItemTouch(menuItem.onTouchTap)
           }}
           style={Object.assign({},
             styles.menuItemFlyOut.container,

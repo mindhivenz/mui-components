@@ -26,7 +26,7 @@ const MenuItem = ({
         onTouchTap={() => { subMenuDomain.hasMenu ? subMenuDomain.onTouchTap() : domain.onItemTouch(onTouchTap) }}
         active={active}
         subMenuDomain={subMenuDomain}
-        drawerDomain="domain"
+        drawerDomain={domain}
       />
     }
     style={{ height: subMenuDomain.height }}
