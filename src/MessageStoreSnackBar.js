@@ -11,29 +11,38 @@ import withStyles from './theme/withStyles'
 const MessageStoreSnackBar = ({
   messageStore,
   styles,
+  message = messageStore.firstMessage,
 }) =>
   <Snackbar
-    // autoHideDuration={5000}
-    autoHideDuration={null}
-    message={messageStore.firstMessage ? messageStore.firstMessage.message : ''}
-    action={messageStore.firstMessage && messageStore.firstMessage.actionLabel}
-    onActionTouchTap={messageStore.firstMessage && messageStore.firstMessage.onAction}
-    open={messageStore.firstMessage != null}
-    onRequestClose={() => messageStore.dismissMessage(messageStore.firstMessage)}
+    autoHideDuration={5000}
+    message={message ? message.message : ''}
+    action={message && message.actionLabel}
+    onActionTouchTap={message && message.onAction}
+    open={message != null}
+    onRequestClose={() => message.stop()}
     {...styles.snackbarProps}
   />
 
-const mapThemeToStyles = ({
-  inject: { windowMetricsDomain } = app(),
-  desktopDevice = windowMetricsDomain.size.ordinal >= WindowSize.MEDIUM.ordinal,
-  typography,
-  spacing,
-}) => ({
+const GUESS_MAX_HEIGHT = 100  // Because we allow multiline
+
+const mapThemeToStyles = (
+  {
+    inject: { windowMetricsDomain } = app(),
+    desktopDevice = windowMetricsDomain.size.ordinal >= WindowSize.MEDIUM.ordinal,
+    typography,
+    spacing,
+  },
+  {
+    messageStore,
+    open = messageStore.firstMessage != null,
+  },
+) => ({
   snackbarProps: {
     bodyStyle: {
       height: 'auto',
       padding: `${spacing.desktopGutterLess}px ${spacing.desktopGutter}px`,
-      ...typography.body2,
+      ...typography.body,
+      fontSize: 14,  // As per spec
       whiteSpace: 'pre-line',
     },
     style: desktopDevice
@@ -41,10 +50,9 @@ const mapThemeToStyles = ({
         position: 'fixed',
         left: spacing.desktopGutter,
         bottom: spacing.desktopGutter,
-        transform: null,
+        transform: open ? 'translate(0, 0)' : 'translate(0, ' + GUESS_MAX_HEIGHT + 'px)',  // Copied from MUI, x translate removed
       }
       : {}
-
   },
 })
 

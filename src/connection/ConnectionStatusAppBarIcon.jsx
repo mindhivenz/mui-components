@@ -1,9 +1,10 @@
 import React from 'react'
 
-import { DEFAULT_SIZE } from './ConnectionStatusAppBarIcon'
 import ConnectionStatusIcon from './ConnectionStatusIcon'
 import withStyles from '../theme/withStyles'
 
+
+export const DEFAULT_SIZE = 32
 
 const ConnectionStatusFixedIcon = ({
   style = {},
@@ -14,7 +15,7 @@ const ConnectionStatusFixedIcon = ({
 }) =>
   <ConnectionStatusIcon
     style={{
-      ...styles.fixedInAppBar,
+      ...styles.appBarPositioning,
       ...style,
     }}
     size={size}
@@ -23,15 +24,13 @@ const ConnectionStatusFixedIcon = ({
   />
 
 const mapThemeToStyles = (
-  { appBar, zIndex },
+  { appBar, spacing },
   { size = DEFAULT_SIZE },
 ) => ({
   defaultColor: appBar.textColor,
-  fixedInAppBar: {
-    zIndex: zIndex.appBar + 1,
-    position: 'fixed',
-    top: (appBar.height - size) / 2,
-    right: ((appBar.height - size) / 2) * 1.5,  // because the icons tend to be wider than they are high
+  appBarPositioning: {
+    paddingTop: ((appBar.height - DEFAULT_SIZE) / 2) - 8,
+    paddingRight: spacing.desktopGutter,
   },
 })
 

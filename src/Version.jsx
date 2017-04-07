@@ -6,17 +6,16 @@ import withStyles from './theme/withStyles'
 
 
 const Version = ({
+  inject: { versionStore } = app(),
   showInternalInfo,
-
-  inject: { versionDomain } = app(),
   styles,
   prepareStyles,
 }) =>
   <div style={prepareStyles(styles)}>
-    <div>&copy; Mindhive {versionDomain.copyrightYear}</div>
-    <div>Version: {versionDomain.version}</div>
+    <div>&copy; Mindhive {versionStore.copyrightYear}</div>
+    <div>Version: {versionStore.version}</div>
     {showInternalInfo &&
-      <div>{versionDomain.releaseOn} by {versionDomain.releaseBy}</div>
+      <div>{versionStore.releaseOn} by {versionStore.releaseBy}</div>
     }
   </div>
 
