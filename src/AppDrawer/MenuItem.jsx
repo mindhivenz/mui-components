@@ -39,7 +39,6 @@ MenuItem.contextTypes = {
 export default withStore({
   storeClass: MenuItemDomain,
   propName: 'subMenuDomain',
-  mapPropsToArgs: ({ menuItems }) => menuItems,
 })(
   injectStylesSheet(
     observer(

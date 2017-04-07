@@ -7,12 +7,10 @@ export class  MenuItemDomain {
   @observable wantOpen = false
   @observable menuItems = null
 
-  constructor(
-    menuItems,
-  ) {
-    // console.log('SubMenu.constructor', menuItems)
+  @action update({ menuItems }) {
+    // console.log('SubMenu.update', menuItems)
     this.menuItems = menuItems
-    // console.log('after constructor', this.menuItems)
+    // console.log('after update', this.menuItems)
   }
 
   @computed get hasMenu() {
