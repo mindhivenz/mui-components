@@ -13,7 +13,7 @@ const MenuItemFlyOut = ({
   primaryText,
   cancelHovered,
   icon,
-  menuItems,
+  subMenuDomain,
 }) =>
 <div>
   <MuiMenuItem
@@ -26,7 +26,7 @@ const MenuItemFlyOut = ({
     style={Object.assign({}, styles.menuItemFlyOut.container, { top })}
     innerDivStyle={styles.menuItemFlyOut.inner}
   />
-  {menuItems.map((menuItem, index) => {
+  {subMenuDomain.open && subMenuDomain.menuItems.map((menuItem, index) => {
     console.log(menuItem)
       return (
         <MuiMenuItem

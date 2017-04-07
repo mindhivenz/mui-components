@@ -10,10 +10,14 @@ class MenuLabel extends React.Component {
     top: 0,
   }
 
-  componentDidMount() {
+  handleResize(e) {
     this.setState({
       top: this.container.parentNode.getBoundingClientRect().top,
     })
+  }
+
+  componentDidMount() {
+    this.handleResize()
   }
 
   render = () => {
@@ -22,7 +26,8 @@ class MenuLabel extends React.Component {
       onTouchTap,
       icon,
       active,
-      menuItems,
+      subMenuDomain,
+      drawerDomain,
     } = this.props
     const top = this.state.top
     return (
@@ -34,7 +39,7 @@ class MenuLabel extends React.Component {
               icon={icon}
               onTouchTap={onTouchTap}
               active={active}
-              menuItems={menuItems}
+              subMenuDomain={subMenuDomain}
               top={top}
             />
           }

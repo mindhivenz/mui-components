@@ -1,6 +1,8 @@
 import React from 'react'
 import MuiMenuItem from 'material-ui/MenuItem'
 
+import { observer } from 'mobx-react'
+
 import withStore from '@mindhive/mobx/withStore'
 
 import { injectStylesSheet } from './components/DrawerStyles'
@@ -12,7 +14,7 @@ const MenuItem = ({
   icon,
   primaryText,
   active,
-  menuItems = [],
+  subMenuDomain,
 }, {
   domain,
 }) =>
@@ -21,12 +23,13 @@ const MenuItem = ({
       <MenuLabel
         primaryText={primaryText}
         icon={icon}
-        onTouchTap={() => { domain.onItemTouch(onTouchTap) }}
+        onTouchTap={() => { subMenuDomain.hasMenu ? subMenuDomain.onTouchTap() : domain.onItemTouch(onTouchTap) }}
         active={active}
-        menuItems={menuItems}
+        subMenuDomain={subMenuDomain}
+        drawerDomain="domain"
       />
     }
-    style={{ height: 48 + (menuItems.length * 48) }}
+    style={{ height: subMenuDomain.height }}
   />
 
 MenuItem.contextTypes = {
@@ -36,7 +39,11 @@ MenuItem.contextTypes = {
 export default withStore({
   storeClass: MenuItemDomain,
   propName: 'subMenuDomain',
-  mapPropsToArgs: ({ users }) => users,
+  mapPropsToArgs: ({ menuItems }) => menuItems,
 })(
-  injectStylesSheet(MenuItem)
+  injectStylesSheet(
+    observer(
+      MenuItem
+    )
+  )
 )

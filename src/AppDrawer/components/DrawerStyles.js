@@ -86,7 +86,6 @@ const mapThemeToStyles = ({
     },
     menuLabel: {
       container: {
-        position: 'fixed',
         display: 'inline-block',
       },
     },

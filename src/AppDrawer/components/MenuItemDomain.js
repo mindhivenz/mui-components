@@ -1,23 +1,43 @@
 import { observable, computed, action } from 'mobx'
 
+const menuItemHeight = 48
 
 export class  MenuItemDomain {
 
-  @observable wantOpen = null
+  @observable wantOpen = false
   @observable menuItems = null
 
-  constructor({
-    menuItems = null,
-  }) {
+  constructor(
+    menuItems,
+  ) {
+    console.log('constructor', menuItems)
     this.menuItems = menuItems
+    console.log('after constructor', this.menuItems)
   }
 
   @computed get hasMenu() {
-    return this.menuItems !== null
+    console.log('hasMenu', this.menuItems)
+    return this.menuItems
+  }
+
+  @computed get menuLength() {
+    console.log('menuLength', this.menuItems ? this.menuItems.length : 0)
+    return this.menuItems ? this.menuItems.length : 0
   }
 
   @computed get open() {
+    console.log('open', this.hasMenu && this.wantOpen)
     return this.hasMenu && this.wantOpen
+  }
+
+  @computed get height() {
+    var result = menuItemHeight
+    if (this.open) {
+      result += (this.menuLength * menuItemHeight)
+    }
+    console.log('length', this.menuLength)
+    console.log('height', result)
+    return result
   }
 
   @action toggle = () => {
