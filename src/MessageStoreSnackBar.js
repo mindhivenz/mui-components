@@ -54,6 +54,8 @@ const mapThemeToStyles = (
     },
     style: desktopDevice
       ? {
+        cursor: 'pointer',  // Since we click to close
+
         // Alternative positioning (on desktop), as per spec and how Google usually does it.
         // Also means when using a dark theme that it covers AppDrawer making it's appearance more obvious
         position: 'fixed',
@@ -61,7 +63,9 @@ const mapThemeToStyles = (
         bottom: spacing.desktopGutter,
         transform: open ? 'translate(0, 0)' : 'translate(0, ' + GUESS_MAX_HEIGHT + 'px)',  // Copied from MUI, x translate removed
       }
-      : {}
+      : {
+        cursor: 'pointer',
+      }
   },
 })
 
