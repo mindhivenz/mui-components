@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import MuiDrawer from 'material-ui/Drawer'
 import { observer } from 'mobx-react'
 

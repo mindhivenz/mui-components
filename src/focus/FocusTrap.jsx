@@ -1,16 +1,9 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 
 export const TAB = 13
 export const ENTER = 13
 
 class FocusTrap extends Component {
-
-  // propTypes: {
-  //   onFocus: PropTypes.func,
-  //   onBlur: PropTypes.func,
-  //   component: PropTypes.any,
-  //   children: PropTypes.node
-  // }
 
   render() {
     const {

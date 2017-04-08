@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import RenderToLayer from 'material-ui/internal/RenderToLayer'
 
 import { injectStylesSheet } from './DrawerStyles'
@@ -59,7 +60,7 @@ class MenuLabel extends React.Component {
 }
 
 MenuLabel.contextTypes = {
-  domain: React.PropTypes.object.isRequired,
+  domain: PropTypes.object.isRequired,
 }
 
 export default injectStylesSheet(MenuLabel)

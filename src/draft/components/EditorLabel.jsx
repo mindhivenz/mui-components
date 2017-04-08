@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import transitions from 'material-ui/styles/transitions'
 import withStyles from '../../theme/withStyles'
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Container from './components/Container'
 
 class Drawer extends React.Component {
@@ -17,7 +18,7 @@ class Drawer extends React.Component {
 }
 
 Drawer.childContextTypes = {
-  domain: React.PropTypes.object,
+  domain: PropTypes.object,
 }
 
 export default Drawer

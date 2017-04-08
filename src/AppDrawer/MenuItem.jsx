@@ -1,5 +1,6 @@
 import React from 'react'
 import MuiMenuItem from 'material-ui/MenuItem'
+import PropTypes from 'prop-types'
 
 import { observer } from 'mobx-react'
 
@@ -33,7 +34,7 @@ const MenuItem = ({
   />
 
 MenuItem.contextTypes = {
-  domain: React.PropTypes.object.isRequired,
+  domain: PropTypes.object.isRequired,
 }
 
 export default withStore({

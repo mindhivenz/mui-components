@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import MuiDrawer from 'material-ui/Drawer'
 
@@ -26,7 +27,7 @@ const Container = ({
   </nav>
 
 Container.contextTypes = {
-  domain: React.PropTypes.object.isRequired,
+  domain: PropTypes.object.isRequired,
 }
 
 export default injectStylesSheet(Container)

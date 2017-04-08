@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import MuiMenuItem from 'material-ui/MenuItem'
 
 import IconButton from 'material-ui/IconButton'
@@ -22,7 +23,7 @@ const ToggleExpandDrawer = ({
   />
 
 ToggleExpandDrawer.contextTypes = {
-  domain: React.PropTypes.object.isRequired,
+  domain: PropTypes.object.isRequired,
 }
 
 export default injectStylesSheet(ToggleExpandDrawer)
