@@ -109,7 +109,7 @@ const mapThemeToStyles = ({
       },
       subMenu: {
         paddingLeft: showing ? 24 : 0,
-        zIndex: 1395,
+        zIndex: 1390,
       },
       inner: {
       },
