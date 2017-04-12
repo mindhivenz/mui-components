@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {Map, GoogleApiWrapper} from 'google-maps-react'
 
+const GOOGLE_MAPS_API_KEY = 'AIzaSyD6D8LySpdAgnvug3yiGUd94ZiGbi3SFqY'
+
 class Container extends Component {
 
   render() {
@@ -33,7 +35,7 @@ class Container extends Component {
 }
 
 export default GoogleApiWrapper({
- apiKey: 'AIzaSyD6D8LySpdAgnvug3yiGUd94ZiGbi3SFqY',
+ apiKey: GOOGLE_MAPS_API_KEY,
  libraries: ['places','visualization'],
  version: 3
 })(Container)
