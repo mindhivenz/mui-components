@@ -18,7 +18,7 @@ class Container extends Component {
       zoom=13,
       google,
       loaded,
-      interactive,
+      interactive = true,
       children,
     } = this.props
 
