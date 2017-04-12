@@ -4,46 +4,43 @@ import { app } from '@mindhive/di'
 
 import withStyles from '../../theme/withStyles'
 
-class Container extends Component {
+const Container = ({
+  zoom=13,
+  interactive = true,
+  centerCoordinates: [lat, lng] = [null, null],
 
-  render() {
-    const {
-      zoom=13,
-      interactive = true,
+  google,
+  loaded,
 
-      styles,
-      prepareStyles,
-      centerCoordinates: [lat, lng] = [null, null],
-      google,
-      loaded,
-      children,
-    } = this.props
-
-    const centerCoordinates = {lat, lng}
-    if (!loaded) {
-      return <div>Loading...</div>
-    }
-    return (
-      <div>
-        <Map google={google}
-             style={styles.map}
-             className={'map'}
-             zoom={zoom}
-             containerStyle={styles.container}
-             initialCenter={centerCoordinates}
-             center={centerCoordinates}
-             centerAroundCurrentLocation={false}
-             disableDefaultUI={!interactive}
-             //onClick={this.onMapClicked}
-             //onDragend={this.onMapMoved}
-        >
-          { children }
-        </Map>
-        {!interactive && <div style={prepareStyles(styles.overlay)}/>}
-      </div>
-    )
+  styles,
+  prepareStyles,
+  children,
+}) => {
+  const centerCoordinates = {lat, lng}
+  if (!loaded) {
+    return <div>Loading...</div>
   }
+  return (
+    <div>
+      <Map google={google}
+           style={styles.map}
+           className={'map'}
+           zoom={zoom}
+           containerStyle={styles.container}
+           initialCenter={centerCoordinates}
+           center={centerCoordinates}
+           centerAroundCurrentLocation={false}
+           disableDefaultUI={!interactive}
+        //onClick={this.onMapClicked}
+        //onDragend={this.onMapMoved}
+      >
+        { children }
+      </Map>
+      {!interactive && <div style={prepareStyles(styles.overlay)}/>}
+    </div>
+  )
 }
+
 
 
 const mapThemeToStyles = ({

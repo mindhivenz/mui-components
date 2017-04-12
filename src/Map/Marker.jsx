@@ -1,15 +1,22 @@
 import React from 'react'
-import {Marker as GMRMarker} from 'google-maps-react'
+import {BaseMarker} from './components/BaseMarker'
 
-const Marker = ({
-  coordinates: [lat, lng] = [null, null],
-  name,
-  ...other,
-}) =>
-  <GMRMarker
-    name={name}
-    position={{lat, lng}}
-    {...other}
-  />
+class Marker extends BaseMarker {
+
+  createMarker(map, google, position) {
+    const {
+      icon,
+      label,
+      draggable
+    } = this.props
+    const pref = {
+      map: map,
+      position: position,
+      icon: icon,
+      label: label,
+      draggable: draggable
+    }
+    return new google.maps.Marker(pref)  }
+}
 
 export default Marker
