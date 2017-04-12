@@ -8,34 +8,30 @@ class Container extends Component {
 
   render() {
     const {
+      zoom=13,
+      interactive = true,
+
       styles,
       prepareStyles,
-      windowSize={
-        width: '100%',
-        height: '100%'
-      },
-      centerCoordinates,
-      zoom=13,
+      centerCoordinates: [lat, lng] = [null, null],
       google,
       loaded,
-      interactive = true,
       children,
     } = this.props
 
-    const [lat, lng] = centerCoordinates || [null, null]
-
+    const centerCoordinates = {lat, lng}
     if (!loaded) {
       return <div>Loading...</div>
     }
     return (
       <div>
         <Map google={google}
-             style={{width: '100%', height: '100%', position: 'relative'}}
+             style={styles.map}
              className={'map'}
              zoom={zoom}
-             containerStyle={windowSize}
-             initialCenter={{lat, lng}}
-             center={{lat, lng}}
+             containerStyle={styles.container}
+             initialCenter={centerCoordinates}
+             center={centerCoordinates}
              centerAroundCurrentLocation={false}
              disableDefaultUI={!interactive}
              //onClick={this.onMapClicked}
@@ -51,32 +47,36 @@ class Container extends Component {
 
 
 const mapThemeToStyles = ({
-  dashboardTile,
 }, {
-  windowSize={
-    width: '100%',
-    height: '100%'
-  },
+  containerWidth,
+  containerHeight,
 }) => ({
+  container: {
+    width: containerWidth ? `${containerWidth}px` : '100%',
+    height: containerHeight ? `${containerHeight}px` : '100%',
+  },
+  map: {
+    width: '100%',
+    height: '100%',
+    position: 'relative'
+  },
   overlay: {
     background: 'transparent',
     position: 'relative',
-    ...windowSize,
-  }
+  },
 })
 
 export default withStyles(mapThemeToStyles)(({
   inject: { Meteor } = app(),
   ...other,
 }) => {
-  console.log(other)
-  const Wrapped = GoogleApiWrapper({
+  const WithMapsApi = GoogleApiWrapper({
     apiKey: Meteor.settings.public.googleMapsApiKey,
     libraries: ['places','visualization'],
     version: 3
   })(Container)
 
   return (
-    <Wrapped {...other} />
+    <WithMapsApi {...other} />
   )
 })
