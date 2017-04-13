@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import {Map, GoogleApiWrapper} from 'google-maps-react'
 import { app } from '@mindhive/di'
 
+import { geoPointToMapPoint } from '../lib/GeoJSON'
+
 import withStyles from '../../theme/withStyles'
 
 const Container = ({
   zoom=13,
   interactive = true,
-  centerCoordinates: [lat, lng] = [null, null],
+  centerPoint,
 
   google,
   loaded,
@@ -16,7 +18,7 @@ const Container = ({
   prepareStyles,
   children,
 }) => {
-  const centerCoordinates = {lat, lng}
+  const initialCenter = centerPoint ? geoPointToMapPoint(centerPoint) : {lat: -36.844389199999995, lng: 174.7676005}
   if (!loaded) {
     return <div>Loading...</div>
   }
@@ -27,8 +29,7 @@ const Container = ({
            className={'map'}
            zoom={zoom}
            containerStyle={styles.container}
-           initialCenter={centerCoordinates}
-           center={centerCoordinates}
+           initialCenter={initialCenter}
            centerAroundCurrentLocation={false}
            disableDefaultUI={!interactive}
         //onClick={this.onMapClicked}

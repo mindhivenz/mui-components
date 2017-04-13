@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
 import { camelize } from '../lib/Strings'
+import { geoPointToMapPoint } from '../lib/GeoJSON'
+
 const evtNames = ['click', 'mouseover', 'recenter', 'dragend']
 
 const wrappedPromise = function() {
@@ -50,7 +52,7 @@ export class BaseMarker extends Component {
       return null
     }
 
-    let position = coordinates ? {lat: coordinates[0], lng: coordinates[1]} : mapCenter
+    let position = coordinates ? geoPointToMapPoint(coordinates) : mapCenter
     if (!(position instanceof google.maps.LatLng)) {
       position = new google.maps.LatLng(position.lat, position.lng)
     }
@@ -66,6 +68,7 @@ export class BaseMarker extends Component {
 
   createMarker(map, google, position) {
     // Abstract
+    console.error('"createMarker" not implemented in super')
   }
 
   getMarker() {
