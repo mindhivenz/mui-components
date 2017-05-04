@@ -105,6 +105,8 @@ const mapThemeToStyles = ({
     padding: `0 ${spacing.desktopGutter}px`,
     width: contentWidth || 'auto',
     maxWidth: contentWidth || themeMaxWidth,
+    transition: transitions.cubicAll,
+
   },
 })
 
