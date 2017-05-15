@@ -73,7 +73,6 @@ const mapThemeToStyles = ({
     width: `calc(100% - ${layoutDomain.leftOffset}px)`,
     backgroundColor: containerBackgroundColor,
     ...style,
-
   },
   pageHeader: {
     root: {

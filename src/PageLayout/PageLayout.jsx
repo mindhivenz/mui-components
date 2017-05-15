@@ -11,7 +11,7 @@ const PageLayout = ({
   styles,         // applyStyles
   prepareStyles,  // applyStyles
 }) =>
-  <div style={styles.container}>
+  <div style={prepareStyles(styles.container)}>
     <PageHeader title={title} description={description} />
     <div style={prepareStyles(styles.pageContent)}>
       {children}
