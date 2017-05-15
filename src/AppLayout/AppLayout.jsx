@@ -19,10 +19,10 @@ const AppLayout = (
     styles,
   }
 ) =>
-  <div style={prepareStyles(styles.appContainer)}>
+  <div id="AppLayout.appContainer" style={prepareStyles(styles.appContainer)}>
     {/* <ConfirmDialog />*/}
     {AppBar}
-    <div style={prepareStyles(styles.content)}>
+    <div id="AppLayout.content" style={prepareStyles(styles.content)}>
       {/* <ConnectionStatus /> */}
       {children}
     </div>
@@ -60,7 +60,7 @@ const mapThemeToStyles = (
     width: '100%',
     height: '100%',
     overflowY: 'auto',
-    paddingTop: spacing.desktopKeylineIncrement,
+    paddingTop: layoutDomain.topOffset,
     transition: `${transitions.easeOut(null, 'padding-left', null)},
                   ${transitions.easeOut(null, 'width', null)}`,
     paddingLeft: layoutDomain.leftOffset

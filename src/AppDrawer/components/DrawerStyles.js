@@ -51,7 +51,7 @@ const mapThemeToStyles = ({
     menuItemHovered,
     hideWhenExpanded,
     hideWhenNarrow,
-    inject: { navDrawerDomain: domain } = app(),
+    inject: { navDrawerDomain: domain, layoutDomain } = app(),
   }
 ) => {
   const menuItemRootStyles = {
@@ -60,6 +60,7 @@ const mapThemeToStyles = ({
   const showing = domain.expanded || hovered
   const translateDistance = domain.expanded ? drawer.expandedWidth : drawer.narrowWidth
   const transform = domain.docked || domain.open ? 'translate(0, 0)' : `translate(-${translateDistance}px, 0)`
+  const topOffset = layoutDomain.topOffset
   return ({
     expandVisible: {
       transition: transitions.cubicAll,
@@ -71,8 +72,8 @@ const mapThemeToStyles = ({
       top: 0,
       width: domain.expanded ? drawer.expandedWidth : drawer.narrowWidth,
       backgroundColor: drawer.backgroundColor,
-      height: `calc(100% - ${appBar.height}px)`,
-      marginTop: appBar.height,
+      height: `calc(100% - ${topOffset}px)`,
+      marginTop: topOffset,
       // left: domain.open || domain.docked ? 0 : -drawer.expandedWidth,
       transition: transitions.cubicAll,
       transform,
