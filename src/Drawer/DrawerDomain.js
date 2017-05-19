@@ -20,6 +20,8 @@ export class  DrawerDomain {
   }
 
   @computed get canDock() {
+    // console.log('DrawerDomain.canDock')
+    // console.log('DrawerDomain.allowDocked', this.allowDocked)
     return this.allowDocked && this.windowMetricsDomain.size.ordinal >= dockedWindowSize.ordinal
   }
 
