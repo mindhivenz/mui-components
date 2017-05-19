@@ -27,6 +27,10 @@ class MenuLabel extends React.Component {
     this.handleResize()
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.deferTimer)
+  }
+
   render = () => {
     const {
       primaryText,
