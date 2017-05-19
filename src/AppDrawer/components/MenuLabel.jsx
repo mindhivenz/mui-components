@@ -24,7 +24,9 @@ class MenuLabel extends React.Component {
   }
 
   componentDidMount() {
-    this.handleResize()
+    if (!this.props.drawerDomain.isFixedWidth) {
+      this.handleResize()
+    }
   }
 
   componentWillUnmount() {

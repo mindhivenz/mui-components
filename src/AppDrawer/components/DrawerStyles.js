@@ -97,13 +97,13 @@ const mapThemeToStyles = ({
     },
     menuItemFlyOut: {
       container: {
-        position: 'fixed',
+        position: domain.isFixedWidth ? 'relative' : 'fixed',
         zIndex: 1390,
         ...drawer.menuItem,
         ...menuItemRootStyles,
         overflow: 'hidden',
         left: 0,
-        transition: transitions.cubicAll,
+        transition: `${transitions.cubicAll}, top 0s`,
         transform,
         width: showing ? drawer.expandedWidth : drawer.narrowWidth,
         ...(active ? drawer.active : {}),

@@ -39,6 +39,10 @@ export class AppDrawerDomain extends DrawerDomain {
     }
   }
 
+  @computed get isFixedWidth() {
+    return !this.docked || this.wantExpanded
+  }
+
   @computed get expanded() {
     return ! this.canFlyOut || this.wantExpanded
   }

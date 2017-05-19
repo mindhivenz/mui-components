@@ -8,30 +8,42 @@ import withStore from '@mindhive/mobx/withStore'
 
 import { injectStylesSheet } from './components/DrawerStyles'
 import MenuLabel from './components/MenuLabel'
+import MenuItemFlyOut from './components/MenuItemFlyOut'
 import { MenuItemDomain } from './components/MenuItemDomain'
 
-const MenuItem = ({
-  onTouchTap,
-  icon,
-  primaryText,
-  active,
-  subMenuDomain,
-}, {
-  domain,
-}) =>
-  <MuiMenuItem
-    primaryText={
-      <MenuLabel
-        primaryText={primaryText}
-        icon={icon}
-        onTouchTap={() => { subMenuDomain.hasMenu ? subMenuDomain.onTouchTap() : domain.onItemTouch(onTouchTap) }}
-        active={active}
-        subMenuDomain={subMenuDomain}
-        drawerDomain={domain}
+const MenuItem = (
+  {
+    onTouchTap,
+    icon,
+    primaryText,
+    active,
+    subMenuDomain,
+  }, {
+    domain,
+  }) => {
+  const params = {
+    primaryText,
+    icon,
+    onTouchTap: () => {
+      subMenuDomain.hasMenu ? subMenuDomain.onTouchTap() : domain.onItemTouch(onTouchTap)
+    },
+    active,
+    subMenuDomain,
+    drawerDomain: domain
+
+  }
+  return (
+    domain.isFixedWidth ?
+      <MenuItemFlyOut {...params} />
+      :
+      <MuiMenuItem
+        primaryText={
+          <MenuLabel {...params} />
+        }
+        style={{ height: subMenuDomain.height }}
       />
-    }
-    style={{ height: subMenuDomain.height }}
-  />
+  )
+}
 
 MenuItem.contextTypes = {
   domain: PropTypes.object.isRequired,
