@@ -10,7 +10,7 @@ export class AppLayoutDomain {
   @observable
   navDrawerDomain = null
 
-  timer
+  _fullScreenTimeout
 
   constructor(navDrawerDomain) {
     this.init({navDrawerDomain})
@@ -36,13 +36,13 @@ export class AppLayoutDomain {
   }
 
   _setFullScreenTimer = (fullScreenPage) => {
-    clearTimeout(this.timer)
-    this.timer = setTimeout(
+    clearTimeout(this._fullScreenTimeout)
+    this._fullScreenTimeout = setTimeout(
       () => {
         // console.log('TIMER')
         this._setFullScreen(fullScreenPage)
-        this.was = undefined
-        this.timer = undefined
+        this._fullScreenWas = undefined
+        this._fullScreenTimeout = undefined
       },
       1
     )
@@ -50,15 +50,15 @@ export class AppLayoutDomain {
 
   setFullScreenPage = (fullScreenPage, debounce=false) => {
     // console.log('isTimer', this.timer)
-    if (!debounce || this.was === fullScreenPage) {
-      clearTimeout(this.timer)
+    if (!debounce || this._fullScreenWas === fullScreenPage) {
+      clearTimeout(this._fullScreenTimeout)
       this._setFullScreen(fullScreenPage)
-      this.was = undefined
-      this.timer = undefined
-    } else if (!this.timer && !this.was) {
-      this.was = this.isFullScreenPage
+      this._fullScreenWas = undefined
+      this._fullScreenTimeout = undefined
+    } else if (!this._fullScreenTimeout && !this._fullScreenWas) {
+      this._fullScreenWas = this.isFullScreenPage
       this._setFullScreenTimer(fullScreenPage)
-    } else if (this.timer && this.was !== fullScreenPage) {
+    } else if (this._fullScreenTimeout && this._fullScreenWas !== fullScreenPage) {
       this._setFullScreenTimer(fullScreenPage)
     }
   }
