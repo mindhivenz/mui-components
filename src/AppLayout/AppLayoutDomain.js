@@ -44,7 +44,7 @@ export class AppLayoutDomain {
         this._fullScreenWas = undefined
         this._fullScreenTimeout = undefined
       },
-      1
+      10
     )
   }
 
