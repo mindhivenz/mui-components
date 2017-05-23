@@ -1,4 +1,6 @@
-import measureIt from '../measureIt'
+import compose from 'recompose/compose'
+
+import dimensions from '../dimensions'
 import withStyles from '../theme/withStyles'
 
 const scaledComponent = (Component) => {
@@ -23,11 +25,10 @@ const scaledComponent = (Component) => {
     })
   }
 
-  return measureIt({ fill: false })(
-    withStyles(mapThemeToStyles)(
-      Component
-    )
-  )
+  return compose(
+    dimensions,
+    withStyles(mapThemeToStyles),
+  )(Component)
 
 }
 
