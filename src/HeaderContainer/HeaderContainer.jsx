@@ -13,9 +13,11 @@ const HeaderContainer = ({
   styles,
   zDepth = 2,
   maxWidth = 350,
+  headerStyle = {},
+  backgroundStyle = {},
 }) =>
-  <Paper zDepth={zDepth} style={{ ...styles.container, maxWidth }}>
-    <HeaderBar disabled={disabled}>{title}</HeaderBar>
+  <Paper zDepth={zDepth} style={{ ...styles.container, maxWidth, ...backgroundStyle }}>
+    <HeaderBar disabled={disabled} style={headerStyle}>{title}</HeaderBar>
     <div style={styles.content}>
       {children}
     </div>

@@ -21,11 +21,13 @@ const mapThemeToStyles = ({
   },
 }, {
   disabled,
+  style = {},
 }) => ({
   padding: `${spacing.desktopGutterLess}px ${spacing.desktopGutter}px`,
   fontSize: dialog.titleFontSize,
   color: disabled ? disabledColor : color,
   backgroundColor: disabled ? disabledBackgroundColor : backgroundColor,
+  ...style,
 })
 
 
