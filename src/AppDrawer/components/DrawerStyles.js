@@ -44,6 +44,9 @@ const mapThemeToStyles = ({
   colorManipulator,
   appBar,
   drawer,
+  appDrawer = {
+    menuItem: {},
+  },
 },
   {
     active,
@@ -54,8 +57,14 @@ const mapThemeToStyles = ({
     inject: { navDrawerDomain: domain, layoutDomain } = app(),
   }
 ) => {
+  const drawerBackgroundColor = appDrawer.backgroundColor || drawer.backgroundColor
+  const hoveredBackgroundColor = appDrawer.hoveredBackgroundColor || colorManipulator.darken(drawerBackgroundColor, 0.1)
+  const drawerMenuItem =  Object.assign({}, drawer.menuItem, appDrawer.menuItem)
+  const drawerActiveIcon =  Object.assign({}, drawer.activeIcon, appDrawer.activeIcon || {})
+  const drawerActiveMenuItem =  Object.assign({}, drawer.active, appDrawer.active || {})
+
   const menuItemRootStyles = {
-    backgroundColor: hovered ? colorManipulator.darken(drawer.backgroundColor, 0.1) : drawer.backgroundColor,
+    backgroundColor: hovered ? hoveredBackgroundColor : appDrawer.menuItem.backgroundColor || drawerBackgroundColor,
   }
   const showing = domain.expanded || hovered
   const translateDistance = domain.expanded ? drawer.expandedWidth : drawer.narrowWidth
@@ -71,7 +80,7 @@ const mapThemeToStyles = ({
       left: 0,
       top: 0,
       width: domain.expanded ? drawer.expandedWidth : drawer.narrowWidth,
-      backgroundColor: drawer.backgroundColor,
+      backgroundColor: drawerBackgroundColor,
       height: `calc(100% - ${topOffset}px)`,
       marginTop: topOffset,
       // left: domain.open || domain.docked ? 0 : -drawer.expandedWidth,
@@ -81,14 +90,14 @@ const mapThemeToStyles = ({
     divider: drawer.divider,
     menuItem: menuItemRootStyles,
     icon: {
-      ...drawer.menuItem,
-      ...(active ? drawer.activeIcon : {}),
-      transform: `translate(3px, 3px) ${active ? drawer.activeIcon.transform : ''}`,
+      ...drawerMenuItem,
+      ...(active ? drawerActiveIcon : {}),
+      transform: `translate(3px, 3px) ${active ? drawerActiveIcon.transform : ''}`,
     },
     subIcon: isActive => ({
-      ...drawer.menuItem,
-      ...(isActive ? drawer.activeIcon : {}),
-      transform: `translate(3px, 3px) ${isActive ? drawer.activeIcon.transform : ''}`,
+      ...drawerMenuItem,
+      ...(isActive ? drawerActiveIcon : {}),
+      transform: `translate(3px, 3px) ${isActive ? drawerActiveIcon.transform : ''}`,
     }),
     menuLabel: {
       container: {
@@ -99,20 +108,21 @@ const mapThemeToStyles = ({
       container: {
         position: domain.isFixedWidth ? 'relative' : 'fixed',
         zIndex: 1390,
-        ...drawer.menuItem,
+        ...drawerMenuItem,
         ...menuItemRootStyles,
         overflow: 'hidden',
         left: 0,
         transition: `${transitions.cubicAll}, top 0s`,
         transform,
         width: showing ? drawer.expandedWidth : drawer.narrowWidth,
-        ...(active ? drawer.active : {}),
+        ...(active ? drawerActiveMenuItem : {}),
       },
       subMenu: {
         paddingLeft: showing ? 24 : 0,
         zIndex: 1390,
       },
       inner: {
+
       },
     },
     rowItem: {},
@@ -122,7 +132,7 @@ const mapThemeToStyles = ({
       transform: `rotate(${domain.expanded ? -180 : 0}deg)`,
     },
     expandedIcon: {
-      ...drawer.menuItem,
+      ...drawerMenuItem,
     },
   })
 }
