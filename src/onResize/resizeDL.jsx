@@ -1,7 +1,6 @@
 import React from 'react'
 
-// import WatchElementResize from './core/resizeDL'
-import WatchElementResize from './core/base'
+import WatchElementResize from './core/resizeDL'
 
 class Watcher {
 
@@ -10,7 +9,7 @@ class Watcher {
   }
 
   _onResizeEvent = (evt) => {
-    console.log('onResize._onResizeEvent', evt)
+    console.log('onResizeDL._onResizeEvent', evt)
     const { top, left, width, height } = evt.element.offset
     if (width && height) this.onResize({top, left, width, height})
   }
