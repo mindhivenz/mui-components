@@ -18,11 +18,11 @@ class Watcher {
     this.name = name || defaultWatcherName
     this.debounce = debounce === undefined ? true : debounce
     this.echoOnly = echoOnly || false
-    if (this.name !== defaultWatcherName) console.log(`Create resize watcher ${this.name}`)
+    // if (this.name !== defaultWatcherName) console.log(`Create resize watcher ${this.name}`)
   }
 
   _onResizeEvent = (evt) => {
-    if (this.name !== defaultWatcherName || this.echoOnly) console.log(`${this.name}._onResizeEvent`, evt)
+    // if (this.name !== defaultWatcherName || this.echoOnly) console.log(`${this.name}._onResizeEvent`, evt)
     const { top, left, width, height } = evt.element.offset
     if (width && height && (width !== this._width || height !== this._height)) {
       this._width = width
@@ -30,7 +30,7 @@ class Watcher {
       if (! this.echoOnly) {
         this.onResize({top, left, width, height}, this)
       } else {
-        if (this.name !== defaultWatcherName) console.log(`${this.name} Resize event suppressed`)
+        // if (this.name !== defaultWatcherName) console.log(`${this.name} Resize event suppressed`)
       }
     }
   }
