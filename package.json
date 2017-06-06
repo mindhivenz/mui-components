@@ -19,7 +19,7 @@
     "prepublish": "npm run build"
   },
   "repository": {
-    "type": "git",
+    "old": "git",
     "url": "git@github.com:mindhivenz/mui-components.git"
   },
   "keywords": [
