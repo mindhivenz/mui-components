@@ -1,5 +1,5 @@
 import React from 'react'
-import _debounce from 'lodash/debounce'
+import _throttle from 'lodash/throttle'
 import { compose, lifecycle } from 'recompose'
 
 
@@ -13,10 +13,10 @@ class Watcher {
   _height = undefined
   _node = undefined
 
-  constructor(onResize, {name, debounce, echoOnly} = {}) {
+  constructor(onResize, {name, throttle, echoOnly} = {}) {
     this.onResize = onResize
     this.name = name || defaultWatcherName
-    this.debounce = debounce === undefined ? true : debounce
+    this.throttle = throttle === undefined ? true : throttle
     this.echoOnly = echoOnly || false
     // if (this.name !== defaultWatcherName) console.log(`Create resize watcher ${this.name}`)
   }
@@ -35,7 +35,7 @@ class Watcher {
     }
   }
 
-  _onResizeEventDebounce = _debounce(this._onResizeEvent, 150, { 'leading': true, 'trailing': false })
+  _onResizeEventThrottle = _throttle(this._onResizeEvent, 150, { 'leading': true, 'trailing': true })
 
   _resizeProps = () => ({[this.name]: this})
 
@@ -46,7 +46,7 @@ class Watcher {
 
   _createWatcher = () => {
     if (this._node) {
-      this.watcher = new WatchElementResize(this._node).on('resize', this.debounce ? this._onResizeEventDebounce : this._onResizeEvent)
+      this.watcher = new WatchElementResize(this._node).on('resize', this.throttle ? this._onResizeEventThrottle : this._onResizeEvent)
     }
   }
 
