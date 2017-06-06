@@ -1,5 +1,5 @@
 import React from 'react'
-import debounce from 'lodash/debounce'
+import _debounce from 'lodash/debounce'
 import { compose, lifecycle } from 'recompose'
 
 
@@ -13,14 +13,15 @@ class Watcher {
   _height = undefined
   _node = undefined
 
-  constructor(onResize, {name, echoOnly} = {name: defaultWatcherName, echoOnly: false}) {
+  constructor(onResize, {name, debounce, echoOnly} = {}) {
     this.onResize = onResize
-    this.name = name
-    this.echoOnly = echoOnly
+    this.name = name || defaultWatcherName
+    this.debounce = debounce === undefined ? true : debounce
+    this.echoOnly = echoOnly || false
     if (this.name !== defaultWatcherName) console.log(`Create resize watcher ${this.name}`)
   }
 
-  _onResizeEvent = debounce((evt) => {
+  _onResizeEvent = (evt) => {
     if (this.name !== defaultWatcherName || this.echoOnly) console.log(`${this.name}._onResizeEvent`, evt)
     const { top, left, width, height } = evt.element.offset
     if (width && height && (width !== this._width || height !== this._height)) {
@@ -32,7 +33,9 @@ class Watcher {
         if (this.name !== defaultWatcherName) console.log(`${this.name} Resize event suppressed`)
       }
     }
-  }, 150)
+  }
+
+  _onResizeEventDebounce = _debounce(this._onResizeEvent, 150, { 'leading': true, 'trailing': false })
 
   _resizeProps = () => ({[this.name]: this})
 
@@ -43,7 +46,7 @@ class Watcher {
 
   _createWatcher = () => {
     if (this._node) {
-      this.watcher = new WatchElementResize(this._node).on('resize', this._onResizeEvent)
+      this.watcher = new WatchElementResize(this._node).on('resize', this.debounce ? this._onResizeEventDebounce : this._onResizeEvent)
     }
   }
 
