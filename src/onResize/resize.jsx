@@ -1,42 +1,43 @@
 import React from 'react'
 import debounce from 'lodash/debounce'
 
-import WatchElementResizeDL from './core/resizeDL'
 import WatchElementResize from './core/base'
 
 const defaultWatcherName = 'resizeWatcher'
 
 class Watcher {
 
-  constructor(onResize, {name, old, echoOnly} = {name: defaultWatcherName, old: false, echoOnly: false}) {
+  _width = undefined
+  _height = undefined
+
+  constructor(onResize, {name, echoOnly} = {name: defaultWatcherName, echoOnly: false}) {
     this.onResize = onResize
     this.name = name
-    this.old = old
-    this.echoOnly = echoOnly;
+    this.echoOnly = echoOnly
+    if (this.name !== defaultWatcherName) console.log(`Create resize watcher ${this.name}`, this)
   }
 
   _onResizeEvent = debounce((evt) => {
     if (this.name !== defaultWatcherName || this.echoOnly) console.log(`${this.name}._onResizeEvent`, evt)
     const { top, left, width, height } = evt.element.offset
-    if (width && height) {
+    if (width && height && (width !== this._width || height !== this._height)) {
+      this._width = width
+      this._height = height
       if (! this.echoOnly) {
         this.onResize({top, left, width, height}, this)
       } else {
-        console.log(`${this.name} Resize event suppressed`)
+        if (this.name !== defaultWatcherName) console.log(`${this.name} Resize event suppressed`)
       }
     }
   }, 150)
 
-  _resizeProps = () => {
-    const props = {[this.name]: this}
-    if (this.name !== defaultWatcherName) console.log(`Create resize watcher ${this.name}`, props)
-    return props
-  }
+  _resizeProps = () => ({[this.name]: this})
 
   registerNode = (node) => {
     if (node) {
-      this.watcher = new (! this.old ? WatchElementResize : WatchElementResizeDL)(node).on('resize', this._onResizeEvent)
+      this.watcher = new WatchElementResize(node).on('resize', this._onResizeEvent)
     } else if (this.watcher) {
+      if (this.name !== defaultWatcherName) console.log(`Remove resize watcher ${this.name}`)
       this.watcher.removeListener()
     }
   }
