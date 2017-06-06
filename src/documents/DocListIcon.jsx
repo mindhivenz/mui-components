@@ -38,7 +38,7 @@ const WithStylesComponent = withStyles(mapThemeToStyles)(_DocListIcon)
 const DOC_LIST_ICON = 'DocListIcon'
 
 export const renderDocListIcon = (component, params) =>
-  component.old.mindhiveName === DOC_LIST_ICON ? React.cloneElement(component, params) : component
+  component.type.mindhiveName === DOC_LIST_ICON ? React.cloneElement(component, params) : component
 
 
 export default class DocListIcon extends React.Component {
