@@ -1,6 +1,7 @@
-import React from 'react'
+import { Component } from 'react'
+
 import _throttle from 'lodash/throttle'
-import { compose, lifecycle } from 'recompose'
+import { createEagerElement } from 'recompose'
 
 
 import WatchElementResize from './core/base'
@@ -14,6 +15,7 @@ class Watcher {
   _node = undefined
 
   constructor(onResize, {name, throttle, echoOnly} = {}) {
+    console.log('Constructor', this._node)
     this.onResize = onResize
     this.name = name || defaultWatcherName
     this.throttle = throttle === undefined ? true : throttle
@@ -64,28 +66,27 @@ class Watcher {
 
 }
 
+export default (onResize, options) => (BaseComponent) => {
 
+  return class extends Component {
 
+    constructor(props) {
+      super(props)
+      this.resizeWatcher = new Watcher(({top, left, width, height}, watcher) => onResize({ top, left, width, height }, props, watcher), options)
+    }
 
-export default (onResize, options) => Component => (props = {}) => {
-  const resizeWatcher = new Watcher(({top, left, width, height}, watcher) => onResize({ top, left, width, height }, props, watcher), options)
+    componentDidMount() {
+      this.resizeWatcher.didMount()
+    }
 
-  const MountDetector = compose(
-    lifecycle({
-      componentDidMount() {
-        resizeWatcher.didMount()
-      },
-      componentWillUnmount() {
-        resizeWatcher.willUnmount()
-      },
-    }),
-  )(() => null)
+    componentWillUnmount() {
+      this.resizeWatcher.willUnmount()
+    }
 
-  return (
-    <div>
-      <MountDetector />
-      <Component {...props} {...resizeWatcher._resizeProps()} />
-    </div>
-  )
+    render() {
+      return createEagerElement(BaseComponent, { ...this.props, ...this.resizeWatcher._resizeProps() })
+    }
+
+  }
 }
 
