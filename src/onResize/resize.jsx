@@ -15,7 +15,6 @@ class Watcher {
   _node = undefined
 
   constructor(onResize, {name, throttle, echoOnly} = {}) {
-    console.log('Constructor', this._node)
     this.onResize = onResize
     this.name = name || defaultWatcherName
     this.throttle = throttle === undefined ? true : throttle
