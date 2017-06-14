@@ -18,11 +18,9 @@ class Watcher {
     this.name = name || defaultWatcherName
     this.throttle = throttle === undefined ? true : throttle
     this.echoOnly = echoOnly || false
-    // if (this.name !== defaultWatcherName) console.log(`Create resize watcher ${this.name}`)
   }
 
   _onResizeEvent = (evt) => {
-    // if (this.name !== defaultWatcherName || this.echoOnly) console.log(`${this.name}._onResizeEvent`, evt)
     const { top, left, width, height } = evt.element.offset
     if (width && height && (width !== this._width || height !== this._height)) {
       this._width = width
@@ -30,7 +28,6 @@ class Watcher {
       if (! this.echoOnly) {
         this.onResize({top, left, width, height}, this)
       } else {
-        // if (this.name !== defaultWatcherName) console.log(`${this.name} Resize event suppressed`)
       }
     }
   }
@@ -40,31 +37,33 @@ class Watcher {
   _resizeProps = () => ({[this.name]: this})
 
   registerNode = (node) => {
-    this._node = node
-    this._createWatcher()
+    if (! this._node) {
+      this._node = node
+      this._createWatcher()
+    }
   }
 
   _createWatcher = () => {
     if (this._node) {
-      this.watcher = new WatchElementResize(this._node).on('resize', this.throttle ? this._onResizeEventThrottle : this._onResizeEvent)
+      this.watcher =
+        new WatchElementResize(this._node)
+        .on('resize', this.throttle ? this._onResizeEventThrottle : this._onResizeEvent)
     }
   }
 
   didMount = () => {
-    // if (this.name !== defaultWatcherName) console.log(`${this.name} didMount ${this._node}`)
     this._createWatcher()
   }
 
   willUnmount = () => {
-    // if (this.name !== defaultWatcherName) console.log(`${this.name} willUnmount  ${this._node}`)
     if (this.watcher) {
-      if (this.name !== defaultWatcherName) console.log(`Remove resize watcher ${this.name}`)
       this.watcher.removeListener()
       this.watcher = undefined
     }
   }
 
 }
+
 
 
 
