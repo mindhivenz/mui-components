@@ -54,17 +54,19 @@ const mapThemeToStyles = ({
     menuItemHovered,
     hideWhenExpanded,
     hideWhenNarrow,
+    overrideAppDrawerStyle = {},
     inject: { navDrawerDomain: domain, layoutDomain } = app(),
   }
 ) => {
-  const drawerBackgroundColor = appDrawer.backgroundColor || drawer.backgroundColor
-  const hoveredBackgroundColor = appDrawer.hoveredBackgroundColor || colorManipulator.darken(drawerBackgroundColor, 0.1)
-  const drawerMenuItem =  Object.assign({}, drawer.menuItem, appDrawer.menuItem)
-  const drawerActiveIcon =  Object.assign({}, drawer.activeIcon, appDrawer.activeIcon || {})
-  const drawerActiveMenuItem =  Object.assign({}, drawer.active, appDrawer.active || {})
+  const appDrawerStyles = Object.assign({}, appDrawer, overrideAppDrawerStyle)
+  const drawerBackgroundColor = appDrawerStyles.backgroundColor || drawer.backgroundColor
+  const hoveredBackgroundColor = appDrawerStyles.hoveredBackgroundColor || colorManipulator.darken(drawerBackgroundColor, 0.1)
+  const drawerMenuItem =  Object.assign({}, drawer.menuItem, appDrawerStyles.menuItem)
+  const drawerActiveIcon =  Object.assign({}, drawer.activeIcon, appDrawerStyles.activeIcon || {})
+  const drawerActiveMenuItem =  Object.assign({}, drawer.active, appDrawerStyles.active || {})
 
   const menuItemRootStyles = {
-    backgroundColor: hovered ? hoveredBackgroundColor : appDrawer.menuItem.backgroundColor || drawerBackgroundColor,
+    backgroundColor: hovered ? hoveredBackgroundColor : appDrawerStyles.menuItem.backgroundColor || drawerBackgroundColor,
   }
   const showing = domain.expanded || hovered
   const translateDistance = domain.expanded ? drawer.expandedWidth : drawer.narrowWidth
