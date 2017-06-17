@@ -128,19 +128,20 @@ export class Internal {
   scrollListener(evt) {
     var this_ = this;
     var element = evt.target.parentNode.parentNode;
+    if (element) {
+      this_.resetTriggers(element);
+      if (element.__resizeRAF__) utils.cancelFrame(element.__resizeRAF__);
 
-    this_.resetTriggers(element);
-    if (element.__resizeRAF__) utils.cancelFrame(element.__resizeRAF__);
-
-    element.__resizeRAF__ = utils.requestFrame(function () {
-      if (this_.checkTriggers(element)) {
-        element.__resizeLast__.width = element.offsetWidth;
-        element.__resizeLast__.height = element.offsetHeight;
-        element.__resizeListeners__.forEach(function () {
-          this_.trigger(element);
-        });
-      }
-    });
+      element.__resizeRAF__ = utils.requestFrame(function () {
+        if (this_.checkTriggers(element)) {
+          element.__resizeLast__.width = element.offsetWidth;
+          element.__resizeLast__.height = element.offsetHeight;
+          element.__resizeListeners__.forEach(function () {
+            this_.trigger(element);
+          });
+        }
+      });
+    }
   }
 
   addResizeListener(element) {
@@ -225,20 +226,25 @@ export class Internal {
   }
 
   resetTriggers(element) {
-    let triggers = element.__resizeTriggers__,
+    if (element.__resizeTriggers__) {
+      let triggers = element.__resizeTriggers__,
         expand = triggers.firstElementChild,
         contract = triggers.lastElementChild,
         expandChild = expand.firstElementChild;
 
-    contract.scrollLeft = contract.scrollWidth;
-    contract.scrollTop = contract.scrollHeight;
-    expandChild.style.width = expand.offsetWidth + 1 + 'px';
-    expandChild.style.height = expand.offsetHeight + 1 + 'px';
-    expand.scrollLeft = expand.scrollWidth;
-    expand.scrollTop = expand.scrollHeight;
+      contract.scrollLeft = contract.scrollWidth;
+      contract.scrollTop = contract.scrollHeight;
+      expandChild.style.width = expand.offsetWidth + 1 + 'px';
+      expandChild.style.height = expand.offsetHeight + 1 + 'px';
+      expand.scrollLeft = expand.scrollWidth;
+      expand.scrollTop = expand.scrollHeight;
+    }
   }
 
   checkTriggers(element) {
+    if (! element.__resizeLast__) {
+      return false
+    }
     return element.offsetWidth !== element.__resizeLast__.width ||
               element.offsetHeight !== element.__resizeLast__.height;
   }
