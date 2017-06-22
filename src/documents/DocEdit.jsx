@@ -319,7 +319,12 @@ class DocEdit extends Component {
                 return child
               }
               const isFirstFocus = child && child.props && child.props.autoFocus === true
-              return React.cloneElement(child, { withRef: isFirstFocus, ref: isFirstFocus ? this.getFirstFocus : undefined });
+              const props = {}
+              if (isFirstFocus) {
+                props.ref = this.getFirstFocus
+                if (typeof child.type !== 'string') props.withRef = isFirstFocus
+              }
+              return React.cloneElement(child, props);
             })}
             <div style={styles.buttons}>
               {buttons.length &&
