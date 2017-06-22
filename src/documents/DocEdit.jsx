@@ -34,6 +34,14 @@ const mapThemeToStyles = (theme) => {
   const selectedIconRoot = {
     marginTop: '32px',
   }
+  const {
+    saveButtonColor,
+    saveButtonDisabledBackgroundColor,
+    closeButtonColor,
+    closeButtonHoverColor,
+    discardButtonColor,
+  } = theme.docEdit
+
   return {
     root: {
       position: 'fixed',
@@ -96,7 +104,8 @@ const mapThemeToStyles = (theme) => {
       textAlign: 'right',
     },
     save: {
-      color: theme.palette.accent1Color,
+      backgroundColor: saveButtonColor,
+      disabledBackgroundColor: saveButtonDisabledBackgroundColor,
       marginRight: spacing.desktopGutterMini,
     },
     close: {
@@ -106,11 +115,11 @@ const mapThemeToStyles = (theme) => {
         padding: 0,
         margin: 0,
       },
-      color: theme.palette.borderColor,
-      hoverColor: theme.palette.errorText,
+      color: closeButtonColor,
+      hoverColor: closeButtonHoverColor
     },
     discard: {
-      color: theme.palette.errorText,
+      color: discardButtonColor,
       marginRight: spacing.desktopGutterMini,
     },
   }
@@ -271,6 +280,7 @@ class DocEdit extends Component {
           id={`submit-${docType}-selector`}
           label="save"
           style={styles.save}
+          disabledBackgroundColor={styles.save.disabledBackgroundColor}
           secondary
           type="submit"
           disabled={pristine || ! valid || submitting || processing}

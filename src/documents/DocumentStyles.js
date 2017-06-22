@@ -3,6 +3,7 @@ import { grey200, grey400 } from 'material-ui/styles/colors'
 export default ({
   palette,
   colorManipulator,
+  raisedButton,
 }) => ({
   docStatefulIcon: {
     disabledColor: grey200,
@@ -18,5 +19,12 @@ export default ({
     primaryTextHoveredColor: colorManipulator.darken(palette.darkPrimary1Color, 0.45),
     secondaryTextDisabledColor: palette.disabledColor,
   },
+  docEdit: {
+    saveButtonColor: palette.accent1Color,
+    saveButtonDisabledBackgroundColor: raisedButton.disabledColor,
+    closeButtonColor: palette.borderColor,
+    closeButtonHoverColor: palette.errorText,
+    discardButtonColor: palette.errorText,
+  }
 })
 

@@ -80,6 +80,9 @@ const mapThemeToStyles = ({
       position: 'relative',
       padding: `${spacing.desktopGutterMini}px ${spacing.desktopGutter}px`,
     },
+    rootForce: {
+      padding: `${spacing.desktopGutterLess}px ${spacing.desktopGutter}px`,
+    },
     title: {
       ...titleRoot,
       color: titleColor,
