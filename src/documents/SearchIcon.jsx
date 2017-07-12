@@ -1,3 +1,5 @@
+//TODO: moved to @mindhive/documents
+
 import React, { Component } from 'react'
 import { SearchIcon as Icon } from '../Icon'
 import { injectStylesSheet } from './SearchStyles'

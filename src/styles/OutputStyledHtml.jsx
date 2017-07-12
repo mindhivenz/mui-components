@@ -1,5 +1,6 @@
-import React from 'react'
+//TODO: moved to @mindhive/styles
 
+import React from 'react'
 import withStyles from '../theme/withStyles'
 
 const OutputStyledHtml = ({

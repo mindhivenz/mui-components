@@ -1,3 +1,5 @@
+//TODO: moved to @mindhive/documents
+
 import withStyles from '../theme/withStyles'
 
 export default ({

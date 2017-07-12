@@ -1,3 +1,5 @@
+//TODO: moved to @mindhive/documents
+
 import { grey200, grey400 } from 'material-ui/styles/colors'
 
 export default ({

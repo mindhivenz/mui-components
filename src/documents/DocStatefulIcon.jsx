@@ -1,3 +1,5 @@
+//TODO: moved to @mindhive/documents
+
 import React from 'react'
 import IconButton from 'material-ui/IconButton'
 

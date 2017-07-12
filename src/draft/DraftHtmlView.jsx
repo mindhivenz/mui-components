@@ -1,3 +1,5 @@
+//TODO: moved to @mindhive/styles
+
 import React from 'react'
 import { stateToHTML } from 'draft-js-export-html'
 import { convertFromRaw } from 'draft-js'

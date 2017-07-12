@@ -1,3 +1,5 @@
+//TODO: moved to @mindhive/richtext
+
 const mapError = ({ meta: { touched, error, warning } = {}, input: { ...inputProps }, ...props }, errorProp = 'errorText') =>
   (touched && (error || warning)
       ? {

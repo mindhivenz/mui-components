@@ -1,3 +1,5 @@
+//TODO: moved to @mindhive/richtext
+
 import { Component, createElement } from 'react'
 
 /**

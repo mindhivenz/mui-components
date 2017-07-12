@@ -1,8 +1,11 @@
+//TODO: moved to @mindhive/styles
+
 import React from 'react'
 import { computed, observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { app } from '@mindhive/di'
 
+let deprecatedWarn = false
 
 const copyProps = themeDomain => ({
   theme: themeDomain.muiTheme,
@@ -10,6 +13,11 @@ const copyProps = themeDomain => ({
 })
 
 export default (mapThemeToStyles) => {
+
+  if (! deprecatedWarn ) {
+    console.warn('"import withStyles from @mindhive/components/withStyles" is deprecated, use "import { withStyles } from @mindhive/styles instead')
+    deprecatedWarn = true
+  }
 
   if (! mapThemeToStyles) {
     return Component => {
