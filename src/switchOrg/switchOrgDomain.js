@@ -57,9 +57,13 @@ class SwitchOrgDomain {
   }
 
   @action handleSwitch = () => {
-    app().api.optimisticCall('switchOrg.viewer.switch', { orgId: this.orgId })
-    document.location.replace('/')  // Refresh current page and go to dashboard
+    this.switchTo(this.orgId)
     this.tidyUp()  // kinda pointless, we're about to refresh anyway
+  }
+
+  switchTo = (orgId) => {
+    app().api.optimisticCall('switchOrg.viewer.switch', { orgId })
+    document.location.replace('/')  // Refresh current page and go to dashboard
   }
 
   @action cancel = () => {
