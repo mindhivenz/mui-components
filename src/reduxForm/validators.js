@@ -20,9 +20,9 @@ export const createFormValidator = rules =>
   }
 
 export const isEmpty = value =>
-value === undefined ||
-value === null ||
-value === ''
+  value === undefined ||
+  value === null ||
+  value === ''
 
 
 export const words = (value) => {
@@ -108,7 +108,7 @@ export const uniqueName = (namesToAvoid, nameLabel = 'name', entityLabel = null)
 export const match = field =>
   (value, data) => {
     if (data) {
-      if (value != data[field]) {
+      if (value !== data[field]) {
         return 'Do not match'
       }
     }
@@ -116,11 +116,11 @@ export const match = field =>
   }
 
 const contains = (count, pattern, label) => (value) => {
-  if (! isEmpty(value) && ! new RegExp(`(?=.*[${pattern}]{${count},})`, 'g').test(value)) {
-    return `Please include ${count > 1 ? 
-      `at least ${count} ${label}${label.endsWith('s') ? 'es' : 's'}` 
+  if (! isEmpty(value) && ! new RegExp(`^(.*?[${pattern}]){${count},}.*$`, 'g').test(value)) {
+    return `Please include ${count > 1 ?
+      `at least ${count} ${label}${label.endsWith('s') ? 'es' : 's'}`
       : `a ${label}`
-    }`
+      }`
   }
   return null
 }
